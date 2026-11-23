@@ -1,0 +1,154 @@
+.tools,
+.filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tools {
+  min-width: 0;
+  gap: 14px 20px;
+}
+
+.search {
+  position: relative;
+  width: min(260px, 100%);
+}
+
+.label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.input {
+  width: 100%;
+  min-height: 40px;
+  padding: 7px 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--surface);
+}
+
+.input::placeholder {
+  color: var(--muted);
+}
+
+.results {
+  position: absolute;
+  z-index: 5;
+  inset-inline: 0;
+  top: calc(100% + 5px);
+  max-height: 17rem;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: 0 6px 25px color-mix(in srgb, var(--text) 13%, transparent);
+}
+
+.results ul,
+.results p {
+  margin: 0;
+  padding: 5px;
+}
+
+.results ul {
+  list-style: none;
+}
+
+.results p {
+  padding: 10px 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.results button {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 3px 10px;
+  width: 100%;
+  padding: 8px;
+  text-align: start;
+  border: 0;
+  border-radius: 5px;
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.results button:hover,
+.results button:focus-visible {
+  background: var(--bg);
+  outline-offset: -3px;
+}
+
+.results small {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.filters {
+  gap: 6px;
+}
+
+.chip,
+.reset {
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.chip {
+  --field: var(--field-light);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface);
+}
+
+@media (prefers-color-scheme: dark) {
+  .chip {
+    --field: var(--field-dark);
+  }
+}
+
+.chip span {
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--field);
+  border-radius: 50%;
+}
+
+.chip[aria-pressed='true'] {
+  border-color: var(--field);
+  color: var(--text);
+  background: color-mix(in srgb, var(--field) 12%, var(--surface));
+}
+
+.chip[aria-pressed='true'] span {
+  background: var(--field);
+}
+
+.reset {
+  border-radius: 6px;
+  color: var(--accent);
+  background: var(--surface);
+}
+
+.reset:disabled {
+  color: var(--muted);
+  cursor: default;
+}
