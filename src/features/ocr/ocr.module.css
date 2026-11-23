@@ -1,0 +1,80 @@
+.editor {
+  display: grid;
+  gap: 1rem;
+  max-inline-size: 64rem;
+}
+
+.panel {
+  display: grid;
+  min-inline-size: 0;
+  gap: 0.9rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.editor h2,
+.editor h3,
+.editor p { margin: 0; }
+
+.muted { color: var(--muted); font-weight: 400; }
+.warning { color: var(--warn); }
+.error { color: var(--danger); }
+.success { color: var(--ok); }
+
+.fields {
+  min-inline-size: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.fields legend { margin-block-end: 0.45rem; font-weight: 650; }
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: 0.75rem;
+}
+
+.fields label,
+.file { display: grid; gap: 0.25rem; min-inline-size: 0; font-weight: 650; }
+
+.fields input,
+.fields select,
+.file input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 400;
+}
+
+.actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 0.55rem; }
+
+.editor .primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface);
+  font-weight: 700;
+}
+
+.editor .primary:disabled { opacity: 0.55; }
+
+.row {
+  display: grid;
+  gap: 0.65rem;
+  min-inline-size: 0;
+  padding-block: 0.9rem;
+  border-block-start: 1px solid var(--line);
+}
+
+.row h3 { overflow-wrap: anywhere; font-size: 1rem; }
+.reviewed { display: flex; flex-wrap: wrap; gap: 0.65rem; padding-block: 0.3rem; }
+.reviewed p { color: var(--muted); }
+.panel summary { cursor: pointer; }
