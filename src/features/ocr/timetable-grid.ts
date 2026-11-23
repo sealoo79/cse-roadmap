@@ -68,7 +68,8 @@ export function findTimetableCells({ data, width, height }: ImageData): CellBoun
   return cells.sort((a, b) => a.y - b.y || a.x - b.x).slice(0, 50);
 }
 
-const locationText = /(?:산격동|캠퍼스|강의실|융복합관|종합정보센터|IT\s*대학)/iu;
+// 강의실 줄: 캠퍼스·건물명, 또는 OCR이 '산격동 캠퍼스'를 못 읽어도 남는 호실 표기(IT5-224, |15-36 등)
+const locationText = /(?:산격동|캠퍼스|강의실|융복합관|종합정보센터|IT\s*대학|[A-Z|Il1]{1,3}\s*\d{0,2}\s*-\s*\d{2,4})/iu;
 
 export function titleFromCell(text: string): string {
   const lines = text.normalize('NFKC').split(/\r?\n/).map((line) =>
@@ -77,7 +78,9 @@ export function titleFromCell(text: string): string {
   for (const line of lines.slice(0, 3)) {
     const location = line.search(locationText);
     const prefix = (location >= 0 ? line.slice(0, location) : line).trim();
-    if (/[\p{L}]/u.test(prefix) && !/^[oO0]{1,2}$/.test(prefix)) title.push(prefix);
+    // 제목 다음 줄에서 강의실 앞에 붙은 글자는 깨진 '산격동 캠퍼스'인 경우가 많아 한글이 있을 때만 남긴다.
+    const keep = /[\p{L}]/u.test(prefix) && !/^[oO0]{1,2}$/.test(prefix) && (title.length === 0 || /\p{Script=Hangul}/u.test(prefix));
+    if (keep) title.push(prefix);
     if (location >= 0) break;
   }
   return title.join(' ');

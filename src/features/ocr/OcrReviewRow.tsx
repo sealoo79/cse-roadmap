@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useMemo, useState, type FormEvent, type JSX } from 'react';
+import { useEffect, useId, useMemo, useState, type FormEvent, type JSX } from 'react';
 import { Button } from '@/components/ui/Button';
 import { readSemester, statusLabels, terms, validYear } from '@/features/enrollments/enrollment-fields';
 import { searchCourses } from '@/features/enrollments';
@@ -9,22 +9,31 @@ import type { EnrollmentStatus, NewEnrollment, OcrImportItem } from '@/types/use
 import { courseMatchLabel } from './match-courses';
 import styles from './ocr.module.css';
 
-export function OcrReviewRow({ item, reference, disabled, year, semester, onConfirm, onReject }: {
+export function OcrReviewRow({
+  item, reference, disabled, year, semester, status: defaultStatus = 'incomplete', onDraft, onConfirm, onReject,
+}: {
   item: OcrImportItem;
   reference: ReferenceData;
   disabled: boolean;
   year: string;
   semester: string;
+  /** 공통 수강 상태. 항목에서 바꾸면 그 값을 쓴다. */
+  status?: EnrollmentStatus;
+  /** 지금 입력값으로 저장할 수 있으면 그 기록, 아니면 null을 알린다(한 번에 저장용). */
+  onDraft?(id: string, input: NewEnrollment | null): void;
   onConfirm(input: NewEnrollment): void;
   onReject(): void;
 }): JSX.Element {
   const heading = useId();
   const matchLabel = courseMatchLabel(item, reference);
-  const exactCode = matchLabel === 'DB 일치' ? item.candidate_codes[0] : '';
-  const exactCourse = reference.courses.get(exactCode);
+  // 후보는 일치도·내 교육과정 순으로 정렬돼 있으므로 첫 후보를 미리 골라 둔다. 사용자는 확인만 하면 된다.
+  const bestCode = item.candidate_codes.find((candidate) => reference.courses.has(candidate)) ?? '';
+  const exact = matchLabel === 'DB 일치';
   const [query, setQuery] = useState('');
-  const [code, setCode] = useState<CourseCode>(exactCode);
-  const [status, setStatus] = useState<EnrollmentStatus>('incomplete');
+  const [code, setCode] = useState<CourseCode>(bestCode);
+  const [statusOverride, setStatus] = useState<EnrollmentStatus | null>(null);
+  const status = statusOverride ?? defaultStatus;
+  const selectedCourse = reference.courses.get(code);
   const [yearOverride, setYearOverride] = useState<string | null>(null);
   const [semesterOverride, setSemesterOverride] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +42,34 @@ export function OcrReviewRow({ item, reference, disabled, year, semester, onConf
     .filter((candidate) => reference.courses.has(candidate));
   const takenYear = yearOverride ?? year;
   const takenSemester = semesterOverride ?? semester;
+  const draftTerm = readSemester(takenSemester);
+  const draft: NewEnrollment | null = reference.courses.has(code) && validYear(takenYear) && draftTerm !== undefined ? {
+    course_code: code,
+    taken_year: Number(takenYear),
+    taken_semester: draftTerm,
+    status,
+    source: 'ocr',
+    credit: null,
+    grade: status === 'failed' ? 'F' : null,
+  } : null;
+  const draftKey = draft ? `${draft.course_code}/${draft.taken_year}/${draft.taken_semester}/${draft.status}` : '';
+
+  useEffect(() => {
+    if (!onDraft) return;
+    const [courseCode, takenYearValue, takenSemesterValue, statusValue] = draftKey.split('/');
+    const term = readSemester(takenSemesterValue ?? '');
+    onDraft(item.id, draftKey && term !== undefined ? {
+      course_code: courseCode,
+      taken_year: Number(takenYearValue),
+      taken_semester: term,
+      status: statusValue as EnrollmentStatus,
+      source: 'ocr',
+      credit: null,
+      grade: statusValue === 'failed' ? 'F' : null,
+    } : null);
+  }, [draftKey, item.id, onDraft]);
+
+  useEffect(() => () => onDraft?.(item.id, null), [item.id, onDraft]);
 
   function confirm(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
@@ -59,10 +96,11 @@ export function OcrReviewRow({ item, reference, disabled, year, semester, onConf
 
   return (
     <form className={styles.row} aria-labelledby={heading} onSubmit={confirm}>
-      <h3 id={heading}>{exactCourse?.name_ko ?? item.raw_text}</h3>
+      <h3 id={heading}>{selectedCourse?.name_ko ?? item.raw_text}</h3>
       <p className={item.candidate_codes.length === 0 ? styles.warning : styles.muted}>
-        {matchLabel}
-        {item.candidate_codes.length === 0 && ' · 직접 검색하거나 검토에서 제외할 수 있어요.'}
+        {selectedCourse && <code>{selectedCourse.course_code}</code>} {matchLabel}
+        {!exact && bestCode && ` · 인식한 글자 “${item.raw_text}” → 가장 비슷한 과목을 골라 뒀어요. 맞는지 확인하세요.`}
+        {item.candidate_codes.length === 0 && ` · “${item.raw_text}”와 맞는 과목을 찾지 못했어요. 직접 검색하거나 제외하세요.`}
       </p>
       <fieldset className={styles.fields} disabled={disabled}>
         <label>과목 다시 검색

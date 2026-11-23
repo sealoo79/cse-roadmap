@@ -48,6 +48,29 @@ it('코드·정확한 제목·유사 이름 후보를 구분하고 같은 수업
   expect(rows.every((item) => item.review_status === 'pending' && item.matched_course_code === null)).toBe(true);
 });
 
+it('OCR 오타·잘린 이름·깨진 강의실 글자에도 가장 가까운 과목을 첫 후보로 둔다', () => {
+  const rows = matchCourses([
+    '기초프로그래밍실 A',
+    '인공지능융합옹용 특강          i',
+    '컴퓨터윤리 odio oy 0',
+    '알고리즘2',
+    '종합설계프로젝트',
+    '동아리 회의',
+  ], reference, { programId: 'adv_computing', admissionYear: 2026 });
+  expect(rows.map(({ candidate_codes }) => candidate_codes[0] ?? null)).toEqual([
+    'COMP0207', 'COMP0342', expect.any(String), 'COMP0320', 'ITEC0401', null,
+  ]);
+  expect(reference.courses.get(rows[2].candidate_codes[0])?.name_ko).toBe('컴퓨터윤리');
+  // 번호만 다른 과목(알고리즘1)은 비슷한 이름으로 보지 않는다.
+  expect(rows[3].candidate_codes).toEqual(['COMP0320']);
+  expect(rows[4].candidate_codes).toEqual(['ITEC0401', 'ITEC0402']);
+});
+
+it('호실 표기만 남은 강의실 줄도 제목에서 떼어낸다', () => {
+  expect(titleFromCell('운영체제\nAi HHA IT5-21\n')).toBe('운영체제');
+  expect(titleFromCell('수치해석\n산격동 캠퍼스 |15-37\n2\n')).toBe('수치해석');
+});
+
 it('한글·영문 OCR 엔진으로 합성 시간표 이미지의 과목을 추출해 기준 데이터와 대조한다', async () => {
   const models = await mkdtemp(join(tmpdir(), 'cse-ocr-models-'));
   try {
