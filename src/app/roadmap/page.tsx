@@ -46,7 +46,7 @@ export default function RoadmapPage(): JSX.Element {
   return (
     <div className="roadmap-page">
       <h1>내 전공 노선도</h1>
-      <p className="page-description">반짝이는 역은 추천 과목입니다. 과목을 선택하면 수강 정보와 추천 이유를 확인할 수 있어요.</p>
+      <p className="page-description">금색 고리와 ‘추천’ 표시가 붙은 역이 다음 학기 추천 과목이에요. 과목을 누르면 그 과목에서 이어지는 후수 과목이 파란 점선으로 끝까지 표시되고, 상세 창은 위쪽 손잡이를 끌어 옮길 수 있어요.</p>
       <Suspense fallback={<p role="status">로드맵을 불러오는 중입니다.</p>}><RoadmapContent /></Suspense>
     </div>
   );

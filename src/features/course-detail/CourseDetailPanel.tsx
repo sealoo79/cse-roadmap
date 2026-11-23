@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, type JSX } from 'react';
+import { useEffect, useId, useRef, useState, type JSX, type PointerEvent as ReactPointerEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { useRecommendations } from '@/features/recommend/useRecommendations';
 import { getCurriculum, getRelations } from '@/lib/reference';
 import { useCompletion, useProfile, useReference } from '@/lib/user-data/hooks';
@@ -21,7 +21,14 @@ const relationLabel: Record<CourseRelation['type'], string> = {
   coreq: '동시 수강',
 };
 
+interface Offset { x: number; y: number }
+const NO_OFFSET: Offset = { x: 0, y: 0 };
+/** 방향키로 패널을 옮길 때 한 번에 움직이는 거리(px). Shift를 누르면 네 배. */
+const KEY_STEP = 24;
+
 export function CourseDetailPanel({ code, onClose, onNavigate }: PanelProps): JSX.Element | null {
+  // 옮긴 위치는 패널을 닫았다 열거나 다른 과목으로 바꿔도 유지한다(노선도를 가리지 않는 자리에 두고 계속 쓰도록).
+  const [offset, setOffset] = useState<Offset>(NO_OFFSET);
   const { courses, equivalents } = useReference();
   const { profile } = useProfile();
   const completion = useCompletion();
@@ -36,7 +43,8 @@ export function CourseDetailPanel({ code, onClose, onNavigate }: PanelProps): JS
 
   return <CourseDetail course={course} courses={courses} completion={completion} curriculum={curriculum}
     relations={relations} equivalents={equivalents}
-    recommendation={recommendations.find((item) => item.code === code)} onClose={onClose} onNavigate={onNavigate} />;
+    recommendation={recommendations.find((item) => item.code === code)} onClose={onClose} onNavigate={onNavigate}
+    offset={offset} onMove={setOffset} />;
 }
 
 interface DetailProps extends Pick<PanelProps, 'onClose' | 'onNavigate'> {
@@ -47,15 +55,61 @@ interface DetailProps extends Pick<PanelProps, 'onClose' | 'onNavigate'> {
   relations: CourseRelation[];
   equivalents: CourseEquivalent[];
   recommendation: Recommendation | undefined;
+  offset: Offset;
+  onMove(offset: Offset): void;
+}
+
+/** 패널이 화면 밖으로 완전히 나가지 않도록, 머리 부분이 늘 화면 안에 남게 이동 범위를 제한한다. */
+function clampOffset(panel: HTMLElement, current: Offset, next: Offset): Offset {
+  const rect = panel.getBoundingClientRect();
+  const baseLeft = rect.left - current.x;
+  const baseTop = rect.top - current.y;
+  const keep = 64;
+  return {
+    x: Math.min(window.innerWidth - keep - baseLeft, Math.max(keep - rect.width - baseLeft, next.x)),
+    y: Math.min(window.innerHeight - keep - baseTop, Math.max(-baseTop, next.y)),
+  };
 }
 
 function CourseDetail({
-  course, courses, completion, curriculum, relations, equivalents, recommendation, onClose, onNavigate,
+  course, courses, completion, curriculum, relations, equivalents, recommendation, onClose, onNavigate, offset, onMove,
 }: DetailProps): JSX.Element {
   const titleId = useId();
   const panel = useRef<HTMLElement>(null);
   const close = useRef<HTMLButtonElement>(null);
+  const drag = useRef<{ pointerId: number; startX: number; startY: number; origin: Offset } | null>(null);
+  const [dragging, setDragging] = useState(false);
   const code = course.course_code;
+
+  // 머리 부분(제목 줄)을 끌어 패널을 옮긴다. 닫기 버튼·링크를 누를 때는 끌지 않는다.
+  function startDrag(event: ReactPointerEvent<HTMLElement>): void {
+    if (event.button !== 0 || (event.target as Element).closest('button:not([data-grip]), a')) return;
+    drag.current = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, origin: offset };
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    setDragging(true);
+    event.preventDefault();
+  }
+  function moveDrag(event: ReactPointerEvent<HTMLElement>): void {
+    const state = drag.current;
+    if (!state || state.pointerId !== event.pointerId || !panel.current) return;
+    onMove(clampOffset(panel.current, offset, {
+      x: state.origin.x + event.clientX - state.startX, y: state.origin.y + event.clientY - state.startY,
+    }));
+  }
+  function endDrag(event: ReactPointerEvent<HTMLElement>): void {
+    if (drag.current?.pointerId !== event.pointerId) return;
+    drag.current = null;
+    setDragging(false);
+  }
+  // 키보드로도 옮길 수 있게, 이동 손잡이에서 방향키를 받는다.
+  function moveByKey(event: ReactKeyboardEvent<HTMLButtonElement>): void {
+    const step = event.shiftKey ? KEY_STEP * 4 : KEY_STEP;
+    const delta = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[event.key];
+    if (!delta || !panel.current) return;
+    event.preventDefault();
+    onMove(clampOffset(panel.current, offset, { x: offset.x + delta[0], y: offset.y + delta[1] }));
+  }
+  const moved = offset.x !== 0 || offset.y !== 0;
 
   useEffect(() => {
     const previous = document.activeElement;
@@ -109,9 +163,17 @@ function CourseDetail({
   );
 
   return (
-    <aside role="dialog" aria-labelledby={titleId} className={styles.panel} ref={panel}>
-      <header className={styles.header}>
-        <div>
+    <aside role="dialog" aria-labelledby={titleId} className={styles.panel} ref={panel} data-dragging={dragging}
+      style={moved ? { transform: `translate(${offset.x}px, ${offset.y}px)` } : undefined}>
+      <header className={styles.header} onPointerDown={startDrag} onPointerMove={moveDrag}
+        onPointerUp={endDrag} onPointerCancel={endDrag}>
+        <div className={styles.handle}>
+          <button type="button" className={styles.grip} data-grip aria-label="과목 상세 패널 옮기기. 방향키로 이동"
+            title="끌거나 방향키로 패널을 옮길 수 있어요" onKeyDown={moveByKey}>⠿</button>
+          <span className={styles.hint} aria-hidden="true">끌어서 옮기기</span>
+          {moved && <button type="button" className={styles.reset} onClick={() => onMove(NO_OFFSET)}>제자리</button>}
+        </div>
+        <div className={styles.titleBlock}>
           <p className={styles.code}>{code}</p>
           <h2 id={titleId}>{course.name_ko}</h2>
           <p className={styles.status}>{status}</p>

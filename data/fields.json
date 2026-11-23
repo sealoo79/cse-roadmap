@@ -2,7 +2,7 @@
   {
     "field_id": "common",
     "name_ko": "공통 기초",
-    "color": "#3a3f47",
+    "color": "#475569",
     "color_dark": "#94a3b8",
     "order": 1,
     "description": "수학·프로그래밍 기초, 자료구조·알고리즘, 설계 프로젝트와 교양·창업·교직처럼 모든 분야의 바탕이 되는 과목"

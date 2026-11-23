@@ -65,13 +65,14 @@ export function RoadmapView({
             <li><span className={styles.completedKey} aria-hidden="true" />이수 완료</li>
             <li><span className={styles.progressKey} aria-hidden="true" />수강 중</li>
             <li><span className={styles.pendingKey} aria-hidden="true" />미이수</li>
-            <li><span className={styles.sparkle} aria-hidden="true">✦</span>다음 학기 추천</li>
+            <li><span className={styles.recLegend} aria-hidden="true"><span className={styles.recTag}>추천</span></span>다음 학기 추천</li>
           </ul>
           <ul className={styles.legend} aria-label="관계선 범례">
             <li><span className={styles.officialKey} aria-hidden="true" />필수 선수</li>
             <li><span className={styles.recommendedKey} aria-hidden="true" />권장 선수</li>
             <li><span className={styles.coreqKey} aria-hidden="true" />동시 수강</li>
             <li><span className={styles.serviceKey} aria-hidden="true" />서비스 추천 (겹치면 우선 표시)</li>
+            <li><span className={styles.chainKey} aria-hidden="true" />선택한 과목에서 이어지는 후수 과목</li>
           </ul>
         </div>
         <div className={styles.zoom} role="group" aria-label="노선도 확대·축소">
@@ -129,7 +130,7 @@ export function RoadmapView({
                       const offset = node.y - top;
                       return (
                         <div key={node.code} className={styles.station} data-roadmap-node={node.code}
-                          data-even-grade={Math.floor(node.col / 2) % 2 === 1}
+                          data-even-grade={Math.floor(node.col / 2) % 2 === 1} data-recommended={isRecommended}
                           style={{ left: node.x, top: offset + LANE_PADDING, width: node.width, height: node.height }}>
                           {offset > 0 && <span className={styles.spur} style={{ height: offset }} aria-hidden="true" />}
                           <button type="button" aria-pressed={selected} data-status={status}
@@ -140,15 +141,17 @@ export function RoadmapView({
                             }}
                             onClick={() => onSelect(selected ? null : node.code)}>
                             <span className={styles.stationDot} aria-hidden="true" />
-                            <span className={styles.courseName}>{course?.name_ko ?? node.code}</span>
+                            <span className={styles.courseName}>
+                              {course?.name_ko ?? node.code}
+                              {isRecommended && <span className={styles.recTag} aria-hidden="true">추천</span>}
+                            </span>
                             <span className={styles.nodeMeta}>{node.code}</span>
                             <span className={styles.srOnly}>
                               {statusLabels[status]} · {course?.credit == null ? '학점 미확인' : `${course.credit}학점`}
                               {offered?.length ? ` · ${offered.join('·')}학기 개설` : ''}
                             </span>
-                            {isRecommended && <span className={styles.recommendation}>
-                              <span className={styles.sparkle} aria-hidden="true">✦</span><span className={styles.srOnly}>다음 학기 추천</span>
-                            </span>}
+                            {/* 추천 과목은 선택하지 않아도 바로 보이게 역에 퍼지는 링·반짝이는 별, 이름 옆에 빛나는 '추천' 꼬리표를 단다(시안 #roadmap). */}
+                            {isRecommended && <span className={styles.recommendation}><span className={styles.srOnly}>다음 학기 추천</span></span>}
                           </button>
                         </div>
                       );
