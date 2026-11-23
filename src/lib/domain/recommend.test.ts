@@ -4,7 +4,7 @@ import { enrollment, studentProfile } from '@/test/fixtures/graduation/students'
 import type { CourseCode, CourseField, CourseRelation, CurriculumEntry, ReferenceData } from '@/types/reference';
 import type { FollowupStat } from '@/types/user';
 import { resolveCompletion } from './completion';
-import { DEFAULT_WEIGHTS, recommendCourses } from './recommend';
+import { DEFAULT_WEIGHTS, nextTermOf, recommendCourses } from './recommend';
 
 const reference = getReferenceData();
 const profile = studentProfile('adv_computing', 2026);
@@ -205,5 +205,81 @@ describe('recommendCourses', () => {
       const ref = withReference({ curriculum });
       expect(recommendCourses({ profile, interests: [], completion: resolveCompletion([], ref), followupStats: [], ref })).toEqual([]);
     }
+  });
+});
+
+describe('nextTermOf', () => {
+  it('들은 정규학기 수 + 1을 다음 학기로 보고 계절학기·같은 학기 중복은 세지 않는다', () => {
+    expect(nextTermOf([])).toEqual({ grade: 1, semester: 1 });
+    const records = [
+      enrollment('COMP0206'), enrollment('COMP0204'),
+      enrollment('COME0331', { taken_semester: 2 }),
+      enrollment('COMP0216', { taken_semester: 3 }),
+      enrollment('COMP0319', { taken_year: 2028, taken_semester: 1 }),
+      enrollment('COMP0217', { taken_year: 2028, taken_semester: 2 }),
+    ];
+    expect(nextTermOf(records)).toEqual({ grade: 3, semester: 1 });
+    const many = Array.from({ length: 12 }, (_, i) => enrollment('COMP0206', { taken_year: 2026 + i, taken_semester: 1 }));
+    expect(nextTermOf(many)).toEqual({ grade: 4, semester: 2 });
+  });
+});
+
+describe('recommendCourses 우선순위 (다음 학기 기준)', () => {
+  const offeredBoth = (codes: CourseCode[], onlySecond: CourseCode[] = []): ReferenceData['courses'] => {
+    const courses = new Map(reference.courses);
+    for (const code of [...codes, ...onlySecond]) {
+      const base = courses.get(code);
+      if (!base) throw new Error(`테스트 과목 ${code}가 없습니다.`);
+      courses.set(code, { ...base, offered_semesters: onlySecond.includes(code) ? [2] : [1, 2] });
+    }
+    return courses;
+  };
+
+  it('밀린 전공필수 → 다음 학기 전공필수 → 나머지(점수·학기 거리) → 먼 학기 → 선수 미충족 순으로 정렬한다', () => {
+    const codes: CourseCode[] = ['COME0331', 'COMP0319', 'ITEC0401', 'COMP0312', 'COMP0321', 'COMP0315', 'COMP0217'];
+    const curriculum = [
+      course('COME0331', { grade: 1, semester: 2, is_required: true }),
+      course('COMP0319', { grade: 3, semester: 1, is_required: true }),
+      course('ITEC0401', { grade: 4, semester: 1, is_required: true }),
+      course('COMP0312', { grade: 3, semester: 1 }),
+      course('COMP0321', { grade: 4, semester: 2 }),
+      course('COMP0411', { grade: 2, semester: 1, is_required: true }),
+      course('COMP0315', { grade: 2, semester: 2, is_required: true }),
+      course('COMP0217', { grade: 1, semester: 1, is_required: true }),
+    ];
+    const courseFields = new Map(['COMP0312', 'COMP0321'].map((course_code) => [
+      course_code,
+      { course_code, primary_field_id: 'system', field_ids: ['system'], basis: 'team_proposal' } satisfies CourseField,
+    ]));
+    const ref = withReference({
+      courses: offeredBoth(codes, ['COMP0411']),
+      curriculum,
+      courseFields,
+      relations: [relation('COMP0205', 'COMP0217', { type: 'official' })],
+    });
+    const completion = resolveCompletion([enrollment('COMP0315', { status: 'incomplete' })], ref);
+    const results = recommendCourses({
+      profile, interests: ['system'], completion, followupStats: [], ref, nextTerm: { grade: 3, semester: 1 },
+    });
+
+    // COMP0411(2학기에만 개설)과 수강 중인 COMP0315는 빠진다.
+    expect(results.map(({ code }) => code))
+      .toEqual(['COME0331', 'COMP0319', 'COMP0312', 'ITEC0401', 'COMP0321', 'COMP0217']);
+    expect(results.at(-1)?.warning).toBe('prerequisite_unmet');
+  });
+
+  it('같은 학기에 밀린 전공필수끼리는 뒤에서 막히는 과목이 많은 쪽이 먼저다', () => {
+    const ref = withReference({
+      courses: offeredBoth(['COME0331', 'COMP0216']),
+      curriculum: [
+        course('COME0331', { grade: 1, semester: 2, is_required: true }),
+        course('COMP0216', { grade: 1, semester: 2, is_required: true }),
+      ],
+      relations: [relation('COMP0216', 'COMP0322'), relation('COMP0322', 'COMP0414')],
+    });
+    const results = recommendCourses({
+      profile, interests: [], completion: resolveCompletion([], ref), followupStats: [], ref, nextTerm: { grade: 2, semester: 1 },
+    });
+    expect(results.map(({ code }) => code)).toEqual(['COMP0216', 'COME0331']);
   });
 });
