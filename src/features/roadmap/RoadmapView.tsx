@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from 'react';
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from 'react';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { getCourseFields, getCurriculum, getFields, getReferenceData, getRelations } from '@/lib/reference';
 import type { CourseCode } from '@/types/reference';
@@ -25,6 +25,7 @@ const columns = Array.from({ length: SEMESTER_COUNT }, (_, col) => ({
 
 export function RoadmapView({
   programId, admissionYear, completion, recommendations, selectedCode, onSelect, showRecommendationEdges, visibleFields,
+  toolbar, legendExtra,
 }: RoadmapViewProps): JSX.Element {
   const ref = getReferenceData();
   const fields = getFields();
@@ -58,6 +59,9 @@ export function RoadmapView({
     return () => observer.disconnect();
   }, [hasNodes]);
   const nodeButtons = useRef(new Map<CourseCode, HTMLButtonElement>());
+  // 범례는 기본으로 접어 두고 '범례' 버튼으로 펼친다.
+  const [legendOpen, setLegendOpen] = useState(false);
+  const legendId = useId();
 
   useEffect(() => {
     if (selectedCode) nodeButtons.current.get(selectedCode)?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
@@ -75,22 +79,12 @@ export function RoadmapView({
 
   return (
     <section className={styles.roadmap} aria-label="수강 노선도">
-      <div className={styles.tools}>
-        <div className={styles.legends}>
-          <ul className={styles.legend} aria-label="과목 상태 범례">
-            <li><span className={styles.completedKey} aria-hidden="true" />이수 완료</li>
-            <li><span className={styles.progressKey} aria-hidden="true" />수강 중</li>
-            <li><span className={styles.pendingKey} aria-hidden="true" />미이수</li>
-            <li><span className={styles.recLegend} aria-hidden="true"><span className={styles.recTag}>추천</span></span>다음 학기 추천</li>
-          </ul>
-          <ul className={styles.legend} aria-label="관계선 범례">
-            <li><span className={styles.officialKey} aria-hidden="true" />필수 선수</li>
-            <li><span className={styles.recommendedKey} aria-hidden="true" />권장 선수</li>
-            <li><span className={styles.coreqKey} aria-hidden="true" />동시 수강</li>
-            <li><span className={styles.serviceKey} aria-hidden="true" />서비스 추천 (겹치면 우선 표시)</li>
-            <li><span className={styles.chainKey} aria-hidden="true" />선택한 과목에서 이어지는 후수 과목</li>
-          </ul>
-        </div>
+      <div className={styles.bar}>
+        <button type="button" className={`button ${styles.legendToggle}`} aria-expanded={legendOpen} aria-controls={legendId}
+          onClick={() => setLegendOpen((open) => !open)}>
+          범례<span className={styles.chevron} aria-hidden="true" />
+        </button>
+        {toolbar && <div className={styles.barCenter}>{toolbar}</div>}
         <div className={styles.zoom} role="group" aria-label="노선도 확대·축소">
           <button type="button" className="button" aria-label="축소" disabled={zoom <= MIN_ZOOM}
             onClick={() => setZoom(Math.max(MIN_ZOOM, zoom - ZOOM_STEP))}>−</button>
@@ -102,11 +96,31 @@ export function RoadmapView({
             onClick={() => setManualZoom(null)}>화면 맞춤</button>
         </div>
       </div>
-      <ul className={styles.fieldLegend} aria-label="분야별 노선 범례">
-        {fields.map((field) => <li key={field.field_id} style={{
-          '--field-light': field.color, '--field-dark': field.color_dark ?? field.color,
-        } as CSSProperties}><span aria-hidden="true" />{field.name_ko}</li>)}
-      </ul>
+      {legendOpen && (
+        <div id={legendId} className={styles.legendPanel} role="region" aria-label="범례">
+          <div className={styles.legends}>
+            <ul className={styles.legend} aria-label="과목 상태 범례">
+              <li><span className={styles.completedKey} aria-hidden="true" />이수 완료</li>
+              <li><span className={styles.progressKey} aria-hidden="true" />수강 중</li>
+              <li><span className={styles.pendingKey} aria-hidden="true" />미이수</li>
+              <li><span className={styles.recLegend} aria-hidden="true"><span className={styles.recTag}>추천</span></span>다음 학기 추천</li>
+            </ul>
+            <ul className={styles.legend} aria-label="관계선 범례">
+              <li><span className={styles.officialKey} aria-hidden="true" />필수 선수</li>
+              <li><span className={styles.recommendedKey} aria-hidden="true" />권장 선수</li>
+              <li><span className={styles.coreqKey} aria-hidden="true" />동시 수강</li>
+              <li><span className={styles.serviceKey} aria-hidden="true" />서비스 추천 (겹치면 우선 표시)</li>
+              <li><span className={styles.chainKey} aria-hidden="true" />선택한 과목에서 이어지는 후수 과목</li>
+            </ul>
+          </div>
+          <ul className={styles.fieldLegend} aria-label="분야별 노선 범례">
+            {fields.map((field) => <li key={field.field_id} style={{
+              '--field-light': field.color, '--field-dark': field.color_dark ?? field.color,
+            } as CSSProperties}><span aria-hidden="true" />{field.name_ko}</li>)}
+          </ul>
+          {legendExtra}
+        </div>
+      )}
       {nodes.length === 0 ? <EmptyState title="표시할 과목이 없어요">표시할 분야를 선택해 주세요.</EmptyState> : (
         <div ref={viewport} className={styles.viewport} tabIndex={0} role="region" aria-label="학기별 노선도">
           <div className={styles.sizer} style={{ width: MAP_WIDTH * zoom, height: height * zoom }}>
