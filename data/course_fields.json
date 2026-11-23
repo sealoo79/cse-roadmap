@@ -1,0 +1,1244 @@
+[
+  {
+    "course_code": "CLTR0045",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "논리와 비판적 사고",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0112",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common",
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "생활속의통계",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0205",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "대학글쓰기",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0819",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "기초수학2",
+    "note": null
+  },
+  {
+    "course_code": "COME0301",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "이산수학",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0204",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "프로그래밍기초",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0206",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "기초프로그래밍",
+    "note": null
+  },
+  {
+    "course_code": "COMP0207",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "기초프로그래밍실습",
+    "note": null
+  },
+  {
+    "course_code": "COMP0218",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능과컴퓨팅",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0332",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "프로그래밍연습1",
+    "note": null
+  },
+  {
+    "course_code": "COMP0453",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨팅사고와 SW코딩",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "FUTR0208",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "미래산업과 직업선택",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0201",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터학개론",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0003",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "실용화법",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0211",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "수학 I",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0246",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "일반생명과학Ⅰ",
+    "note": null
+  },
+  {
+    "course_code": "COME0331",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "자료구조",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0205",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "기초창의공학설계",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0216",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "자료구조응용",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0333",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data",
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "데이터분석을 위한 파이썬프로그래밍",
+    "note": null
+  },
+  {
+    "course_code": "COMP0334",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "프로그래밍연습2",
+    "note": null
+  },
+  {
+    "course_code": "COMP0335",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "자료구조실습",
+    "note": null
+  },
+  {
+    "course_code": "COMP0336",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "객체지향프로그래밍기초",
+    "note": null
+  },
+  {
+    "course_code": "COMP0454",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능수학기초",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "ELEC0247",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "논리회로",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0213",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "창의융합설계",
+    "note": null
+  },
+  {
+    "course_code": "MTED0231",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "선형대수",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "CLTR0213",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "물리학 I",
+    "note": null
+  },
+  {
+    "course_code": "COME0311",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "확률및통계",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0217",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "자바프로그래밍",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0224",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "소프트웨어설계",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0315",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "오토마타및형식언어",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0337",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "프로그래밍연습3",
+    "note": null
+  },
+  {
+    "course_code": "COMP0344",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "첨단컴퓨팅특강",
+    "note": null
+  },
+  {
+    "course_code": "COMP0411",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터구조",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0432",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "소프트웨어특강",
+    "note": null
+  },
+  {
+    "course_code": "ELEC0462",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "시스템프로그래밍",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "FUTR0201",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "기업가정신과 벤처창업",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0214",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "SW진로설계",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0216",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "알고리즘실습",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0419",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "데이터과학기초",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "CLTR0043",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "서양의 역사와 문화",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0212",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "수학 II",
+    "note": null
+  },
+  {
+    "course_code": "COMP0225",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "디지털설계및실험",
+    "note": null
+  },
+  {
+    "course_code": "COMP0312",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "운영체제",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0319",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "알고리즘1",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0323",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "데이타통신",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0324",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0338",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "프로그래밍연습4",
+    "note": null
+  },
+  {
+    "course_code": "FUTR0214",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "창업과 경영",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0212",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "소프트웨어수학",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0416",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "고급웹프로그래밍",
+    "note": null
+  },
+  {
+    "course_code": "CAIB0223",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능프로그래밍실습",
+    "note": null
+  },
+  {
+    "course_code": "CAIB0233",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "영상이해",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "CLTR0264",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "소셜네트워크",
+    "note": null
+  },
+  {
+    "course_code": "COME0427",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web",
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "데이터베이스",
+    "note": null
+  },
+  {
+    "course_code": "COMP0321",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴파일러",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0414",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터망",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0422",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "소프트웨어공학",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0462",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "데이터마이닝이론및응용",
+    "note": null
+  },
+  {
+    "course_code": "EECS0312",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "네트워크프로그래밍",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "GLSO0215",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "오픈소스프로그래밍",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0219",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "SW공학및테스팅",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0415",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "고급문제해결",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0417",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "기계학습개론",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "TCHR0499",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터 논리 및 논술지도",
+    "note": null
+  },
+  {
+    "course_code": "CAIB0211",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "자연어처리개론",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "CAIB0216",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "강화학습개론",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "CLTR0078",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "심리학의 이해",
+    "note": null
+  },
+  {
+    "course_code": "CLTR0089",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "회계와 사회생활",
+    "note": null
+  },
+  {
+    "course_code": "COMP0320",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "알고리즘2",
+    "note": null
+  },
+  {
+    "course_code": "COMP0322",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web",
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "데이타베이스",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0328",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "모바일앱프로그래밍1",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0339",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능융합프로그래밍실습",
+    "note": null
+  },
+  {
+    "course_code": "COMP0340",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "모바일컴퓨팅",
+    "note": null
+  },
+  {
+    "course_code": "COMP0345",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "정보보안개론",
+    "note": null
+  },
+  {
+    "course_code": "COMP0413",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터그래픽스",
+    "note": null
+  },
+  {
+    "course_code": "COMP0423",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "프로그래밍언어론",
+    "note": null
+  },
+  {
+    "course_code": "COMP0460",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "문제해결기반 공학연수실습(컴퓨터학)",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0401",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "종합설계프로젝트1",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "ITEC0424",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터비전",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "MOBI0224",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "딥러닝",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "STAT0452",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data",
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "수치해석",
+    "note": null
+  },
+  {
+    "course_code": "TCHR0593",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터교육론",
+    "note": null
+  },
+  {
+    "course_code": "TCHR0594",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터교재연구및지도법",
+    "note": null
+  },
+  {
+    "course_code": "CAIB0222",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능시스템",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "CAIB0225",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "음성인식",
+    "note": null
+  },
+  {
+    "course_code": "CAIB0234",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "신경망개론",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0219",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능수학심화",
+    "note": null
+  },
+  {
+    "course_code": "COMP0341",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "웹보안",
+    "note": null
+  },
+  {
+    "course_code": "COMP0342",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "인공지능융합응용특강",
+    "note": null
+  },
+  {
+    "course_code": "COMP0417",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터윤리",
+    "note": null
+  },
+  {
+    "course_code": "COMP0419",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "정보검색",
+    "note": null
+  },
+  {
+    "course_code": "COMP0420",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "모바일앱프로그래밍2",
+    "note": null
+  },
+  {
+    "course_code": "COMP0461",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "문제해결기반 공학연수실습(심화컴퓨터학)",
+    "note": null
+  },
+  {
+    "course_code": "FUTR0226",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "나의 첫 사업제안서",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0223",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "스타트업설계",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0224",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security",
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "사물인터넷",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0227",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system",
+      "network_security"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "클라우드컴퓨팅",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "ITEC0402",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "종합설계프로젝트2",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "ITEC0403",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "IT지식재산권",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0414",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "소프트웨어테스팅이론",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0418",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system",
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "대규모병렬컴퓨팅",
+    "note": null
+  },
+  {
+    "course_code": "MBIO0402",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "생물정보학개론",
+    "note": null
+  },
+  {
+    "course_code": "TCHR0522",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "학교현장실습",
+    "note": null
+  },
+  {
+    "course_code": "CAIB0224",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "정보이론기초",
+    "note": null
+  },
+  {
+    "course_code": "COME0368",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "정보보호론",
+    "note": "프로토타입 노선도 배치"
+  },
+  {
+    "course_code": "COMP0220",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common",
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "AI심화글쓰기",
+    "note": null
+  },
+  {
+    "course_code": "COMP0226",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "양자컴퓨팅개론",
+    "note": null
+  },
+  {
+    "course_code": "COMP0343",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터융합응용특강",
+    "note": null
+  },
+  {
+    "course_code": "COMP0428",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "IT기술경영개론",
+    "note": null
+  },
+  {
+    "course_code": "COMP0435",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "디지털미디어아트",
+    "note": null
+  },
+  {
+    "course_code": "COMP0436",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web",
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "증강현실",
+    "note": null
+  },
+  {
+    "course_code": "COMP0455",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "지능HCI",
+    "note": null
+  },
+  {
+    "course_code": "COMP0457",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "의료인공지능",
+    "note": null
+  },
+  {
+    "course_code": "COMP0458",
+    "primary_field_id": "network_security",
+    "field_ids": [
+      "network_security",
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "모바일네트워크",
+    "note": null
+  },
+  {
+    "course_code": "COMP0510",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "고급컴퓨터구조",
+    "note": null
+  },
+  {
+    "course_code": "EECS0442",
+    "primary_field_id": "system",
+    "field_ids": [
+      "system",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "임베디드소프트웨어설계",
+    "note": null
+  },
+  {
+    "course_code": "FUTR0231",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "알기쉬운 창업마케팅과 스피치",
+    "note": null
+  },
+  {
+    "course_code": "GLSO0229",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common",
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "SW창업프로젝트",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0425",
+    "primary_field_id": "sw_web",
+    "field_ids": [
+      "sw_web"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "컴퓨터게임제작",
+    "note": null
+  },
+  {
+    "course_code": "ITEC0514",
+    "primary_field_id": "ai_data",
+    "field_ids": [
+      "ai_data"
+    ],
+    "basis": "team_proposal",
+    "name_ko": "뇌인지공학개론",
+    "note": null
+  }
+]

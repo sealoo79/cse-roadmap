@@ -1,0 +1,42 @@
+[
+  {
+    "field_id": "common",
+    "name_ko": "공통 기초",
+    "color": "#3a3f47",
+    "color_dark": "#94a3b8",
+    "order": 1,
+    "description": "수학·프로그래밍 기초, 자료구조·알고리즘, 설계 프로젝트와 교양·창업·교직처럼 모든 분야의 바탕이 되는 과목"
+  },
+  {
+    "field_id": "ai_data",
+    "name_ko": "AI·데이터",
+    "color": "#8b50a4",
+    "color_dark": "#b07cf0",
+    "order": 2,
+    "description": "수학 기초부터 기계학습, 딥러닝, 비전, 자연어처리, 데이터 분석까지"
+  },
+  {
+    "field_id": "system",
+    "name_ko": "시스템",
+    "color": "#0052a4",
+    "color_dark": "#4f8ff7",
+    "order": 3,
+    "description": "컴퓨터구조, 운영체제, 시스템프로그래밍, 컴파일러, 병렬·클라우드 컴퓨팅"
+  },
+  {
+    "field_id": "network_security",
+    "name_ko": "네트워크·보안",
+    "color": "#ef7c1c",
+    "color_dark": "#f97316",
+    "order": 4,
+    "description": "데이터통신, 컴퓨터망, 네트워크 프로그래밍, 정보보호"
+  },
+  {
+    "field_id": "sw_web",
+    "name_ko": "소프트웨어·웹",
+    "color": "#00a84d",
+    "color_dark": "#22c55e",
+    "order": 5,
+    "description": "소프트웨어 설계·공학, 데이터베이스, 웹·모바일·그래픽스 개발"
+  }
+]

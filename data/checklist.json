@@ -1,0 +1,79 @@
+[
+  {
+    "checklist_key": "english_score",
+    "label": "공인영어 성적",
+    "input_type": "number",
+    "source": "학과 졸업요건(플랫폼SW&데이터과학·글로벌SW융합·심화컴퓨팅·첨단컴퓨팅연구)",
+    "help": "TOEIC 환산 점수를 입력. 기준 점수는 전공·트랙마다 다름(graduation_rules의 checklist.rule)"
+  },
+  {
+    "checklist_key": "field_practice",
+    "label": "현장실습 이수",
+    "input_type": "boolean",
+    "source": "학과 졸업요건(플랫폼SW&데이터과학·글로벌SW융합·인공지능컴퓨팅)",
+    "help": "현장실습 3학점 이상 이수 여부"
+  },
+  {
+    "checklist_key": "research_practice",
+    "label": "연구실습 이수",
+    "input_type": "boolean",
+    "source": "학과 졸업요건(심화컴퓨팅)",
+    "help": "연구실습 3학점 이상 또는 현장실습 대체 인정 여부"
+  },
+  {
+    "checklist_key": "research_activity",
+    "label": "연구 활동",
+    "input_type": "boolean",
+    "source": "학과 졸업요건(첨단컴퓨팅연구)",
+    "help": "연구실에서 3개 학기 이상 연구 활동, 연구 행사 3회 참석 여부"
+  },
+  {
+    "checklist_key": "graduation_review",
+    "label": "졸업심사",
+    "input_type": "boolean",
+    "source": "학과 졸업요건(심화컴퓨팅·첨단컴퓨팅연구)",
+    "help": "심화컴퓨팅은 전공 학업역량평가 응시, 첨단컴퓨팅연구는 연구보고서 제출·연구 발표 여부"
+  },
+  {
+    "checklist_key": "topcit",
+    "label": "TOPCIT 성적표 제출",
+    "input_type": "boolean",
+    "source": "ABEEK 졸업심사(플랫폼SW&데이터과학)",
+    "help": "TOPCIT 성적표 제출 여부"
+  },
+  {
+    "checklist_key": "portfolio",
+    "label": "포트폴리오 제출",
+    "input_type": "boolean",
+    "source": "ABEEK 졸업심사(플랫폼SW&데이터과학)",
+    "help": "포트폴리오 제출 여부"
+  },
+  {
+    "checklist_key": "gq_practical_english",
+    "label": "졸업자격인정제 · 실용영어",
+    "input_type": "boolean",
+    "source": "경북대 졸업자격인정제",
+    "help": "실용영어 영역 4학점 이수 또는 어학성적 등 대체 인정 여부"
+  },
+  {
+    "checklist_key": "gq_software",
+    "label": "졸업자격인정제 · 소프트웨어",
+    "input_type": "boolean",
+    "source": "경북대 졸업자격인정제",
+    "help": "교양 소프트웨어 과목·대체과목 3학점, 정보화본부 교육, 자격증 중 하나 충족 여부"
+  },
+  {
+    "checklist_key": "gq_counseling",
+    "label": "졸업자격인정제 · 지도교수 상담",
+    "input_type": "boolean",
+    "source": "경북대 졸업자격인정제",
+    "help": "학생상담지도교수제 운영 규정의 상담 기준 충족 여부"
+  },
+  {
+    "checklist_key": "gq_major_area",
+    "label": "졸업자격인정제 · 전공영역",
+    "input_type": "boolean",
+    "source": "경북대 졸업자격인정제",
+    "help": "학과가 전공영역 평가를 실시하는 경우, 최종 학기 평가 통과 여부"
+  }
+]
