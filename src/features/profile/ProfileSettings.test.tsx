@@ -58,8 +58,11 @@ describe('온보딩과 회원정보', () => {
     fireEvent.change(await screen.findByRole('combobox', { name: '전공' }), { target: { value: 'adv_computing' } });
     fireEvent.change(screen.getByRole('combobox', { name: '학번' }), { target: { value: '2026' } });
     fireEvent.click(screen.getByRole('button', { name: '다음: 수강 내역' }));
-    expect(screen.getByText('저장된 수강 내역 0건')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: '건너뛰기' }));
+    // 수강 내역 단계는 수강 이력 화면과 같은 편집기(직접 추가·교육과정에서 추가)를 보여 준다.
+    expect(screen.getByRole('heading', { name: '수강 기록' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: '과목 직접 추가' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: '교육과정에서 추가' })).toBeTruthy();
+    fireEvent.click(screen.getByRole('button', { name: '다음: 관심 분야' }));
     fireEvent.click(screen.getByRole('checkbox', { name: /AI·데이터/ }));
     fireEvent.click(screen.getByRole('button', { name: '설정 완료하고 노선도 보기' }));
 

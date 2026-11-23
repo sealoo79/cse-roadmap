@@ -1,27 +1,16 @@
 'use client';
 
 import type { JSX } from 'react';
-import { useEnrollments, useReference } from '@/lib/user-data/hooks';
-import styles from './profile.module.css';
+import { EnrollmentEditor } from '@/features/enrollments';
+import type { AdmissionYear, ProgramId } from '@/types/reference';
 
-export function EnrollmentStep(): JSX.Element {
-  const { items } = useEnrollments();
-  const { courses } = useReference();
-  return (
-    <div className={styles.group}>
-      <h2>저장된 과목</h2>
-      <p>저장된 수강 내역 {items.length}건</p>
-      {items.length > 0 && (
-        <ul className={styles.enrollmentRows}>
-          {items.map((item) => (
-            <li key={item.id}>
-              <strong>{courses.get(item.course_code)?.name_ko ?? item.course_code}</strong>
-              <code>{item.course_code}</code>
-            </li>
-          ))}
-        </ul>
-      )}
-      <p className={styles.help}>설정을 마친 뒤 수강 이력에서 과목을 등록하거나 수정할 수 있어요.</p>
-    </div>
-  );
+/**
+ * 온보딩 2단계: 수강 이력 화면(/enrollments)과 같은 편집기로 과목을 직접 추가하거나 교육과정에서 고른다.
+ * 프로필은 마지막 단계에서 저장되므로 1단계에서 고른 전공·학번을 받아 교육과정을 불러온다.
+ */
+export function EnrollmentStep({ programId, admissionYear }: {
+  programId: ProgramId;
+  admissionYear: AdmissionYear;
+}): JSX.Element {
+  return <EnrollmentEditor mode="onboarding" programId={programId} admissionYear={admissionYear} />;
 }

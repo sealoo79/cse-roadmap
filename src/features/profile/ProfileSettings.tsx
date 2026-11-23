@@ -15,7 +15,7 @@ type AccountSection = 'academic' | 'interests';
 
 const steps = [
   { label: '전공·학번', title: '전공과 학번 선택', description: '전공과 학번에 맞는 교육과정과 졸업요건을 불러옵니다.' },
-  { label: '수강 내역', title: '수강 내역 확인', description: '저장된 과목을 확인하고 다음 단계로 이동하세요.' },
+  { label: '수강 내역', title: '수강 이력', description: '이수한 과목과 수강 중인 과목을 관리하세요.' },
   { label: '관심 분야', title: '관심 분야 선택', description: '선택한 분야는 다음 학기 추천에 반영됩니다.' },
 ] as const;
 
@@ -178,10 +178,19 @@ function ProfileEditor({ mode, profile, initialInterests }: {
           {notice && <p role="status" className={styles.success}>{notice.text}</p>}
         </section>
       )}
-      {(onboarding || accountSection) && <form className={styles.panel} onSubmit={submit} aria-busy={saving}>
+      {/* 수강 내역 단계는 수강 이력 화면과 같은 편집기를 쓴다. 편집기 안에 입력 폼이 있어 바깥 form 없이 그린다(중첩 form 방지). */}
+      {onboarding && step === 1 && academic.programId && academic.admissionYear && (
+        <>
+          <EnrollmentStep programId={academic.programId} admissionYear={academic.admissionYear} />
+          <div className={styles.actions}>
+            <Button onClick={() => setStep(0)}>이전</Button>
+            <Button className="button-primary" onClick={() => setStep(2)}>다음: 관심 분야</Button>
+          </div>
+        </>
+      )}
+      {(onboarding ? step !== 1 : accountSection) && <form className={styles.panel} onSubmit={submit} aria-busy={saving}>
         {!onboarding && <h2>{showAcademic ? '전공·학번 변경' : '관심 분야 변경'}</h2>}
         {showAcademic && academicFields}
-        {onboarding && step === 1 && <EnrollmentStep />}
         {showInterests && interestFields}
 
         {notice && <p role={notice.error ? 'alert' : 'status'} className={notice.error ? styles.error : styles.success}>
@@ -192,15 +201,12 @@ function ProfileEditor({ mode, profile, initialInterests }: {
         <div className={styles.actions}>
           {!onboarding && <Button disabled={saving} onClick={() => { setNotice(null); setAccountSection(null); }}>취소</Button>}
           {onboarding && step > 0 && <Button disabled={saving} onClick={() => setStep(step - 1)}>이전</Button>}
-          {onboarding && step === 1 && <Button className="button-primary" onClick={() => setStep(2)}>건너뛰기</Button>}
           {onboarding && step === 2 && (
             <Button disabled={saving} onClick={() => void save([])}>관심 분야 건너뛰기</Button>
           )}
-          {(!onboarding || step !== 1) && (
-            <Button className="button-primary" type="submit" disabled={saving || (showAcademic && !validAcademic)}>
-              {saving ? '저장 중…' : !onboarding ? '변경사항 저장' : step === 0 ? '다음: 수강 내역' : '설정 완료하고 노선도 보기'}
-            </Button>
-          )}
+          <Button className="button-primary" type="submit" disabled={saving || (showAcademic && !validAcademic)}>
+            {saving ? '저장 중…' : !onboarding ? '변경사항 저장' : step === 0 ? '다음: 수강 내역' : '설정 완료하고 노선도 보기'}
+          </Button>
         </div>
       </form>}
     </div>
