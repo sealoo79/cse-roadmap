@@ -4,12 +4,22 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, type CSSProperties, type JSX } from 'react';
 import { Button } from '@/components/ui/Button';
-import { useReference } from '@/lib/user-data/hooks';
+import { useProfile, useReference } from '@/lib/user-data/hooks';
 import { useAuth } from '@/features/auth/useAuth';
+
+/** 상단 가운데 메뉴. `also`는 메뉴에 없지만 해당 메뉴를 거쳐 들어가는 화면(수강 이력은 마이페이지에서 연다). */
+const menu: { href: string; label: string; also: string[] }[] = [
+  { href: '/roadmap', label: '노선도', also: [] },
+  { href: '/graduation', label: '졸업요건', also: [] },
+  { href: '/recommend', label: '다음 학기 추천', also: [] },
+  { href: '/account', label: '마이페이지', also: ['/enrollments'] },
+];
 
 export function Navigation(): JSX.Element {
   const pathname = usePathname();
-  const { fields } = useReference();
+  const { fields, programs } = useReference();
+  const { profile } = useProfile();
+  const programName = profile ? programs.find(({ program_id }) => program_id === profile.program_id)?.name : undefined;
   const { signOut } = useAuth();
   const [signingOut, setSigningOut] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -32,12 +42,17 @@ export function Navigation(): JSX.Element {
           cse-roadmap <small>컴퓨터학부 수강 로드맵</small>
         </Link>
         <nav aria-label="주요 메뉴" className="primary-nav">
-          {[['/roadmap', '노선도'], ['/graduation', '졸업요건'], ['/recommend', '다음 학기 추천']].map(([href, label]) =>
-            <Link key={href} href={href} aria-current={pathname === href ? 'page' : undefined}>{label}</Link>)}
+          {menu.map(({ href, label, also }) => {
+            const current = [href, ...also].some((path) => pathname === path || pathname.startsWith(`${path}/`));
+            return <Link key={href} href={href} aria-current={current ? 'page' : undefined}>{label}</Link>;
+          })}
         </nav>
         <nav aria-label="계정 메뉴" className="account-nav">
-          <Link href="/account" aria-current={pathname === '/account' ? 'page' : undefined}>회원정보 변경</Link>
-          <Button className="nav-logout" disabled={signingOut} onClick={() => void logout()}>로그아웃</Button>
+          {profile && <span className="account-profile" title={`${programName ?? profile.program_id} · ${profile.admission_year}학번`}>
+            <span className="account-program">{programName ?? profile.program_id}</span>
+            <span className="account-year">{profile.admission_year}학번</span>
+          </span>}
+          <Button disabled={signingOut} onClick={() => void logout()}>로그아웃</Button>
           {error && <span role="alert" className="error">{error}</span>}
         </nav>
       </div>
