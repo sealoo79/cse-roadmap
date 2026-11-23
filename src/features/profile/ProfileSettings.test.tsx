@@ -58,7 +58,9 @@ describe('온보딩과 회원정보', () => {
     fireEvent.change(await screen.findByRole('combobox', { name: '전공' }), { target: { value: 'adv_computing' } });
     fireEvent.change(screen.getByRole('combobox', { name: '학번' }), { target: { value: '2026' } });
     fireEvent.click(screen.getByRole('button', { name: '다음: 수강 내역' }));
-    expect(screen.getByText('저장된 수강 내역 0건')).toBeTruthy();
+    expect(screen.getByText(/저장된 수강 내역 0건/)).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '시간표 캡처로 한 번에 불러오기' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '직접 추가하거나 교육과정에서 고르기' })).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: '건너뛰기' }));
     fireEvent.click(screen.getByRole('checkbox', { name: /AI·데이터/ }));
     fireEvent.click(screen.getByRole('button', { name: '설정 완료하고 노선도 보기' }));
