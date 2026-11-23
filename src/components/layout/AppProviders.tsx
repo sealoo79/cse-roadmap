@@ -1,11 +1,18 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
 import type { JSX, ReactNode } from 'react';
 import { UserDataProvider } from '@/lib/user-data/provider';
+import { Navigation } from './Navigation';
+import { DemoStatus } from './DemoStatus';
+
+const useMock = process.env.NEXT_PUBLIC_USE_MOCK === '1';
 
 export function AppProviders({ children }: { children: ReactNode }): JSX.Element {
-  if (process.env.NEXT_PUBLIC_USE_MOCK !== '1') {
-    return <main className="page"><h1>실행 설정이 필요합니다</h1><p>개발용 실행은 .env.local에서 NEXT_PUBLIC_USE_MOCK=1을 설정해 주세요.</p><p>인증과 실제 저장소는 후속 작업에서 연결합니다.</p></main>;
-  }
-  return <UserDataProvider>{children}</UserDataProvider>;
+  const pathname = usePathname();
+  const content = <main id="main-content" className="page">{children}</main>;
+
+  if (pathname === '/') return content;
+
+  return <UserDataProvider><Navigation />{useMock && <DemoStatus />}{content}</UserDataProvider>;
 }

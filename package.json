@@ -12,6 +12,7 @@
     "validate-data": "node -e \"console.log('기준 데이터 검증은 이슈 #8에서 구현합니다.')\""
   },
   "dependencies": {
+    "@supabase/ssr": "0.12.7",
     "@supabase/supabase-js": "^2.0.0",
     "next": "16.4.6",
     "react": "19.3.1",
