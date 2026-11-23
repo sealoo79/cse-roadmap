@@ -179,7 +179,7 @@ export function EnrollmentEditor({ mode, programId, admissionYear, onDone }: Pro
           <p>{confirmation.message}</p>
           <div className={styles.actions}>
             <button type="button" className="button" ref={confirmCancel} onClick={cancelConfirmation}>취소</button>
-            <Button className={styles.primary} onClick={() => void perform(confirmation.apply)}>{confirmation.label}</Button>
+            <Button className="button-primary" onClick={() => void perform(confirmation.apply)}>{confirmation.label}</Button>
           </div>
         </div>
       )}
@@ -227,7 +227,7 @@ export function EnrollmentEditor({ mode, programId, admissionYear, onDone }: Pro
       <div className={styles.summary}>
         <span aria-live="polite">수강 기록 {items.length}건 · 인정 학점 {completion.totalCredits}학점</span>
         {mode === 'onboarding' && onDone && (
-          <Button className={styles.primary} disabled={disabled} onClick={onDone}>다음: 관심 분야</Button>
+          <Button className="button-primary" disabled={disabled} onClick={onDone}>다음: 관심 분야</Button>
         )}
       </div>
     </section>

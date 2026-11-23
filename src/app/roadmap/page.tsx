@@ -33,7 +33,7 @@ function RoadmapContent(): JSX.Element {
   if (error) return <p role="alert">{error.message}</p>;
   if (!profile) return <p>프로필을 등록하면 수강 경로를 확인할 수 있어요.</p>;
   return <>
-    <div className="toolbar"><RoadmapSearch onSelect={select} visibleFields={visibleFields} onChangeVisibleFields={setVisibleFields} />
+    <div className="toolbar roadmap-toolbar"><RoadmapSearch onSelect={select} visibleFields={visibleFields} onChangeVisibleFields={setVisibleFields} />
       <label><input type="checkbox" checked={showRecommendationEdges} onChange={(e) => setShowRecommendationEdges(e.target.checked)} />추천 화살표 보기</label>
     </div>
     <RoadmapView programId={profile.program_id} admissionYear={profile.admission_year} completion={completion}
@@ -43,6 +43,11 @@ function RoadmapContent(): JSX.Element {
   </>;
 }
 export default function RoadmapPage(): JSX.Element {
-  return <><p className="stage-label">나의 학업 여정</p><h1>수강 로드맵</h1><p className="page-description">관심 분야와 이수 기록으로 살펴보는 나만의 수강 경로</p>
-    <Suspense fallback={<p role="status">로드맵을 불러오는 중입니다.</p>}><RoadmapContent /></Suspense></>;
+  return (
+    <div className="roadmap-page">
+      <h1>내 전공 노선도</h1>
+      <p className="page-description">반짝이는 역은 추천 과목입니다. 과목을 선택하면 수강 정보와 추천 이유를 확인할 수 있어요.</p>
+      <Suspense fallback={<p role="status">로드맵을 불러오는 중입니다.</p>}><RoadmapContent /></Suspense>
+    </div>
+  );
 }

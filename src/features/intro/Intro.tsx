@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState, type JSX } from 'react';
+import { useEffect, useState, type CSSProperties, type JSX } from 'react';
 import { useAuth } from '@/features/auth/useAuth';
+import { getFields } from '@/lib/reference';
 import { useMockAuth } from '@/lib/supabase/config';
 import styles from './intro.module.css';
 
@@ -17,7 +18,9 @@ export function Intro({ callbackFailed }: { callbackFailed: boolean }): JSX.Elem
   const [rotating, setRotating] = useState(false);
   const [signingIn, setSigningIn] = useState(false);
   const [error, setError] = useState(callbackFailed ? '로그인을 완료하지 못했습니다. 다시 시도해 주세요.' : null);
-  const active = features[selected];
+  const fields = getFields();
+  const previewOrder = [features[(selected + features.length - 1) % features.length],
+    features[selected], features[(selected + 1) % features.length]];
 
   useEffect(() => {
     if (!rotating) return;
@@ -46,28 +49,43 @@ export function Intro({ callbackFailed }: { callbackFailed: boolean }): JSX.Elem
   }
 
   return (
-    <section className={styles.intro} aria-labelledby="intro-title">
+    <section className={styles.intro} aria-labelledby="intro-title" data-home>
       <div className={styles.map} aria-hidden="true">
-        <span className={styles.lineOne}><i /><i /><i /></span>
-        <span className={styles.lineTwo}><i /><i /><i /></span>
-        <span className={styles.lineThree}><i /><i /></span>
+        {fields.map((field) => <span key={field.field_id} style={{
+          '--field-light': field.color,
+          '--field-dark': field.color_dark ?? field.color,
+        } as CSSProperties}><i /><i /><i /></span>)}
       </div>
       <div className={styles.copy}>
-        <h1 id="intro-title">들은 과목을 넣으면 다음 학기가 보여요</h1>
-        <p>컴퓨터학부 수강 노선도, 졸업요건, 다음 학기 추천을 한 곳에서 확인하세요.</p>
+        <p className={styles.eyebrow}>컴퓨터학부 수강 로드맵</p>
+        <h1 id="intro-title">들은 과목을 넣으면<br />다음 학기가 보여요</h1>
+        <p className={styles.lead}>수강 내역과 관심 분야로 내 전공 노선도를 그리고, 선수과목과 졸업요건에 맞춰 다음 학기 과목을 추천해요.</p>
         <button type="button" className={styles.login} disabled={loading || signingIn} onClick={() => void login()}>
           {signingIn ? '로그인 연결 중…' : useMockAuth ? '시연 계정으로 로그인' : 'Google 계정으로 로그인'}
         </button>
+        <p className={styles.note}>처음 로그인하면 전공·학번, 수강 내역, 관심 분야를 설정해요.</p>
         {error && <p className={styles.error} role="alert">{error}</p>}
       </div>
 
       <div className={styles.preview} aria-label="로드맵 기능 미리보기">
-        <div className={styles.stack}>
-          <article key={active.label} className={styles.card} aria-live={rotating ? 'off' : 'polite'}>
-            <p>{active.label}</p>
-            <h2>{active.title}</h2>
-            <div>{active.description}</div>
-          </article>
+        <div className={styles.stage}>
+          {previewOrder.map((feature, position) => {
+            const active = position === 1;
+            return (
+              <article key={feature.label} className={styles.card} data-position={position}
+                aria-hidden={!active} aria-live={active && !rotating ? 'polite' : 'off'}>
+                <p>{feature.label}</p>
+                <h2>{feature.title}</h2>
+                <div className={styles.miniature} data-feature={features.indexOf(feature)} aria-hidden="true">
+                  {fields.slice(0, 3).map((field) => <span key={field.field_id} style={{
+                    '--field-light': field.color,
+                    '--field-dark': field.color_dark ?? field.color,
+                  } as CSSProperties}><i /><i /><i /></span>)}
+                </div>
+                <div>{feature.description}</div>
+              </article>
+            );
+          })}
         </div>
         <div className={styles.controls}>
           {features.map((feature, index) => (

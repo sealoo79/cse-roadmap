@@ -99,7 +99,7 @@ export function ManualEnrollment({ reference, record, disabled, onSave, onCancel
       ) : (
         <>
           <label className={styles.label}>과목 검색
-            <input ref={searchInput} type="search" placeholder="과목명 또는 과목코드" value={query}
+            <input className="form-control" ref={searchInput} type="search" placeholder="과목명 또는 과목코드" value={query}
               onChange={(event) => { setQuery(event.target.value); setError(null); }} />
           </label>
           {query.trim() && (results.length > 0 ? (
@@ -118,17 +118,17 @@ export function ManualEnrollment({ reference, record, disabled, onSave, onCancel
       )}
       <div className={styles.fields}>
         <label className={styles.label}>수강 연도
-          <input inputMode="numeric" maxLength={4} placeholder="예: 2026" value={year}
+          <input className="form-control" inputMode="numeric" maxLength={4} placeholder="예: 2026" value={year}
             onChange={(event) => setYear(event.target.value)} />
         </label>
         <label className={styles.label}>수강 학기
-          <select value={semester} onChange={(event) => setSemester(event.target.value)}>
+          <select className="form-control" value={semester} onChange={(event) => setSemester(event.target.value)}>
             <option value="">학기 선택</option>
             {terms.map((term) => <option key={term.value} value={term.value}>{term.label}</option>)}
           </select>
         </label>
         <label className={styles.label}>수강 상태
-          <select value={status} onChange={(event) => {
+          <select className="form-control" value={status} onChange={(event) => {
             const value = event.target.value;
             if (value === 'completed' || value === 'failed' || value === 'incomplete') setStatus(value);
           }}>
@@ -136,14 +136,14 @@ export function ManualEnrollment({ reference, record, disabled, onSave, onCancel
           </select>
         </label>
         <label className={styles.label}>학점
-          <input ref={creditInput} type="number" min={0} step="any" value={credit ?? course?.credit ?? ''}
+          <input className="form-control" ref={creditInput} type="number" min={0} step="any" value={credit ?? course?.credit ?? ''}
             onChange={(event) => setCredit(event.target.value)} />
         </label>
       </div>
       {error && <p role="alert" className={styles.error}>{error}</p>}
       <div className={styles.actions}>
         <Button onClick={onCancel}>취소</Button>
-        <Button className={styles.primary} onClick={save}>{record ? '변경사항 저장' : '수강 기록 추가'}</Button>
+        <Button className="button-primary" onClick={save}>{record ? '변경사항 저장' : '수강 기록 추가'}</Button>
       </div>
     </fieldset>
   );

@@ -30,7 +30,7 @@ export function RecommendationList(): JSX.Element {
       <div className={styles.controls}>
         <label className={styles.filter}>
           관심 분야 필터
-          <select value={selectedField} onChange={(event) => {
+          <select className="form-control" value={selectedField} onChange={(event) => {
             const id = event.target.value;
             setSelectedField(fields.find((field) => field.field_id === id)?.field_id ?? '');
           }}>

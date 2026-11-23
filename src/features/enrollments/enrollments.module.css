@@ -1,11 +1,8 @@
 .editor {
   display: grid;
-  gap: 1.25rem;
-  max-inline-size: 66rem;
-  padding: clamp(1rem, 3vw, 2rem);
-  border: 1px solid var(--line);
-  border-radius: 1rem;
-  background: var(--surface);
+  gap: 16px;
+  padding-block-start: 16px;
+  border-block-start: 1px solid var(--line);
 }
 
 .header,
@@ -27,7 +24,7 @@
 .editor p { margin: 0; }
 
 .term {
-  padding-block-start: 0.75rem;
+  padding-block-start: 12px;
   border-block-start: 1px solid var(--line);
 }
 
@@ -38,7 +35,8 @@
   margin: 0;
   padding: 1rem;
   border: 1px solid var(--line);
-  border-radius: 0.75rem;
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .panel legend {
@@ -51,18 +49,6 @@
   gap: 0.3rem;
   min-inline-size: 0;
   font-weight: 650;
-}
-
-.label input,
-.label select {
-  inline-size: 100%;
-  padding: 0.55rem 0.7rem;
-  border: 1px solid var(--line);
-  border-radius: 0.5rem;
-  background: var(--surface);
-  color: var(--text);
-  font: inherit;
-  font-weight: 400;
 }
 
 .fields {
@@ -86,6 +72,7 @@
 }
 
 .results button {
+  display: block;
   inline-size: 100%;
   block-size: 100%;
   text-align: start;
@@ -116,22 +103,22 @@
 .checkRow:has(input:disabled) { cursor: default; }
 
 .record .actions { justify-content: flex-end; }
-.code { color: var(--muted); font: 0.85em ui-monospace, monospace; }
+.record .actions button { min-block-size: 32px; padding: 4px 9px; font-size: 13px; }
+.term h3 { font-size: 15px; }
+.record > div:first-child { overflow-wrap: anywhere; }
+.code { color: var(--muted); font: 0.85em var(--mono); }
 
 .summary {
-  padding-block-start: 0.8rem;
+  position: sticky;
+  z-index: 4;
+  inset-block-end: 0;
+  padding: 12px 0;
   border-block-start: 1px solid var(--line);
+  background: var(--surface);
   font-weight: 700;
 }
 
-.editor .primary {
-  border-color: var(--accent);
-  background: var(--accent);
-  color: var(--surface);
-  font-weight: 700;
-}
 
-.editor .primary:disabled { opacity: 0.65; }
 .muted { color: var(--muted); }
 .completed, .success { color: var(--ok); }
 .incomplete { color: var(--warn); }
@@ -139,5 +126,5 @@
 
 @media (max-width: 560px) {
   .record { grid-template-columns: minmax(0, 1fr) auto; }
-  .record .actions { grid-column: 2; }
+  .record .actions { grid-column: 1 / -1; justify-content: flex-start; }
 }

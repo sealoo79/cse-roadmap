@@ -26,13 +26,8 @@
 }
 
 .input {
-  width: 100%;
-  min-height: 40px;
-  padding: 7px 13px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--text);
-  background: var(--surface);
+  inline-size: min(100%, 19rem);
+  padding-inline: 11px;
 }
 
 .input::placeholder {

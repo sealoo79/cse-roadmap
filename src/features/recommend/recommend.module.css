@@ -15,15 +15,7 @@
   font-weight: 650;
 }
 
-.filter select {
-  min-height: 40px;
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  color: var(--text);
-  background: var(--surface);
-  font: inherit;
-}
+.filter select { inline-size: auto; max-inline-size: 100%; }
 
 .count {
   margin-inline-start: auto;
@@ -32,15 +24,14 @@
 
 .list {
   display: grid;
-  gap: 12px;
   margin: 0;
   padding-inline-start: 2.25rem;
+  border-block-start: 1px solid var(--line);
 }
 
 .list > li::marker {
   color: var(--muted);
-  font-weight: 700;
-  font-variant-numeric: tabular-nums;
+  font: 600 16px/1.5 var(--mono);
 }
 
 .card {
@@ -49,11 +40,8 @@
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 8px 24px;
   align-items: start;
-  padding: 16px 20px;
-  border: 1px solid var(--line);
-  border-inline-start: 4px solid var(--field-color);
-  border-radius: 10px;
-  background: var(--surface);
+  padding: 17px 4px;
+  border-block-end: 1px solid var(--line);
 }
 
 .title {
@@ -72,7 +60,7 @@
 }
 
 .code {
-  font-family: ui-monospace, monospace;
+  font-family: var(--mono);
   font-weight: 500;
 }
 
@@ -88,8 +76,8 @@
 .reason {
   padding: 3px 9px;
   border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--bg);
+  border-radius: 4px;
+  background: var(--surface);
   font-size: .8125rem;
 }
 
@@ -103,8 +91,9 @@
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  justify-content: end;
-  gap: 4px 10px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
 }
 
 .field::before {
@@ -130,10 +119,12 @@
 
   .card {
     grid-template-columns: minmax(0, 1fr);
-    padding: 12px;
+    padding: 13px 4px;
   }
 
   .details {
-    justify-content: start;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 4px 10px;
   }
 }

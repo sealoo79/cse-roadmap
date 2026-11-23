@@ -29,6 +29,17 @@
   stroke-dasharray: 6 3;
 }
 
+.edge[data-edge-kind='service'] .connector {
+  stroke-width: 2.25px;
+  stroke-dasharray: 6 4;
+  animation: traverse .9s linear infinite;
+}
+
+@keyframes traverse { to { stroke-dashoffset: -10; } }
+@media (prefers-reduced-motion: reduce) {
+  .edge[data-edge-kind='service'] .connector { animation: none; }
+}
+
 .serviceArrow {
   fill: var(--ok);
 }

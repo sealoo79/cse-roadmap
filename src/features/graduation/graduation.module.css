@@ -2,7 +2,6 @@
 .progress {
   display: grid;
   gap: 0;
-  max-inline-size: 66rem;
 }
 
 .context {
@@ -19,7 +18,7 @@
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: var(--radius);
   background: var(--surface);
 }
 
@@ -41,9 +40,7 @@
 
 .statValue {
   margin: 2px 0 10px;
-  font-variant-numeric: tabular-nums;
-  font-size: 26px;
-  font-weight: 600;
+  font: 600 29px/1.5 var(--mono);
 }
 
 .statValue small {
@@ -55,7 +52,7 @@
 /* ---------------------------------------------------------------- 진행 막대 */
 .bar {
   overflow: hidden;
-  block-size: 8px;
+  block-size: 7px;
   border-radius: 4px;
   background: var(--line);
 }
@@ -128,7 +125,7 @@
 
 .code {
   color: var(--muted);
-  font-size: 12px;
+  font: 12px/1.6 var(--mono);
 }
 
 .remaining {
@@ -191,6 +188,7 @@
 .table {
   inline-size: 100%;
   border-collapse: collapse;
+  table-layout: fixed;
   font-size: 14px;
 }
 
@@ -210,6 +208,10 @@
 }
 
 .table .right { text-align: end; }
+.table th:first-child { inline-size: 3.25rem; }
+.table th:nth-child(3) { inline-size: 6rem; }
+.table th:last-child { inline-size: 10rem; }
+.table td { overflow-wrap: anywhere; }
 
 /* ---------------------------------------------------------------- 비학점 입력 */
 .noncredit,
@@ -259,15 +261,7 @@
   font-size: 13px;
 }
 
-.valueLabel input {
-  inline-size: 10rem;
-  padding: 6px 10px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--surface);
-  color: var(--text);
-  font: inherit;
-}
+.valueLabel input { inline-size: min(100%, 10rem); }
 
 .valueLabel input[aria-invalid='true'] { border-color: var(--danger); }
 
@@ -310,4 +304,12 @@
   .rowMain > .bar { grid-column: 1 / -1; grid-row: 2; }
   .stat { border-inline-end: 0; border-block-end: 1px solid var(--line); }
   .stat:last-child { border-block-end: 0; }
+}
+
+
+@media (max-width: 540px) {
+  .table { font-size: 13px; }
+  .table th:nth-child(3) { inline-size: 5.3rem; }
+  .table th:last-child { inline-size: 6.5rem; }
+  .table td a { display: inline-block; margin-block-start: 4px; }
 }

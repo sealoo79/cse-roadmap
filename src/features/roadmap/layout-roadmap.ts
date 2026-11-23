@@ -3,13 +3,15 @@ import type { LayoutRoadmap, RoadmapNode } from '@/types/roadmap';
 import { getFields } from '@/lib/reference';
 
 export const SEMESTER_COUNT = 8;
-export const COLUMN_WIDTH = 192;
-export const LABEL_WIDTH = 148;
-export const HEADER_HEIGHT = 64;
+export const COLUMN_WIDTH = 136;
+export const LABEL_WIDTH = 132;
+export const HEADER_HEIGHT = 58;
 export const LANE_PADDING = 12;
-const NODE_WIDTH = 164;
-const NODE_HEIGHT = 76;
-const NODE_GAP = 6;
+export const STATION_CENTER_Y = 13;
+export const STATION_RADIUS = 10;
+const NODE_WIDTH = 118;
+const NODE_HEIGHT = 72;
+const NODE_GAP = 9;
 const LANE_GAP = 24;
 const fieldOrder = getFields().map(({ field_id }) => field_id);
 

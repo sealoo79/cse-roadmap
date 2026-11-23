@@ -64,7 +64,7 @@ export function RoadmapSearch({
         }}>
         <label htmlFor={inputId} className={styles.label}>과목 검색</label>
         <input id={inputId} ref={input} type="search" value={query} placeholder="과목명 또는 과목코드"
-          className={styles.input} onChange={(event) => setQuery(event.target.value)}
+          className={`form-control ${styles.input}`} onChange={(event) => setQuery(event.target.value)}
           onKeyDown={(event) => {
             if (!event.nativeEvent.isComposing && event.key === 'ArrowDown' && matches.length) {
               event.preventDefault();

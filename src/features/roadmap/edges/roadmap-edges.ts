@@ -3,6 +3,8 @@ import type { Recommendation } from '@/lib/domain/recommend';
 import type { CourseCode, CourseRelation } from '@/types/reference';
 import type { RoadmapNode } from '@/types/roadmap';
 
+import { STATION_CENTER_Y, STATION_RADIUS } from '../layout-roadmap';
+
 type EdgeKind = CourseRelation['type'] | 'service';
 
 export interface RoadmapEdge {
@@ -87,12 +89,12 @@ function curveThrough(points: [Point, ...Point[]]): string {
 export function routeRoadmapEdge(edge: RoadmapEdge, index: number): { path: string; start: Point; end: Point; lock: Point } {
   const { from, to } = edge;
   const direction = from.col <= to.col ? 1 : -1;
-  const start = { x: direction === 1 ? from.x + from.width : from.x, y: from.y + from.height / 2 };
-  const end = { x: direction === -1 || from.col === to.col ? to.x + to.width : to.x, y: to.y + to.height / 2 };
+  const start = { x: from.x + from.width / 2 + direction * STATION_RADIUS, y: from.y + STATION_CENTER_Y };
+  const end = { x: to.x + to.width / 2 + (from.col === to.col ? 1 : -direction) * STATION_RADIUS, y: to.y + STATION_CENTER_Y };
   const offset = 6 + index % 3 * 2;
 
   if (from.col === to.col) {
-    const gutter = start.x + offset + 2;
+    const gutter = from.x + from.width + offset + 2;
     return { start, end,
       path: `M ${start.x} ${start.y} C ${gutter} ${start.y} ${gutter} ${end.y} ${end.x} ${end.y}`,
       lock: { x: start.x + 0.75 * (gutter - start.x), y: (start.y + end.y) / 2 },
@@ -109,8 +111,8 @@ export function routeRoadmapEdge(edge: RoadmapEdge, index: number): { path: stri
 
   // Run long edges through the semester gutters and the space immediately above the source row.
   const corridor = from.y - 2 - index % 3;
-  const exitX = start.x + direction * offset;
-  const entryX = end.x - direction * offset;
+  const exitX = from.x + (direction === 1 ? from.width : 0) + direction * offset;
+  const entryX = to.x + (direction === -1 ? to.width : 0) - direction * offset;
   return { start, end,
     path: curveThrough([start, { x: exitX, y: start.y }, { x: exitX, y: corridor },
       { x: entryX, y: corridor }, { x: entryX, y: end.y }, end]),

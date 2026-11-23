@@ -73,11 +73,11 @@ describe('EdgesLayer', () => {
   it('uses map coordinates for adjacent and long routes', () => {
     const edges = buildRoadmapEdges(nodes, relations, [], completion, false);
     const adjacent = routeRoadmapEdge(edges.find(({ kind }) => kind === 'official')!, 0);
-    expect(adjacent.start).toEqual({ x: 326, y: 114 });
-    expect(adjacent.end).toEqual({ x: 354, y: 196 });
-    expect(adjacent.path).toMatch(/^M 326 114 C .+ 354 196$/);
+    expect(adjacent.start).toEqual({ x: 254, y: 89 });
+    expect(adjacent.end).toEqual({ x: 426, y: 171 });
+    expect(adjacent.path).toMatch(/^M 254 89 C .+ 426 171$/);
 
     const long = routeRoadmapEdge(edges.find(({ kind }) => kind === 'recommended')!, 0);
-    expect(long.path).toMatch(/^M 518 196 L .+ Q .+ L 930 458$/);
+    expect(long.path).toMatch(/^M 446 171 L .+ Q .+ L 1002 433$/);
   });
 });

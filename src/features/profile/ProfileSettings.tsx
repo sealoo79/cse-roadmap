@@ -13,7 +13,11 @@ import styles from './profile.module.css';
 type Mode = 'onboarding' | 'account';
 type AccountSection = 'academic' | 'interests';
 
-const steps = ['전공·학번', '수강 내역', '관심 분야'] as const;
+const steps = [
+  { label: '전공·학번', title: '전공과 학번 선택', description: '전공과 학번에 맞는 교육과정과 졸업요건을 불러옵니다.' },
+  { label: '수강 내역', title: '수강 내역 확인', description: '저장된 과목을 확인하고 다음 단계로 이동하세요.' },
+  { label: '관심 분야', title: '관심 분야 선택', description: '선택한 분야는 다음 학기 추천에 반영됩니다.' },
+] as const;
 
 export function ProfileSettings({ mode }: { mode: Mode }): JSX.Element {
   const { profile, loading, error } = useProfile();
@@ -60,7 +64,7 @@ function ProfileEditor({ mode, profile, initialInterests }: {
   }
 
   useEffect(() => {
-    if (onboarding && step > 0) stepHeading.current?.focus();
+    if (onboarding) stepHeading.current?.focus();
   }, [onboarding, step]);
 
   const validAcademic = programs.some((program) => program.program_id === academic.programId
@@ -138,11 +142,17 @@ function ProfileEditor({ mode, profile, initialInterests }: {
   return (
     <div className={styles.shell}>
       {onboarding && (
-        <ol className={styles.steps} aria-label="온보딩 단계">
-          {steps.map((label, index) => (
-            <li key={label} aria-current={step === index ? 'step' : undefined}>{label}</li>
-          ))}
-        </ol>
+        <>
+          <ol className={styles.steps} aria-label="온보딩 단계">
+            {steps.map(({ label }, index) => (
+              <li key={label} aria-current={step === index ? 'step' : undefined} data-complete={index < step}>
+                <span aria-hidden="true">{index + 1}</span> {label}
+              </li>
+            ))}
+          </ol>
+          <h1 ref={stepHeading} tabIndex={-1}>{steps[step].title}</h1>
+          <p className="page-description">{steps[step].description}</p>
+        </>
       )}
 
       {!onboarding && !accountSection && (
@@ -169,9 +179,7 @@ function ProfileEditor({ mode, profile, initialInterests }: {
         </section>
       )}
       {(onboarding || accountSection) && <form className={styles.panel} onSubmit={submit} aria-busy={saving}>
-        {onboarding && step > 0 && (
-          <h2 className={styles.visuallyHidden} tabIndex={-1} ref={stepHeading}>{steps[step]}</h2>
-        )}
+        {!onboarding && <h2>{showAcademic ? '전공·학번 변경' : '관심 분야 변경'}</h2>}
         {showAcademic && academicFields}
         {onboarding && step === 1 && <EnrollmentStep />}
         {showInterests && interestFields}
@@ -184,12 +192,12 @@ function ProfileEditor({ mode, profile, initialInterests }: {
         <div className={styles.actions}>
           {!onboarding && <Button disabled={saving} onClick={() => { setNotice(null); setAccountSection(null); }}>취소</Button>}
           {onboarding && step > 0 && <Button disabled={saving} onClick={() => setStep(step - 1)}>이전</Button>}
-          {onboarding && step === 1 && <Button className={styles.primary} onClick={() => setStep(2)}>건너뛰기</Button>}
+          {onboarding && step === 1 && <Button className="button-primary" onClick={() => setStep(2)}>건너뛰기</Button>}
           {onboarding && step === 2 && (
             <Button disabled={saving} onClick={() => void save([])}>관심 분야 건너뛰기</Button>
           )}
           {(!onboarding || step !== 1) && (
-            <Button className={styles.primary} type="submit" disabled={saving || (showAcademic && !validAcademic)}>
+            <Button className="button-primary" type="submit" disabled={saving || (showAcademic && !validAcademic)}>
               {saving ? '저장 중…' : !onboarding ? '변경사항 저장' : step === 0 ? '다음: 수강 내역' : '설정 완료하고 노선도 보기'}
             </Button>
           )}

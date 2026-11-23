@@ -28,7 +28,7 @@ export function AcademicFields({ programs, value, onChange, disabled }: Academic
       <div className={styles.selects}>
         <label>
           전공
-          <select value={value.programId} required onChange={(event) => {
+          <select className="form-control" value={value.programId} required onChange={(event) => {
             const next = programs.find((item) => item.program_id === event.target.value);
             const keepYear = next?.years.some((entry) => entry.admission_year === value.admissionYear);
             onChange({ programId: next?.program_id ?? '', admissionYear: keepYear ? value.admissionYear : '' });
@@ -39,7 +39,7 @@ export function AcademicFields({ programs, value, onChange, disabled }: Academic
         </label>
         <label>
           학번
-          <select value={year?.admission_year ?? ''} required disabled={!program}
+          <select className="form-control" value={year?.admission_year ?? ''} required disabled={!program}
             aria-describedby={status === 'missing' || status === 'assumed' ? 'curriculum-status' : undefined}
             onChange={(event) => {
               const next = years.find((item) => String(item.admission_year) === event.target.value);

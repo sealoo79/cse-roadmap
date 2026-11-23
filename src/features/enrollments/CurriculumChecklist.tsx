@@ -73,7 +73,7 @@ export function CurriculumChecklist({
         <>
           <div className={styles.fields}>
             <label className={styles.label}>교육과정 학기
-              <select value={activeTerm} onChange={(event) => {
+              <select className="form-control" value={activeTerm} onChange={(event) => {
                 setTerm(Number(event.target.value));
                 setYearOverride(null);
                 setSelected([]);
@@ -85,7 +85,7 @@ export function CurriculumChecklist({
               </select>
             </label>
             <label className={styles.label}>실제 수강 연도
-              <input inputMode="numeric" maxLength={4} value={year}
+              <input className="form-control" inputMode="numeric" maxLength={4} value={year}
                 onChange={(event) => setYearOverride(event.target.value)} />
             </label>
           </div>
@@ -111,7 +111,7 @@ export function CurriculumChecklist({
         <span aria-live="polite">{pending.length}과목 선택</span>
         <div className={styles.actions}>
           <Button onClick={onCancel}>닫기</Button>
-          <Button className={styles.primary} disabled={pending.length === 0} onClick={save}>선택 과목 등록</Button>
+          <Button className="button-primary" disabled={pending.length === 0} onClick={save}>선택 과목 등록</Button>
         </div>
       </div>
     </fieldset>

@@ -7,7 +7,7 @@ import type { CourseCode } from '@/types/reference';
 import type { RoadmapViewProps } from '@/types/roadmap';
 import { EdgesLayer } from './edges';
 import {
-  COLUMN_WIDTH, HEADER_HEIGHT, LABEL_WIDTH, LANE_PADDING, SEMESTER_COUNT, layoutRoadmap, roadmapFieldOf,
+  COLUMN_WIDTH, HEADER_HEIGHT, LABEL_WIDTH, LANE_PADDING, SEMESTER_COUNT, STATION_CENTER_Y, layoutRoadmap, roadmapFieldOf,
 } from './layout-roadmap';
 import styles from './roadmap.module.css';
 
@@ -94,11 +94,16 @@ export function RoadmapView({
       {nodes.length === 0 ? <EmptyState title="표시할 과목이 없어요">표시할 분야를 선택해 주세요.</EmptyState> : (
         <div ref={viewport} className={styles.viewport} tabIndex={0} role="region" aria-label="학기별 노선도 스크롤 영역">
           <div className={styles.sizer} style={{ width: MAP_WIDTH * zoom, height: height * zoom }}>
-            <div className={styles.map} style={{ width: MAP_WIDTH, height, transform: `scale(${zoom})` }} data-roadmap-map>
+            <div className={styles.map} style={{
+              width: MAP_WIDTH, height, transform: `scale(${zoom})`,
+              '--station-y': `${STATION_CENTER_Y}px`,
+              '--track-y': `${LANE_PADDING + STATION_CENTER_Y}px`,
+            } as CSSProperties} data-roadmap-map>
               {columns.map(({ grade, semester, x }) => (
                 <div key={x} className={styles.column} data-even-grade={grade % 2 === 0}
                   style={{ left: x, width: COLUMN_WIDTH }}>
-                  <span className={styles.term} style={{ height: HEADER_HEIGHT }}>{grade}학년 {semester}학기</span>
+                  {semester === 1 && <strong className={styles.year} style={{ width: COLUMN_WIDTH * 2 }}>{grade}학년</strong>}
+                  <span className={styles.term} style={{ height: HEADER_HEIGHT }}>{semester}학기</span>
                 </div>
               ))}
               {lanes.map(({ fieldId, row }) => {
@@ -113,7 +118,7 @@ export function RoadmapView({
                       '--field-light': field?.color, '--field-dark': field?.color_dark ?? field?.color,
                     } as CSSProperties}>
                     <h3 className={styles.laneLabel} style={{ width: LABEL_WIDTH }}>{field?.name_ko}</h3>
-                    <span className={styles.track} style={{ left: LABEL_WIDTH }} aria-hidden="true" />
+                    <span className={styles.track} style={{ left: LABEL_WIDTH + COLUMN_WIDTH / 2, right: COLUMN_WIDTH / 2 }} aria-hidden="true" />
                     {stations.map((node) => {
                       const course = ref.courses.get(node.code);
                       const status = completion.isCompleted(node.code) ? 'completed'
@@ -124,6 +129,7 @@ export function RoadmapView({
                       const offset = node.y - top;
                       return (
                         <div key={node.code} className={styles.station} data-roadmap-node={node.code}
+                          data-even-grade={Math.floor(node.col / 2) % 2 === 1}
                           style={{ left: node.x, top: offset + LANE_PADDING, width: node.width, height: node.height }}>
                           {offset > 0 && <span className={styles.spur} style={{ height: offset }} aria-hidden="true" />}
                           <button type="button" aria-pressed={selected} data-status={status}
@@ -135,10 +141,10 @@ export function RoadmapView({
                             onClick={() => onSelect(selected ? null : node.code)}>
                             <span className={styles.stationDot} aria-hidden="true" />
                             <span className={styles.courseName}>{course?.name_ko ?? node.code}</span>
-                            <span className={styles.nodeMeta}>{node.code} · {course?.credit == null ? '학점 미확인' : `${course.credit}학점`}</span>
-                            <span className={styles.nodeFoot}>
-                              <span className={styles.status}>{statusLabels[status]}</span>
-                              {offered?.length ? <span className={styles.offered}>{offered.join('·')}학기 개설</span> : null}
+                            <span className={styles.nodeMeta}>{node.code}</span>
+                            <span className={styles.srOnly}>
+                              {statusLabels[status]} · {course?.credit == null ? '학점 미확인' : `${course.credit}학점`}
+                              {offered?.length ? ` · ${offered.join('·')}학기 개설` : ''}
                             </span>
                             {isRecommended && <span className={styles.recommendation}>
                               <span className={styles.sparkle} aria-hidden="true">✦</span><span className={styles.srOnly}>다음 학기 추천</span>

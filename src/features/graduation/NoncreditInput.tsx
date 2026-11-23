@@ -54,7 +54,7 @@ export function NoncreditInput({ checklistKey, legend, definition, answer, rule 
         <div className={styles.choices}>
           {BOOLEAN_CHOICES.map(([value, label]) => (
             <label key={value} className={styles.choice} data-choice={value}>
-              <input
+              <input className="form-control"
                 type="radio" name={`${id}-choice`} value={value} checked={current === value}
                 onChange={() => void run(() => (value === 'none' ? clear(checklistKey) : set(checklistKey, value, value === 'met' ? 'true' : 'false')))}
               />
@@ -111,7 +111,7 @@ function ValueInput(props: {
         <div className={styles.valueRow}>
           <label className={styles.valueLabel}>
             <span>{type === 'number' ? '점수' : type === 'date' ? '날짜' : '내용'}</span>
-            <input
+            <input className="form-control"
               type={INPUT_TYPE[type]} value={value} inputMode={type === 'number' ? 'numeric' : undefined}
               min={type === 'number' ? 0 : undefined} onChange={(event) => setValue(event.target.value)}
               aria-invalid={error ? true : undefined}
