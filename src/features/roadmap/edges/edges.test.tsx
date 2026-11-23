@@ -7,7 +7,7 @@ import type { Recommendation } from '@/lib/domain/recommend';
 import type { CourseRelation } from '@/types/reference';
 import type { RoadmapNode } from '@/types/roadmap';
 import { EdgesLayer } from './index';
-import { buildRoadmapEdges, getRelatedCodes, routeRoadmapEdge } from './roadmap-edges';
+import { buildRoadmapEdges, routeRoadmapEdge } from './roadmap-edges';
 
 const nodes: RoadmapNode[] = [
   { code: 'COMP0206', col: 0, row: 0, x: 162, y: 76, width: 164, height: 76, fieldId: 'common' },
@@ -60,22 +60,14 @@ describe('EdgesLayer', () => {
     const { container, rerender } = render(view('COMP0206'));
     const dimmed = () => Array.from(container.querySelectorAll<HTMLElement>('[data-roadmap-dimmed]'),
       (node) => node.dataset.roadmapNode);
-    // 후수의 후수(COME0331 → COMP0312)와 그 동시 수강 과목(COMP0411)까지 이어서 보여 준다.
-    expect(dimmed()).toEqual([]);
-    expect(Array.from(container.querySelectorAll<HTMLElement>('[data-roadmap-chain]'), (node) => node.dataset.roadmapNode))
-      .toEqual(['COME0331', 'COMP0312', 'COMP0411']);
-    const chained = container.querySelector('[data-from=COME0331][data-to=COMP0312]');
-    expect(chained?.getAttribute('data-muted')).toBe('false');
-    expect(chained?.getAttribute('data-chain')).toBe('true');
-    expect(chained?.querySelector('path')?.getAttribute('marker-end')).toMatch(/-chain\)$/);
+    expect(dimmed()).toEqual(['COMP0312', 'COMP0411']);
+    expect(container.querySelector('[data-from=COME0331][data-to=COMP0312]')?.getAttribute('data-muted')).toBe('true');
 
     rerender(view('COMP0312'));
     expect(dimmed()).toEqual(['COMP0206', 'COME0331']);
-    expect(container.querySelector('[data-from=COME0331][data-to=COMP0312]')?.getAttribute('data-muted')).toBe('true');
 
     rerender(view(null));
     expect(dimmed()).toEqual([]);
-    expect(container.querySelectorAll('[data-roadmap-chain]')).toHaveLength(0);
   });
 
   it('uses map coordinates for adjacent and long routes', () => {
@@ -87,15 +79,5 @@ describe('EdgesLayer', () => {
 
     const long = routeRoadmapEdge(edges.find(({ kind }) => kind === 'recommended')!, 0);
     expect(long.path).toMatch(/^M 446 171 L .+ Q .+ L 1002 433$/);
-  });
-
-  it('follows successors transitively, includes corequisites, and stops at cycles', () => {
-    const chain = [
-      relation('A', 'B', 'official'), relation('B', 'C', 'recommended'), relation('C', 'D', 'recommended'),
-      relation('D', 'B', 'recommended'), relation('C', 'E', 'coreq'), relation('X', 'A', 'official'),
-    ];
-    expect([...getRelatedCodes(chain, 'A')].sort()).toEqual(['A', 'B', 'C', 'D', 'E']);
-    expect([...getRelatedCodes(chain, 'C')].sort()).toEqual(['B', 'C', 'D', 'E']);
-    expect([...getRelatedCodes(chain, 'Z', [['Z', 'A']])].sort()).toEqual(['A', 'B', 'C', 'D', 'E', 'Z']);
   });
 });

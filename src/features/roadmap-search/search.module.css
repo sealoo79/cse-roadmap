@@ -13,7 +13,7 @@
 
 .search {
   position: relative;
-  width: min(280px, 100%);
+  width: min(260px, 100%);
 }
 
 .label {
@@ -26,7 +26,7 @@
 }
 
 .input {
-  inline-size: 100%;
+  inline-size: min(100%, 19rem);
   padding-inline: 11px;
 }
 

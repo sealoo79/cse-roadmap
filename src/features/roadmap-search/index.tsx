@@ -10,10 +10,15 @@ function normalize(query: string): string {
   return query.normalize('NFKC').replace(/\s+/g, '').toLowerCase();
 }
 
-/** 노선도 위 과목 검색창. 결과를 고르면 그 과목 코드를 넘긴다. */
-export function RoadmapCourseSearch({ onSelect }: { onSelect(code: CourseCode): void }): JSX.Element {
+export function RoadmapSearch({
+  onSelect, visibleFields, onChangeVisibleFields,
+}: {
+  onSelect(code: CourseCode): void;
+  visibleFields: FieldId[];
+  onChangeVisibleFields(ids: FieldId[]): void;
+}): JSX.Element {
   const { profile } = useProfile();
-  const { courses } = useReference();
+  const { courses, fields } = useReference();
   const [query, setQuery] = useState('');
   const inputId = useId();
   const input = useRef<HTMLInputElement>(null);
@@ -41,89 +46,63 @@ export function RoadmapCourseSearch({ onSelect }: { onSelect(code: CourseCode): 
     onSelect(code);
   }
 
-  return (
-    <form className={styles.search} role="search" aria-label="노선도 과목 검색"
-      onSubmit={(event) => {
-        event.preventDefault();
-        const match = matches[0];
-        if (match) select(match.course_code);
-      }}
-      onKeyDown={(event) => {
-        if (!event.nativeEvent.isComposing && event.key === 'Escape' && query) {
-          event.preventDefault();
-          setQuery('');
-          input.current?.focus();
-        }
-      }}>
-      <label htmlFor={inputId} className={styles.label}>과목 검색</label>
-      <input id={inputId} ref={input} type="search" value={query} placeholder="과목명 또는 과목코드"
-        className={`form-control ${styles.input}`} onChange={(event) => setQuery(event.target.value)}
-        onKeyDown={(event) => {
-          if (!event.nativeEvent.isComposing && event.key === 'ArrowDown' && matches.length) {
-            event.preventDefault();
-            results.current?.querySelector('button')?.focus();
-          }
-        }} />
-      {term && (
-        <div className={styles.results}>
-          {matches.length === 0 ? <p role="status">검색 결과가 없어요.</p> : (
-            <ul ref={results} aria-label="과목 검색 결과">
-              {matches.map((course) => (
-                <li key={course.course_code}>
-                  <button type="button" onClick={() => select(course.course_code)}>
-                    <span>{course.name_ko}</span>{' '}<small>{course.course_code}</small>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-      )}
-    </form>
-  );
-}
-
-/** 분야별 노선을 켜고 끄는 칩과 '필터 초기화'. */
-export function RoadmapFieldFilters({
-  visibleFields, onChangeVisibleFields,
-}: {
-  visibleFields: FieldId[];
-  onChangeVisibleFields(ids: FieldId[]): void;
-}): JSX.Element {
-  const { fields } = useReference();
   const allFields = fields.map(({ field_id }) => field_id);
   return (
-    <div role="group" aria-label="분야 필터" className={styles.filters}>
-      {fields.map((field) => {
-        const shown = visibleFields.includes(field.field_id);
-        return (
-          <button key={field.field_id} type="button" aria-pressed={shown} className={styles.chip}
-            style={{ '--field-light': field.color, '--field-dark': field.color_dark ?? field.color } as CSSProperties}
-            onClick={() => onChangeVisibleFields(shown
-              ? visibleFields.filter((id) => id !== field.field_id)
-              : [...visibleFields, field.field_id])}>
-            <span aria-hidden="true" />{field.name_ko}
-          </button>
-        );
-      })}
-      <button type="button" className={styles.reset} disabled={allFields.every((id) => visibleFields.includes(id))}
-        onClick={() => onChangeVisibleFields(allFields)}>필터 초기화</button>
-    </div>
-  );
-}
-
-/** 검색창과 분야 필터를 한 줄에 같이 둔다. */
-export function RoadmapSearch({
-  onSelect, visibleFields, onChangeVisibleFields,
-}: {
-  onSelect(code: CourseCode): void;
-  visibleFields: FieldId[];
-  onChangeVisibleFields(ids: FieldId[]): void;
-}): JSX.Element {
-  return (
     <div className={styles.tools}>
-      <RoadmapCourseSearch onSelect={onSelect} />
-      <RoadmapFieldFilters visibleFields={visibleFields} onChangeVisibleFields={onChangeVisibleFields} />
+      <form className={styles.search} role="search" aria-label="노선도 과목 검색"
+        onSubmit={(event) => {
+          event.preventDefault();
+          const match = matches[0];
+          if (match) select(match.course_code);
+        }}
+        onKeyDown={(event) => {
+          if (!event.nativeEvent.isComposing && event.key === 'Escape' && query) {
+            event.preventDefault();
+            setQuery('');
+            input.current?.focus();
+          }
+        }}>
+        <label htmlFor={inputId} className={styles.label}>과목 검색</label>
+        <input id={inputId} ref={input} type="search" value={query} placeholder="과목명 또는 과목코드"
+          className={`form-control ${styles.input}`} onChange={(event) => setQuery(event.target.value)}
+          onKeyDown={(event) => {
+            if (!event.nativeEvent.isComposing && event.key === 'ArrowDown' && matches.length) {
+              event.preventDefault();
+              results.current?.querySelector('button')?.focus();
+            }
+          }} />
+        {term && (
+          <div className={styles.results}>
+            {matches.length === 0 ? <p role="status">검색 결과가 없어요.</p> : (
+              <ul ref={results} aria-label="과목 검색 결과">
+                {matches.map((course) => (
+                  <li key={course.course_code}>
+                    <button type="button" onClick={() => select(course.course_code)}>
+                      <span>{course.name_ko}</span>{' '}<small>{course.course_code}</small>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </form>
+      <div role="group" aria-label="분야 필터" className={styles.filters}>
+        {fields.map((field) => {
+          const shown = visibleFields.includes(field.field_id);
+          return (
+            <button key={field.field_id} type="button" aria-pressed={shown} className={styles.chip}
+              style={{ '--field-light': field.color, '--field-dark': field.color_dark ?? field.color } as CSSProperties}
+              onClick={() => onChangeVisibleFields(shown
+                ? visibleFields.filter((id) => id !== field.field_id)
+                : [...visibleFields, field.field_id])}>
+              <span aria-hidden="true" />{field.name_ko}
+            </button>
+          );
+        })}
+        <button type="button" className={styles.reset} disabled={allFields.every((id) => visibleFields.includes(id))}
+          onClick={() => onChangeVisibleFields(allFields)}>필터 초기화</button>
+      </div>
     </div>
   );
 }

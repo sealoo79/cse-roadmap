@@ -56,32 +56,11 @@ export function buildRoadmapEdges(
   return [...corequisites.values(), ...directed.values()];
 }
 
-/**
- * 선택한 과목에서 이어지는 후수 과목을 끝까지 따라간다.
- * 필수·권장 선수 관계(from → to)를 차례로 밟고, 동시 수강 과목은 양쪽을 함께 묶는다.
- * extraLinks에는 화면에 그린 추천 경로(들은 과목 → 추천 과목)처럼 관계 자료 밖의 연결을 넣는다.
- */
-export function getRelatedCodes(
-  relations: CourseRelation[],
-  selected: CourseCode,
-  extraLinks: ReadonlyArray<readonly [CourseCode, CourseCode]> = [],
-): ReadonlySet<CourseCode> {
-  const next = new Map<CourseCode, CourseCode[]>();
-  const link = (from: CourseCode, to: CourseCode): void => { next.set(from, [...(next.get(from) ?? []), to]); };
-  for (const relation of relations) {
-    link(relation.from_code, relation.to_code);
-    if (relation.type === 'coreq') link(relation.to_code, relation.from_code);
-  }
-  for (const [from, to] of extraLinks) link(from, to);
-
+export function getRelatedCodes(edges: RoadmapEdge[], selected: CourseCode): ReadonlySet<CourseCode> {
   const related = new Set<CourseCode>([selected]);
-  const queue: CourseCode[] = [selected];
-  for (let code = queue.shift(); code !== undefined; code = queue.shift()) {
-    for (const following of next.get(code) ?? []) {
-      if (related.has(following)) continue;
-      related.add(following);
-      queue.push(following);
-    }
+  for (const edge of edges) {
+    if (edge.from.code === selected) related.add(edge.to.code);
+    if (edge.kind === 'coreq' && edge.to.code === selected) related.add(edge.from.code);
   }
   return related;
 }

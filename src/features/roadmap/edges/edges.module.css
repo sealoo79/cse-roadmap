@@ -48,26 +48,6 @@
   fill: var(--text);
 }
 
-.chainArrow {
-  fill: var(--accent);
-}
-
-/* 선택한 과목에서 이어지는 후수 과목 길: 파란 점선이 흐르듯 움직인다. */
-.edge[data-chain='true'] {
-  --edge: var(--accent);
-}
-
-.edge[data-chain='true'] .connector {
-  stroke-width: 2.5px;
-  stroke-dasharray: 6 4;
-  stroke-linecap: round;
-  animation: traverse .9s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .edge[data-chain='true'] .connector { animation: none; }
-}
-
 .lock,
 .terminal {
   fill: var(--surface);
@@ -86,10 +66,4 @@
 :global([data-roadmap-map]):has(.layer) :global([data-roadmap-dimmed]):not(:focus-within) {
   opacity: 0.36;
   filter: blur(1px);
-}
-
-/* 후수 과목 역: 파란 점선 테두리 */
-:global([data-roadmap-map]):has(.layer) :global([data-roadmap-chain]) button {
-  outline: 2px dashed var(--accent);
-  outline-offset: 1px;
 }

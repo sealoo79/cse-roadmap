@@ -25,72 +25,7 @@
 }
 
 .header {
-  flex-wrap: wrap;
   align-items: flex-start;
-  margin: -16px -16px 0;
-  padding: 8px 16px 12px;
-  border-block-end: 1px solid var(--line);
-  cursor: grab;
-  touch-action: none;
-  position: sticky;
-  z-index: 1;
-  inset-block-start: -16px;
-  background: var(--surface);
-}
-
-.titleBlock {
-  flex: 1;
-  min-inline-size: 0;
-}
-
-/* 끌기 손잡이 줄: 패널 맨 위 전체 폭. */
-.handle {
-  display: flex;
-  flex-basis: 100%;
-  align-items: center;
-  gap: 8px;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.grip {
-  padding: 0 6px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  color: var(--muted);
-  background: transparent;
-  font-size: 15px;
-  line-height: 20px;
-  letter-spacing: 1px;
-  cursor: grab;
-}
-
-.grip:hover,
-.grip:focus-visible {
-  border-color: var(--line);
-  color: var(--text);
-}
-
-.reset {
-  margin-inline-start: auto;
-  padding: 0 8px;
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  color: var(--text);
-  background: var(--bg);
-  font-size: 11px;
-  line-height: 20px;
-  cursor: pointer;
-}
-
-.panel[data-dragging='true'] {
-  user-select: none;
-  box-shadow: 0 18px 60px color-mix(in srgb, var(--text) 26%, transparent);
-}
-
-.panel[data-dragging='true'] .header,
-.panel[data-dragging='true'] .grip {
-  cursor: grabbing;
 }
 
 .header h2 {
@@ -237,11 +172,4 @@
     border-radius: var(--radius) var(--radius) 0 0;
     padding: 16px 18px calc(18px + env(safe-area-inset-bottom));
   }
-}
-
-.subheading {
-  margin: 10px 0 4px;
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 700;
 }

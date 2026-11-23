@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useId, useRef, useState, type JSX, type PointerEvent as ReactPointerEvent, type KeyboardEvent as ReactKeyboardEvent } from 'react';
+import { useEffect, useId, useRef, type JSX } from 'react';
 import { useRecommendations } from '@/features/recommend/useRecommendations';
 import { getCurriculum, getRelations } from '@/lib/reference';
 import { useCompletion, useProfile, useReference } from '@/lib/user-data/hooks';
@@ -21,14 +21,7 @@ const relationLabel: Record<CourseRelation['type'], string> = {
   coreq: '동시 수강',
 };
 
-interface Offset { x: number; y: number }
-const NO_OFFSET: Offset = { x: 0, y: 0 };
-/** 방향키로 패널을 옮길 때 한 번에 움직이는 거리(px). Shift를 누르면 네 배. */
-const KEY_STEP = 24;
-
 export function CourseDetailPanel({ code, onClose, onNavigate }: PanelProps): JSX.Element | null {
-  // 옮긴 위치는 패널을 닫았다 열거나 다른 과목으로 바꿔도 유지한다(노선도를 가리지 않는 자리에 두고 계속 쓰도록).
-  const [offset, setOffset] = useState<Offset>(NO_OFFSET);
   const { courses, equivalents } = useReference();
   const { profile } = useProfile();
   const completion = useCompletion();
@@ -43,8 +36,7 @@ export function CourseDetailPanel({ code, onClose, onNavigate }: PanelProps): JS
 
   return <CourseDetail course={course} courses={courses} completion={completion} curriculum={curriculum}
     relations={relations} equivalents={equivalents}
-    recommendation={recommendations.find((item) => item.code === code)} onClose={onClose} onNavigate={onNavigate}
-    offset={offset} onMove={setOffset} />;
+    recommendation={recommendations.find((item) => item.code === code)} onClose={onClose} onNavigate={onNavigate} />;
 }
 
 interface DetailProps extends Pick<PanelProps, 'onClose' | 'onNavigate'> {
@@ -55,91 +47,15 @@ interface DetailProps extends Pick<PanelProps, 'onClose' | 'onNavigate'> {
   relations: CourseRelation[];
   equivalents: CourseEquivalent[];
   recommendation: Recommendation | undefined;
-  offset: Offset;
-  onMove(offset: Offset): void;
-}
-
-/** 패널이 화면 밖으로 완전히 나가지 않도록, 머리 부분이 늘 화면 안에 남게 이동 범위를 제한한다. */
-function clampOffset(panel: HTMLElement, current: Offset, next: Offset): Offset {
-  const rect = panel.getBoundingClientRect();
-  const baseLeft = rect.left - current.x;
-  const baseTop = rect.top - current.y;
-  const keep = 64;
-  return {
-    x: Math.min(window.innerWidth - keep - baseLeft, Math.max(keep - rect.width - baseLeft, next.x)),
-    y: Math.min(window.innerHeight - keep - baseTop, Math.max(-baseTop, next.y)),
-  };
 }
 
 function CourseDetail({
-  course, courses, completion, curriculum, relations, equivalents, recommendation, onClose, onNavigate, offset, onMove,
+  course, courses, completion, curriculum, relations, equivalents, recommendation, onClose, onNavigate,
 }: DetailProps): JSX.Element {
   const titleId = useId();
   const panel = useRef<HTMLElement>(null);
   const close = useRef<HTMLButtonElement>(null);
-  const drag = useRef<{ pointerId: number; startX: number; startY: number; origin: Offset } | null>(null);
-  const [dragging, setDragging] = useState(false);
   const code = course.course_code;
-
-  // 머리 부분(제목 줄)을 끌어 패널을 옮긴다. 닫기 버튼·링크를 누를 때는 끌지 않는다.
-  function startDrag(event: ReactPointerEvent<HTMLElement>): void {
-    if (event.button !== 0 || (event.target as Element).closest('button:not([data-grip]), a')) return;
-    drag.current = { pointerId: event.pointerId, startX: event.clientX, startY: event.clientY, origin: shift };
-    event.currentTarget.setPointerCapture?.(event.pointerId);
-    setDragging(true);
-    event.preventDefault();
-  }
-  function moveDrag(event: ReactPointerEvent<HTMLElement>): void {
-    const state = drag.current;
-    if (!state || state.pointerId !== event.pointerId || !panel.current) return;
-    onMove(clampOffset(panel.current, shift, {
-      x: state.origin.x + event.clientX - state.startX, y: state.origin.y + event.clientY - state.startY,
-    }));
-  }
-  function endDrag(event: ReactPointerEvent<HTMLElement>): void {
-    if (drag.current?.pointerId !== event.pointerId) return;
-    drag.current = null;
-    setDragging(false);
-  }
-  // 키보드로도 옮길 수 있게, 이동 손잡이에서 방향키를 받는다.
-  function moveByKey(event: ReactKeyboardEvent<HTMLButtonElement>): void {
-    const step = event.shiftKey ? KEY_STEP * 4 : KEY_STEP;
-    const delta = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[event.key];
-    if (!delta || !panel.current) return;
-    event.preventDefault();
-    onMove(clampOffset(panel.current, shift, { x: shift.x + delta[0], y: shift.y + delta[1] }));
-  }
-  const moved = offset.x !== 0 || offset.y !== 0;
-  // 직접 옮기지 않았다면, 선택한 과목과 후수 과목 역을 가리지 않는 모서리로 패널을 자동으로 비켜 둔다.
-  const [autoShift, setAutoShift] = useState<Offset>(NO_OFFSET);
-  useEffect(() => {
-    if (moved) return;
-    const frame = requestAnimationFrame(() => {
-      const element = panel.current;
-      if (!element) return;
-      const targets = [...document.querySelectorAll<HTMLElement>(
-        `[data-roadmap-node="${CSS.escape(code)}"], [data-roadmap-chain]`,
-      )].map((station) => station.getBoundingClientRect());
-      if (targets.length === 0) { setAutoShift(NO_OFFSET); return; }
-      const rect = element.getBoundingClientRect();
-      setAutoShift((current) => {
-        const base = { left: rect.left - current.x, top: rect.top - current.y };
-        const margin = 16;
-        const down = Math.max(0, window.innerHeight - margin - rect.height - base.top);
-        const candidates: Offset[] = [NO_OFFSET, { x: margin - base.left, y: 0 }, { x: 0, y: down }, { x: margin - base.left, y: down }];
-        const covered = (shift: Offset): number => targets.reduce((sum, target) => {
-          const left = base.left + shift.x;
-          const top = base.top + shift.y;
-          const w = Math.min(left + rect.width, target.right) - Math.max(left, target.left);
-          const h = Math.min(top + rect.height, target.bottom) - Math.max(top, target.top);
-          return sum + (w > 0 && h > 0 ? w * h : 0);
-        }, 0);
-        return candidates.reduce((a, b) => (covered(b) < covered(a) ? b : a));
-      });
-    });
-    return () => cancelAnimationFrame(frame);
-  }, [code, moved]);
-  const shift = moved ? offset : autoShift;
 
   useEffect(() => {
     const previous = document.activeElement;
@@ -174,24 +90,6 @@ function CourseDetail({
     && (from_code === code || to_code === code)).map(({ from_code, to_code }) => from_code === code ? to_code : from_code));
   const successors = new Map(relations.filter(({ type, from_code }) => type !== 'coreq' && from_code === code)
     .map(({ to_code, type }) => [`${to_code}/${type}`, { to_code, type }]));
-  // 후수의 후수까지: 직접 후수(1단계) 다음부터 몇 단계 뒤에 열리는 과목인지 함께 보여 준다.
-  const laterSuccessors: { code: CourseCode; step: number }[] = [];
-  {
-    const seen = new Set<CourseCode>([code, ...[...successors.values()].map(({ to_code }) => to_code)]);
-    let frontier = [...new Set([...successors.values()].map(({ to_code }) => to_code))];
-    for (let step = 2; frontier.length > 0 && step <= 8; step++) {
-      const next: CourseCode[] = [];
-      for (const from of frontier) {
-        for (const { type, from_code, to_code } of relations) {
-          if (type === 'coreq' || from_code !== from || seen.has(to_code)) continue;
-          seen.add(to_code);
-          next.push(to_code);
-          laterSuccessors.push({ code: to_code, step });
-        }
-      }
-      frontier = next;
-    }
-  }
   const sameCourses = equivalents.filter(({ old_code, new_code, relation }) => relation === 'same_course'
     && (old_code === code || new_code === code));
 
@@ -211,17 +109,9 @@ function CourseDetail({
   );
 
   return (
-    <aside role="dialog" aria-labelledby={titleId} className={styles.panel} ref={panel} data-dragging={dragging}
-      style={shift.x !== 0 || shift.y !== 0 ? { transform: `translate(${shift.x}px, ${shift.y}px)` } : undefined}>
-      <header className={styles.header} onPointerDown={startDrag} onPointerMove={moveDrag}
-        onPointerUp={endDrag} onPointerCancel={endDrag}>
-        <div className={styles.handle}>
-          <button type="button" className={styles.grip} data-grip aria-label="과목 상세 패널 옮기기. 방향키로 이동"
-            title="끌거나 방향키로 패널을 옮길 수 있어요" onKeyDown={moveByKey}>⠿</button>
-          <span className={styles.hint} aria-hidden="true">끌어서 옮기기</span>
-          {moved && <button type="button" className={styles.reset} onClick={() => onMove(NO_OFFSET)}>제자리</button>}
-        </div>
-        <div className={styles.titleBlock}>
+    <aside role="dialog" aria-labelledby={titleId} className={styles.panel} ref={panel}>
+      <header className={styles.header}>
+        <div>
           <p className={styles.code}>{code}</p>
           <h2 id={titleId}>{course.name_ko}</h2>
           <p className={styles.status}>{status}</p>
@@ -282,13 +172,6 @@ function CourseDetail({
               <li key={key}>{courseLink(to_code)}<span>{relationLabel[type]}</span></li>)}
           </ul>
         )}
-        {laterSuccessors.length > 0 && <>
-          <p className={styles.subheading}>그다음 이어지는 과목</p>
-          <ul className={styles.relationList}>
-            {laterSuccessors.map(({ code: target, step }) =>
-              <li key={target}>{courseLink(target)}<span>{step}단계 후</span></li>)}
-          </ul>
-        </>}
       </section>
 
       {sameCourses.length > 0 && <section className={styles.section}>
