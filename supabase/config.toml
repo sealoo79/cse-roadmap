@@ -1,0 +1,4 @@
+project_id = "cse-roadmap"
+
+[db.seed]
+enabled = false

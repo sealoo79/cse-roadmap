@@ -1,12 +1,13 @@
+import { createBrowserSupabaseClient } from '@/lib/supabase/client';
 import { MockUserDataRepository } from './mock-repository';
+import { SupabaseUserDataRepository } from './supabase-repository';
 import type { UserDataRepository } from './repository';
 
 let repository: UserDataRepository | undefined;
 export function getRepository(): UserDataRepository {
-  if (process.env.NEXT_PUBLIC_USE_MOCK !== '1') {
-    throw new Error('실제 저장소는 이슈 #9에서 연결합니다. 현재는 NEXT_PUBLIC_USE_MOCK=1로 실행해 주세요.');
-  }
-  repository ??= new MockUserDataRepository();
+  repository ??= process.env.NEXT_PUBLIC_USE_MOCK === '1'
+    ? new MockUserDataRepository()
+    : new SupabaseUserDataRepository(createBrowserSupabaseClient());
   return repository;
 }
 export type { RepoError, Result, UserDataRepository } from './repository';
