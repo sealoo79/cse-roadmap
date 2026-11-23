@@ -1,0 +1,161 @@
+'use client';
+
+import { useEffect, useRef, useState, type FormEvent, type JSX } from 'react';
+import { Button } from '@/components/ui/Button';
+import { useInterests, useProfile, useReference } from '@/lib/user-data/hooks';
+import type { FieldId } from '@/types/reference';
+import type { Profile } from '@/types/user';
+import { AcademicFields, InterestFields, type AcademicSelection } from './ProfileFields';
+import { EnrollmentStep } from './EnrollmentStep';
+import styles from './profile.module.css';
+
+type Mode = 'onboarding' | 'account';
+
+const steps = ['전공·학번', '수강 내역', '관심 분야'] as const;
+
+export function ProfileSettings({ mode }: { mode: Mode }): JSX.Element {
+  const { profile, loading, error } = useProfile();
+  const { fieldIds } = useInterests();
+
+  if (loading) return <p role="status">회원정보를 불러오는 중입니다.</p>;
+  if (mode === 'account' && !profile) {
+    return error
+      ? <p role="alert" className={styles.error}>{error.message}</p>
+      : <p>온보딩에서 전공과 학번을 먼저 등록해 주세요.</p>;
+  }
+
+  return <ProfileEditor key={mode === 'onboarding' ? mode : profile?.id} mode={mode} profile={profile} initialInterests={fieldIds} />;
+}
+
+function ProfileEditor({ mode, profile, initialInterests }: {
+  mode: Mode;
+  profile: Profile | null;
+  initialInterests: FieldId[];
+}): JSX.Element {
+  const { programs, fields } = useReference();
+  const { save: saveProfile, error: profileError } = useProfile();
+  const { fieldIds: savedInterests, save: saveInterests } = useInterests();
+  const [academic, setAcademic] = useState<AcademicSelection>({
+    programId: profile?.program_id ?? '',
+    admissionYear: profile?.admission_year ?? '',
+  });
+  const [interests, setInterests] = useState(initialInterests);
+  const [step, setStep] = useState(0);
+  const [saving, setSaving] = useState(false);
+  const [notice, setNotice] = useState<{ error: boolean; text: string } | null>(null);
+  const stepHeading = useRef<HTMLHeadingElement>(null);
+  const onboarding = mode === 'onboarding';
+
+  useEffect(() => {
+    if (onboarding && step > 0) stepHeading.current?.focus();
+  }, [onboarding, step]);
+
+  const validAcademic = programs.some((program) => program.program_id === academic.programId
+    && program.years.some((year) => year.admission_year === academic.admissionYear));
+
+  async function save(ids: FieldId[]): Promise<void> {
+    if (saving) return;
+    if (!validAcademic || !academic.programId || !academic.admissionYear) {
+      setNotice({ error: true, text: '등록 가능한 전공과 학번을 선택해 주세요.' });
+      if (onboarding) setStep(0);
+      return;
+    }
+
+    setSaving(true);
+    setNotice(null);
+    const changedInterests = ids.length !== savedInterests.length || ids.some((id) => !savedInterests.includes(id));
+    let leaving = false;
+    try {
+      if (changedInterests) {
+        const result = await saveInterests(ids);
+        if (!result.ok) {
+          setNotice({ error: true, text: result.error.message });
+          return;
+        }
+      }
+
+      // The route guard considers a profile complete, so write the profile last.
+      if (onboarding || academic.programId !== profile?.program_id || academic.admissionYear !== profile?.admission_year) {
+        const result = await saveProfile({ program_id: academic.programId, admission_year: academic.admissionYear });
+        if (!result.ok) {
+          setNotice({
+            error: true,
+            text: changedInterests
+              ? `관심 분야는 저장됐지만 전공·학번을 저장하지 못했습니다. ${result.error.message}`
+              : result.error.message,
+          });
+          return;
+        }
+      }
+
+      if (onboarding) {
+        // A document request rechecks the saved profile instead of reusing a prefetched redirect.
+        window.location.replace(new URL('/roadmap', window.location.origin));
+        leaving = true;
+      } else {
+        setNotice({ error: false, text: '회원정보를 저장했습니다.' });
+      }
+    } catch {
+      setNotice({ error: true, text: '회원정보를 저장할 수 없습니다. 다시 시도해 주세요.' });
+    } finally {
+      if (!leaving) setSaving(false);
+    }
+  }
+
+  function submit(event: FormEvent<HTMLFormElement>): void {
+    event.preventDefault();
+    if (onboarding && step < 2) {
+      if (step === 0 && validAcademic) setStep(1);
+      return;
+    }
+    void save(interests);
+  }
+
+  const academicFields = <AcademicFields programs={programs} value={academic} disabled={saving} onChange={(value) => {
+    setAcademic(value);
+    setNotice(null);
+  }} />;
+  const interestFields = <InterestFields fields={fields} selected={interests} disabled={saving} onChange={(value) => {
+    setInterests(value);
+    setNotice(null);
+  }} />;
+
+  return (
+    <div className={styles.shell}>
+      {onboarding && (
+        <ol className={styles.steps} aria-label="온보딩 단계">
+          {steps.map((label, index) => (
+            <li key={label} aria-current={step === index ? 'step' : undefined}>{label}</li>
+          ))}
+        </ol>
+      )}
+
+      <form className={styles.panel} onSubmit={submit} aria-busy={saving}>
+        {onboarding && step > 0 && (
+          <h2 className={styles.visuallyHidden} tabIndex={-1} ref={stepHeading}>{steps[step]}</h2>
+        )}
+        {(!onboarding || step === 0) && academicFields}
+        {onboarding && step === 1 && <EnrollmentStep />}
+        {(!onboarding || step === 2) && interestFields}
+
+        {notice && <p role={notice.error ? 'alert' : 'status'} className={notice.error ? styles.error : styles.success}>
+          {notice.text}
+        </p>}
+        {!notice && !saving && profileError && <p role="alert" className={styles.error}>{profileError.message}</p>}
+
+        <div className={styles.actions}>
+          {onboarding && step > 0 && <Button disabled={saving} onClick={() => setStep(step - 1)}>이전</Button>}
+          {onboarding && step === 1 && <Button className={styles.primary} onClick={() => setStep(2)}>건너뛰기</Button>}
+          {onboarding && step === 2 && (
+            <Button disabled={saving} onClick={() => void save([])}>관심 분야 건너뛰기</Button>
+          )}
+          {(!onboarding || step !== 1) && (
+            <Button className={styles.primary} type="submit" disabled={saving || !validAcademic}>
+              {saving ? '저장 중…' : !onboarding ? '변경사항 저장' : step === 0 ? '다음' : '온보딩 완료'}
+            </Button>
+          )}
+        </div>
+      </form>
+    </div>
+  );
+}
