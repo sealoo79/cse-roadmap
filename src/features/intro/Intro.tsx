@@ -1,41 +1,29 @@
 'use client';
 
-import { useEffect, useState, type CSSProperties, type JSX } from 'react';
+import { useState, type JSX } from 'react';
 import { useAuth } from '@/features/auth/useAuth';
-import { getFields } from '@/lib/reference';
 import { useMockAuth } from '@/lib/supabase/config';
+import { FeatureRing } from './FeatureRing';
+import { HomeBackground } from './HomeBackground';
 import styles from './intro.module.css';
 
-const features = [
-  { label: '노선도', title: '과목이 연결되는 길', description: '선수·후수 과목을 살펴보고 나에게 맞는 수강 경로를 찾으세요.' },
-  { label: '졸업요건', title: '졸업까지 남은 요건', description: '전공과 학번에 맞춰 이수 학점과 비학점 항목을 확인하세요.' },
-  { label: '다음 학기 추천', title: '다음에 들을 과목', description: '관심 분야와 지금까지 이수한 과목을 바탕으로 다음 학기를 준비하세요.' },
-];
+/** Google 로그인 버튼 로고. Google 브랜드 가이드의 색을 그대로 써야 해서 CSS 변수 대신 고정 색을 쓴다(A-10 예외). */
+function GoogleLogo(): JSX.Element {
+  return (
+    <svg className={styles.googleLogo} viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+    </svg>
+  );
+}
 
+/** 첫 화면(프로토타입 #home): 노선도 배경 + 소개·로그인 + 기능 미리보기 고리. */
 export function Intro({ callbackFailed }: { callbackFailed: boolean }): JSX.Element {
   const { signInWithGoogle, loading } = useAuth();
-  const [selected, setSelected] = useState(0);
-  const [rotating, setRotating] = useState(false);
   const [signingIn, setSigningIn] = useState(false);
   const [error, setError] = useState(callbackFailed ? '로그인을 완료하지 못했습니다. 다시 시도해 주세요.' : null);
-  const fields = getFields();
-  const previewOrder = [features[(selected + features.length - 1) % features.length],
-    features[selected], features[(selected + 1) % features.length]];
-
-  useEffect(() => {
-    if (!rotating) return;
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (motion.matches) return;
-    const id = window.setInterval(() => setSelected((index) => (index + 1) % features.length), 5500);
-    const stopOnReducedMotion = (): void => {
-      if (motion.matches) setRotating(false);
-    };
-    motion.addEventListener('change', stopOnReducedMotion);
-    return () => {
-      window.clearInterval(id);
-      motion.removeEventListener('change', stopOnReducedMotion);
-    };
-  }, [rotating]);
 
   async function login(): Promise<void> {
     setError(null);
@@ -49,55 +37,22 @@ export function Intro({ callbackFailed }: { callbackFailed: boolean }): JSX.Elem
   }
 
   return (
-    <section className={styles.intro} aria-labelledby="intro-title" data-home>
-      <div className={styles.map} aria-hidden="true">
-        {fields.map((field) => <span key={field.field_id} style={{
-          '--field-light': field.color,
-          '--field-dark': field.color_dark ?? field.color,
-        } as CSSProperties}><i /><i /><i /></span>)}
-      </div>
-      <div className={styles.copy}>
-        <p className={styles.eyebrow}>컴퓨터학부 수강 로드맵</p>
+    <section className={styles.home} aria-labelledby="intro-title" data-home>
+      <HomeBackground />
+      <div className={styles.hero}>
+        <p className={styles.kicker}>컴퓨터학부 2026 교육과정</p>
         <h1 id="intro-title">들은 과목을 넣으면<br />다음 학기가 보여요</h1>
         <p className={styles.lead}>수강 내역과 관심 분야로 내 전공 노선도를 그리고, 선수과목과 졸업요건에 맞춰 다음 학기 과목을 추천해요.</p>
-        <button type="button" className={styles.login} disabled={loading || signingIn} onClick={() => void login()}>
-          {signingIn ? '로그인 연결 중…' : useMockAuth ? '시연 계정으로 로그인' : 'Google 계정으로 로그인'}
-        </button>
-        <p className={styles.note}>처음 로그인하면 전공·학번, 수강 내역, 관심 분야를 설정해요.</p>
-        {error && <p className={styles.error} role="alert">{error}</p>}
-      </div>
-
-      <div className={styles.preview} aria-label="로드맵 기능 미리보기">
-        <div className={styles.stage}>
-          {previewOrder.map((feature, position) => {
-            const active = position === 1;
-            return (
-              <article key={feature.label} className={styles.card} data-position={position}
-                aria-hidden={!active} aria-live={active && !rotating ? 'polite' : 'off'}>
-                <p>{feature.label}</p>
-                <h2>{feature.title}</h2>
-                <div className={styles.miniature} data-feature={features.indexOf(feature)} aria-hidden="true">
-                  {fields.slice(0, 3).map((field) => <span key={field.field_id} style={{
-                    '--field-light': field.color,
-                    '--field-dark': field.color_dark ?? field.color,
-                  } as CSSProperties}><i /><i /><i /></span>)}
-                </div>
-                <div>{feature.description}</div>
-              </article>
-            );
-          })}
-        </div>
-        <div className={styles.controls}>
-          {features.map((feature, index) => (
-            <button key={feature.label} type="button" aria-pressed={index === selected} onClick={() => { setRotating(false); setSelected(index); }}>
-              {feature.label}
-            </button>
-          ))}
-          <button type="button" className={styles.motionControl} onClick={() => setRotating((active) => !active)}>
-            {rotating ? '회전 멈춤' : '자동 회전 시작'}
+        <div className={styles.cta}>
+          <button type="button" className={styles.googleButton} disabled={loading || signingIn} onClick={() => void login()}>
+            {!useMockAuth && <GoogleLogo />}
+            <span>{signingIn ? '로그인 연결 중…' : useMockAuth ? '시연 계정으로 로그인' : 'Google 계정으로 로그인'}</span>
           </button>
         </div>
+        <p className={styles.note}>처음 로그인하면 전공·학번, 수강 내역, 관심 분야를 한 번만 설정해요.</p>
+        {error && <p className={styles.error} role="alert">{error}</p>}
       </div>
+      <FeatureRing />
     </section>
   );
 }
