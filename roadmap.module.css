@@ -1,0 +1,266 @@
+/* 노선도 카드: 위쪽 바(범례 · 분야 필터 · 확대)와 노선도를 한 테두리 안에 둔다. */
+.roadmap {
+  min-inline-size: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.legends, .zoom, .legend, .fieldLegend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px 16px;
+  padding: 10px 12px;
+  border-block-end: 1px solid var(--line);
+}
+.barCenter { display: flex; justify-content: center; min-inline-size: 0; }
+.zoom { justify-self: end; }
+@media (max-width: 960px) {
+  .bar { grid-template-columns: auto auto; }
+  .barCenter { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; }
+}
+
+.legendToggle { min-block-size: 36px; padding: 4px 12px; font-size: 13px; }
+.chevron {
+  inline-size: 7px;
+  block-size: 7px;
+  border-inline-end: 2px solid currentColor;
+  border-block-end: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform .15s;
+}
+.legendToggle[aria-expanded='true'] .chevron { transform: translateY(2px) rotate(225deg); }
+
+.legendPanel {
+  display: grid;
+  gap: 12px;
+  padding: 14px 18px;
+  border-block-end: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg) 55%, var(--surface));
+}
+.legendPanel label { display: inline-flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; }
+
+.legends { gap: 8px 18px; }
+.legend, .fieldLegend {
+  gap: 6px 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-size: 13px;
+}
+.legend li, .fieldLegend li { display: inline-flex; gap: 6px; align-items: center; }
+.zoom { gap: 0; flex-wrap: nowrap; }
+.zoom button { min-block-size: 36px; min-inline-size: 40px; border-radius: 0; padding: 4px 9px; font-size: 13px; }
+.zoom button + button { margin-inline-start: -1px; }
+.zoom button:first-child { border-radius: 6px 0 0 6px; }
+.zoom button:last-child { border-radius: 0 6px 6px 0; }
+
+.fieldLegend li, .lane { --field: var(--field-light, var(--text)); }
+@media (prefers-color-scheme: dark) {
+  .fieldLegend li, .lane { --field: var(--field-dark, var(--text)); }
+}
+
+.fieldLegend span, .officialKey, .recommendedKey, .serviceKey { inline-size: 17px; border-block-start: 3px solid var(--field, var(--text)); }
+.recommendedKey { border-block-start-style: dotted; }
+.coreqKey { inline-size: 13px; block-size: 8px; border: 1px dashed var(--text); }
+.serviceKey { border-block-start-color: var(--ok); border-block-start-style: dashed; }
+
+.completedKey, .progressKey, .pendingKey, .stationDot {
+  flex: none;
+  inline-size: 13px;
+  block-size: 13px;
+  border: 3px solid var(--dot-color, var(--accent));
+  border-radius: 50%;
+  background: var(--surface);
+}
+.completedKey, .node[data-status='completed'] .stationDot { background: var(--dot-color, var(--accent)); }
+.progressKey, .node[data-status='inProgress'] .stationDot {
+  background: linear-gradient(90deg, var(--dot-color, var(--accent)) 50%, var(--surface) 50%);
+}
+
+/* 노선도 안쪽 세로 스크롤 없음: 높이는 내용만큼 늘어나 페이지 스크롤 하나로 본다. 확대했을 때만 가로로 넘친다. */
+.viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--surface);
+  overscroll-behavior-inline: contain;
+}
+
+.sizer { overflow: clip; }
+.map { position: relative; isolation: isolate; transform-origin: top left; }
+.column { position: absolute; inset-block: 0; }
+.column[data-even-grade='true'] { background: var(--bg); }
+
+.year {
+  position: absolute;
+  z-index: 1;
+  inset-block-start: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.term {
+  display: grid;
+  place-items: end center;
+  padding-block-end: 6px;
+  border-block-end: 1px solid var(--line);
+  color: var(--muted);
+  font: 12px/1.5 var(--mono);
+}
+
+.lane { position: absolute; inset-inline: 0; border-block-end: 1px solid var(--line); }
+.laneLabel {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 15px 8px 8px 12px;
+  font-size: 14px;
+}
+.laneLabel::before { flex: 0 0 9px; block-size: 9px; background: var(--field); content: ''; }
+
+.track {
+  position: absolute;
+  inset-block-start: calc(var(--track-y) - 3px);
+  border-block-start: 6px solid var(--field);
+}
+
+.station { --station-bg: var(--surface); position: absolute; }
+.station[data-even-grade='true'] { --station-bg: var(--bg); }
+.spur {
+  position: absolute;
+  inset-inline-start: calc(50% - 2px);
+  inset-block-end: calc(100% - var(--station-y));
+  inline-size: 4px;
+  background: var(--field);
+}
+
+.edges { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
+.node {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  padding: calc(var(--station-y) + 12px) 2px 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  text-align: center;
+  cursor: pointer;
+}
+.node:hover, .node[aria-pressed='true'] { border-color: var(--field); }
+
+.stationDot {
+  --dot-color: var(--field);
+  position: absolute;
+  inset-block-start: var(--station-y);
+  inset-inline-start: 50%;
+  inline-size: 20px;
+  block-size: 20px;
+  transform: translate(-50%, -50%);
+  border-width: 4px;
+}
+
+.courseName, .nodeMeta {
+  background: var(--station-bg);
+  box-shadow: 3px 0 var(--station-bg), -3px 0 var(--station-bg);
+}
+.courseName {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+.nodeMeta { color: var(--muted); font: 10px/1.3 var(--mono); }
+
+/* 다음 학기 추천(시안 #roadmap과 같은 효과): 칸 없이 역에 금색 고리·퍼지는 링·반짝이는 별, 과목명 옆에 빛이 지나가는 '추천' 꼬리표. */
+.roadmap {
+  --rec: #ffc21a;
+  --rec-shine: #fff4cc;
+  --rec-star: #ffb800;
+  --rec-ink: #0f172a;
+}
+.recommendation { position: absolute; }
+.recTag {
+  display: inline-block;
+  margin-inline-start: 5px;
+  padding: 0 5px;
+  border-radius: 3px;
+  color: var(--rec-ink);
+  background: linear-gradient(110deg, var(--rec) 0%, var(--rec) 38%, var(--rec-shine) 50%, var(--rec) 62%, var(--rec) 100%);
+  background-size: 260% 100%;
+  font-size: 10.5px;
+  font-weight: 700;
+  line-height: 16px;
+  vertical-align: 1px;
+  white-space: nowrap;
+  animation: shine 2.2s linear infinite;
+}
+.recLegend { display: inline-flex; }
+.recLegend .recTag { margin: 0; }
+.node:has(.recommendation) .stationDot {
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--rec);
+}
+/* 퍼지는 링 */
+.node:has(.recommendation) .stationDot::after {
+  position: absolute;
+  inset: -8px;
+  border: 3px solid var(--field);
+  border-radius: 50%;
+  content: '';
+  pointer-events: none;
+  animation: ping 1.6s ease-out infinite;
+}
+/* 반짝이는 별 */
+.node:has(.recommendation) .stationDot::before {
+  position: absolute;
+  inset-block-start: -15px;
+  inset-inline-end: -15px;
+  inline-size: 13px;
+  block-size: 13px;
+  background: var(--rec-star);
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  content: '';
+  pointer-events: none;
+  animation: twinkle 1.4s ease-in-out infinite;
+}
+.sparkle { color: var(--rec-star); font-size: 14px; line-height: 1; }
+
+@keyframes shine { from { background-position: 100% 0; } to { background-position: -160% 0; } }
+@keyframes ping { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+@keyframes twinkle {
+  0%, 100% { transform: scale(.35) rotate(0deg); opacity: .25; }
+  50% { transform: scale(1.15) rotate(45deg); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .recTag, .node:has(.recommendation) .stationDot::after, .node:has(.recommendation) .stationDot::before { animation: none; }
+}
+
+.chainKey { inline-size: 20px; border-block-start: 3px dashed var(--accent); }
+
+.srOnly {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
