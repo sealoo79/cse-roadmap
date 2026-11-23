@@ -3,7 +3,7 @@
     "requirement_id": "liberal_total",
     "name": "교양 이수학점",
     "group": "교양",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -14,6 +14,8 @@
     "min_credits_detail": null,
     "rule": "교양 30학점 이상(2024학번부터 SDG교양 3학점 포함). 사범대학 학생이 사범대학 내 학과를 복수전공하면 24학점 이상",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 334,
     "courses": [
       "AAAA0101",
@@ -359,7 +361,7 @@
     "requirement_id": "chs_basic_literacy",
     "name": "첨성인기초 (독서와토론·사고교육·글쓰기·외국어)",
     "group": "교양 영역별 필수",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -370,6 +372,8 @@
     "min_credits_detail": null,
     "rule": "독서와토론, 사고교육, 글쓰기, 외국어 중 3학점 이상",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 18,
     "courses": [
       "CLTR0011",
@@ -399,7 +403,7 @@
     "requirement_id": "chs_basic_math_science",
     "name": "첨성인기초 (수리·기초과학)",
     "group": "교양 영역별 필수",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -410,6 +414,8 @@
     "min_credits_detail": null,
     "rule": "수리, 기초과학 중 3학점 이상",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 11,
     "courses": [
       "CLTR0242",
@@ -432,7 +438,7 @@
     "requirement_id": "chs_core_humanities_social",
     "name": "첨성인핵심 (인문·사회)",
     "group": "교양 영역별 필수",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -443,6 +449,8 @@
     "min_credits_detail": null,
     "rule": "언어와 문화, 역사와 철학, 인간과 사회 중 3학점 이상",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 43,
     "courses": [
       "CLTR0016",
@@ -497,7 +505,7 @@
     "requirement_id": "chs_core_natural_science",
     "name": "첨성인핵심 (자연과학)",
     "group": "교양 영역별 필수",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -508,6 +516,8 @@
     "min_credits_detail": null,
     "rule": "자연과 환경, 과학과 기술 중 3학점 이상",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 38,
     "courses": [
       "CLTR0101",
@@ -557,7 +567,7 @@
     "requirement_id": "sdg_liberal",
     "name": "SDG교양",
     "group": "교양 영역별 필수",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2024,
       2025,
@@ -567,6 +577,8 @@
     "min_credits_detail": null,
     "rule": "SDG(지속가능발전목표) 교양 3학점 이상, 교양 30학점에 포함",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 64,
     "courses": [
       "CLTR0003",
@@ -642,7 +654,7 @@
     "requirement_id": "gq_practical_english",
     "name": "졸업자격인정 - 실용영어",
     "group": "졸업자격인정제",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -653,6 +665,8 @@
     "min_credits_detail": null,
     "rule": "실용영어 영역 4학점 이수 또는 공인영어성적(TOEIC 700 등)·원어민 회화 120시간 등 중 하나",
     "counts_for_graduation": true,
+    "checklist_key": "gq_practical_english",
+    "input_required": true,
     "course_count": 4,
     "courses": [
       "CLTR0411",
@@ -668,7 +682,7 @@
     "requirement_id": "gq_software",
     "name": "졸업자격인정 - 소프트웨어",
     "group": "졸업자격인정제",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -679,6 +693,8 @@
     "min_credits_detail": null,
     "rule": "교양 소프트웨어 지정 과목 3학점 이상, 또는 학과 대체과목 3학점 이상, 또는 IT 교육 45시간 이상, 또는 컴퓨터 관련 자격증",
     "counts_for_graduation": true,
+    "checklist_key": "gq_software",
+    "input_required": true,
     "course_count": 11,
     "courses": [
       "CLTR0195",
@@ -712,6 +728,8 @@
     "min_credits_detail": "다전공 65 / 단일전공 65 (2023~2025학번, 컴퓨터학부 플랫폼소프트웨어·데이터과학전공)",
     "rule": "다전공(복수·연계·융합·부전공)·교직·편입생은 다전공 기준, 그 외 단일전공 기준. 부전공 1개만 이수 시 소속 전공 12학점 추가",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 53,
     "courses": [
       "CAIB0211",
@@ -786,6 +804,8 @@
     "min_credits_detail": "다전공 65 / 단일전공 65 (2023~2025학번, 컴퓨터학부 플랫폼소프트웨어·데이터과학전공)",
     "rule": "다전공(복수·연계·융합·부전공)·교직·편입생은 다전공 기준, 그 외 단일전공 기준. 부전공 1개만 이수 시 소속 전공 12학점 추가",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 54,
     "courses": [
       "CAIB0211",
@@ -863,6 +883,8 @@
     "min_credits_detail": "다전공 51 / 단일전공 51 (2023~2025학번)",
     "rule": "다전공(복수·연계·융합·부전공)·교직·편입생은 다전공 기준, 그 외 단일전공 기준. 부전공 1개만 이수 시 소속 전공 12학점 추가",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 48,
     "courses": [
       "CAIB0211",
@@ -932,6 +954,8 @@
     "min_credits_detail": "다전공 54 / 단일전공 72 (2023~2026학번)",
     "rule": "다전공(복수·연계·융합·부전공)·교직·편입생은 다전공 기준, 그 외 단일전공 기준. 부전공 1개만 이수 시 소속 전공 12학점 추가",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 50,
     "courses": [
       "CAIB0211",
@@ -1003,6 +1027,8 @@
     "min_credits_detail": "다전공 54 / 단일전공 72 (2026학번)",
     "rule": "다전공(복수·연계·융합·부전공)·교직·편입생은 다전공 기준, 그 외 단일전공 기준. 부전공 1개만 이수 시 소속 전공 12학점 추가",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 59,
     "courses": [
       "CAIB0211",
@@ -1083,6 +1109,8 @@
     "min_credits_detail": "다전공 54 / 단일전공 72 (2026학번)",
     "rule": "다전공(복수·연계·융합·부전공)·교직·편입생은 다전공 기준, 그 외 단일전공 기준. 부전공 1개만 이수 시 소속 전공 12학점 추가",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 53,
     "courses": [
       "CAIB0211",
@@ -1159,6 +1187,8 @@
     "min_credits_detail": null,
     "rule": "목록의 모든 과목 이수(대체 과목은 course_equivalents.json 기준 인정)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 12,
     "courses": [
       "CLTR0819",
@@ -1194,6 +1224,8 @@
     "min_credits_detail": null,
     "rule": "목록의 모든 과목 이수(대체 과목은 course_equivalents.json 기준 인정)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 4,
     "courses": [
       "COME0331",
@@ -1219,6 +1251,8 @@
     "min_credits_detail": null,
     "rule": "목록의 모든 과목 이수(대체 과목은 course_equivalents.json 기준 인정)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 7,
     "courses": [
       "COME0331",
@@ -1247,6 +1281,8 @@
     "min_credits_detail": null,
     "rule": "목록의 모든 과목 이수(대체 과목은 course_equivalents.json 기준 인정)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 4,
     "courses": [
       "COME0331",
@@ -1272,6 +1308,8 @@
     "min_credits_detail": null,
     "rule": "목록의 모든 과목 이수(대체 과목은 course_equivalents.json 기준 인정)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 4,
     "courses": [
       "COME0331",
@@ -1298,6 +1336,8 @@
     "min_credits_detail": null,
     "rule": "기본소양 15학점 이상 (외국어 제외)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 12,
     "courses": [
       "CLTR0003",
@@ -1331,6 +1371,8 @@
     "min_credits_detail": null,
     "rule": "기본소양 15학점 이상 (외국어 제외)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 11,
     "courses": [
       "CLTR0003",
@@ -1365,6 +1407,8 @@
     "min_credits_detail": null,
     "rule": "전공기반 18학점 이상",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 9,
     "courses": [
       "CLTR0211",
@@ -1397,6 +1441,8 @@
     "min_credits_detail": null,
     "rule": "설계학점 14학점 이상",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 7,
     "courses": [
       "COMP0205",
@@ -1409,7 +1455,7 @@
     ],
     "course_basis": "curriculum.json (전공별 교육과정표 2023~2026) tags에 '설계'",
     "source": "graduation_rules.json (2025 심화컴퓨터공학프로그램 안내)",
-    "note": "설계학점은 과목별 설계 비중 학점으로 계산됨. 과목별 설계학점 값은 아직 데이터에 없음"
+    "note": "설계학점은 과목별 설계 비중 학점으로 계산한다. courses.json의 design_credit을 참조하며, 값이 아직 null이라 현재는 판정 불가"
   },
   {
     "requirement_id": "startup__global_sw__2023_2025",
@@ -1427,6 +1473,8 @@
     "min_credits_detail": "다중전공 트랙 9 / 해외복수학위 트랙 3",
     "rule": "다중전공 트랙 9학점 이상 / 해외복수학위 트랙 3학점 이상 / 학·석사연계 트랙 해당 없음",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 9,
     "courses": [
       "CLTR0089",
@@ -1459,6 +1507,8 @@
     "min_credits_detail": null,
     "rule": "종합설계교과목 3학점 이상 (2022학번부터)",
     "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 1,
     "courses": [
       "ITEC0401"
@@ -1487,6 +1537,8 @@
     "min_credits_detail": null,
     "rule": "플랫폼SW&데이터과학·인공지능컴퓨팅: 현장실습 3학점 이상 / 심화컴퓨팅: 연구실습 3학점 또는 현장실습 대체 인정 / 글로벌SW: 다중전공·학석사연계 트랙 3학점",
     "counts_for_graduation": true,
+    "checklist_key": "field_practice",
+    "input_required": true,
     "course_count": 5,
     "courses": [
       "COMP0460",
@@ -1497,13 +1549,13 @@
     ],
     "course_basis": "컴퓨터학부 공학연수실습(COMP0460·0461) + 진로취업과 현장실습(FLEX, 2026 정규학기 개설분)",
     "source": "graduation_rules.json",
-    "note": "계절학기 현장실습·연구실습 과목 코드는 미수집. 현장실습 학점은 교양·전공 최소학점에는 포함되지 않음"
+    "note": "계절학기 현장실습·연구실습 과목 코드는 미수집. 현장실습 학점은 교양·전공 최소학점에는 포함되지 않음 · 심화컴퓨팅은 연구실습 3학점으로도 충족(checklist research_practice), 이 경우 학생 입력 필요"
   },
   {
     "requirement_id": "ref_startup_all",
     "name": "창업 관련 교과목(전교 개설, 참고용)",
     "group": "참고",
-    "program_ids": "all",
+    "program_ids": null,
     "admission_years": [
       2023,
       2024,
@@ -1514,6 +1566,8 @@
     "min_credits_detail": null,
     "rule": "졸업요건이 아닌 탐색용 목록. 글로벌SW융합전공의 창업 학점은 startup__global_sw 목록만 인정",
     "counts_for_graduation": false,
+    "checklist_key": null,
+    "input_required": false,
     "course_count": 36,
     "courses": [
       "AGIN0247",
@@ -1556,5 +1610,27 @@
     "course_basis": "courses.json startup_related=true (과목명에 창업·기업가정신·스타트업)",
     "source": "courses.json",
     "note": null
+  },
+  {
+    "requirement_id": "graduate_courses__adv_research__2026",
+    "name": "대학원 교과목",
+    "group": "전공",
+    "program_ids": [
+      "adv_research"
+    ],
+    "admission_years": [
+      2026
+    ],
+    "min_credits": 9,
+    "min_credits_detail": null,
+    "rule": "대학원 교과목 9학점 이상 (첨단컴퓨팅연구전공 졸업요건)",
+    "counts_for_graduation": true,
+    "checklist_key": null,
+    "input_required": true,
+    "course_count": 0,
+    "courses": [],
+    "course_basis": "대상 과목 미정 — 대학원 과목은 courses.json에 없음. 학과 확인 후 과목 코드 추가 필요",
+    "source": "graduation_rules.json (2026 첨단컴퓨팅연구전공 안내)",
+    "note": "대상 과목이 정해지기 전까지 학생이 이수 학점을 직접 입력한다"
   }
 ]

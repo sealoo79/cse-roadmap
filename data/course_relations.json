@@ -76,12 +76,12 @@
     "from_code": "COMP0217",
     "to_code": "ITEC0401",
     "type": "official",
-    "group_no": 1,
+    "group_no": 2,
     "program_id": "platform_sw_data",
     "admission_year_from": 2023,
     "admission_year_to": 2025,
     "source": "심화컴퓨터공학프로그램(ABEEK) 2025 안내 \"이수체계 준수 필수 선후수 과목\" (미준수 시 수강 전 사전승인 필요)",
-    "note": null
+    "note": "원문: 자바프로그래밍 → 종합설계프로젝트1. 기초창의공학설계 → 종합설계프로젝트1(id 4)과 원문의 서로 다른 행이므로 둘 다 필요(AND)로 해석해 group_no를 2로 분리함. 원문 재확인 필요"
   },
   {
     "id": 8,

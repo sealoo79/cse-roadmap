@@ -36,11 +36,26 @@ curriculum.json ──(course_code)── courses.json
 | `course_code` | string | 과목코드 (`courses.json` 참조) | `"COME0331"` |
 | `grade` | number | 학년 (1~4) | `2` |
 | `semester` | number | 학기 (1 또는 2) | `1` |
-| `category` | string | 교과 구분. 원문 교육과정표의 구분 그대로이며 전공마다 값이 다름 (아래 표) | `"공학전공"` |
+| `category` | string | 교과 구분. 원문 교육과정표의 구분 그대로이며 전공마다 값이 다름 (아래 표). **화면 표시용** | `"공학전공"` |
+| `credit_bucket` | string | 학점 계산용 표준 키. `category`를 아래 표대로 바꾼 값이며 `graduation_rules.json`의 `credit_buckets[].bucket_id`와 같은 키를 씀. **#2에서 추가** | `"engineering_major"` |
 | `is_required` | boolean | 전공필수(필수) 과목 여부. 해당 연도·전공의 교육과정표에 필수로 표시된 과목 | `true` |
 | `tags` | string[] | 원문 비고에 있던 그 밖의 표기. 없으면 빈 배열 (아래 표) | `["설계"]` |
 
 한 행의 기본 키는 `admission_year` + `program_id` + `course_code`입니다.
+
+### `category` → `credit_bucket`
+
+| `category` | `credit_bucket` |
+|---|---|
+| `전공` | `major` |
+| `공학전공` | `engineering_major` |
+| `전공기반` | `major_base` |
+| `기본소양` | `basic_literacy` |
+| `교양` | `liberal` |
+| `일반선택` | `general_elective` |
+| `교직` | `teaching` |
+
+졸업요건 계산은 `category` 대신 `credit_bucket`으로 묶습니다. 전공마다 다른 원문 표기를 코드에서 분기하지 않기 위해서입니다.
 
 ### `category` 값
 
@@ -76,6 +91,7 @@ curriculum.json ──(course_code)── courses.json
   "grade": 1,
   "semester": 1,
   "category": "전공",
+  "credit_bucket": "major",
   "is_required": true,
   "tags": []
 }
@@ -108,7 +124,7 @@ program_id == 학생의 전공
 ## 알아둘 점
 
 - **같은 과목도 전공·연도마다 학년, 학기, 필수 여부가 다릅니다.** 과목 하나만 보고 "필수"라고 표시하면 틀리므로 항상 입학년도와 전공으로 필터해야 합니다. 필수 여부가 전공에 따라 다른 과목이 12개 있습니다.
-- 인공지능컴퓨팅은 2026만 있고 2023~2025가 없습니다(`programs.json`의 `missing_curriculum_years`).
+- 인공지능컴퓨팅은 2026만 있고 2023~2025가 없습니다(`programs.json`의 `years`에서 `curriculum_status: "missing"`).
 - 학년·학기 배치는 PDF와 이미지 표의 레이아웃에서 읽은 것이라 일부 틀릴 수 있습니다. 교육과정표의 과목 수는 원문의 과목코드 수와 맞는지 확인했습니다.
 - 과목이 실제로 어느 학기에 개설되는지는 이 파일이 아니라 개설 데이터(분반 데이터)를 확인해야 합니다. 교육과정표의 배치는 권장 학기입니다.
 - `is_required`는 교육과정표 표기 기준입니다. 졸업요건 문서가 따로 있는 전공(2026)은 `graduation_rules.json`의 필수 과목 목록과 일치하는 것을 확인했습니다.

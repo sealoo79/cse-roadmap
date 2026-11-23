@@ -2,109 +2,141 @@
 
 ## 이 데이터가 의미하는 것
 
-**입학년도와 전공별 졸업요건**(총 이수학점, 영역별 학점, 전공필수 과목, 영어·현장실습 같은 그 밖의 요건)을 담은 파일입니다. 한 줄이 "(입학년도, 전공) 하나의 졸업요건"이며 총 7건입니다.
+**입학년도·전공별 졸업요건**입니다. 한 행이 "어떤 학번 범위의 어떤 전공(또는 전 전공 공통)에 적용되는 규칙" 하나이며 총 8행입니다.
 
-서비스의 "졸업요건 달성 여부" 기능에서 학생이 이수한 과목과 비교할 기준입니다.
+학생 한 명에게는 **두 행이 함께 적용**됩니다.
+1. `program_id: "univ"` 행: 전 전공 공통 기준(교양 30학점, 졸업자격인정제)
+2. 학생 전공의 행: 총 졸업학점, 전공 학점, 전공필수, 학과 비학점 요건
+
+두 기준을 모두 충족해야 하고, 같은 항목은 더 엄격한 값을 따릅니다. 다만 플랫폼SW&데이터과학(ABEEK)은 `follows_university_credit_rules: false`라서 **학점 기준은 ABEEK 버킷만** 쓰고(교양 30학점 대신 기본소양·전공기반 등), 졸업자격인정제(univ 행의 `checklist`)는 그대로 적용합니다.
+
+교양 영역별 필수(첨성인기초·핵심, SDG), 창업·종합설계·현장실습처럼 **과목 목록이 필요한 요건**은 `requirement_courses.json`에 있습니다.
 
 ```
-graduation_rules.json ──(program_id)── programs.json
-                      ├─(required_courses)── courses.json
-                      └─(admission_year + program_id)── curriculum.json
+graduation_rules.json ──(required_courses)── courses.json
+                      ├─(program_id + admission_year 범위)── curriculum.json (credit_bucket ↔ credit_buckets.bucket_id)
+                      ├─(checklist[].key)── checklist.json (#3)
+                      └─ requirement_courses.json (같은 program_id·학번)
 ```
 
-## 어떤 요건이 들어 있나
+## 규칙 목록
 
-| 입학년도 | 전공 | 출처 문서 |
+| `rule_id` | 적용 | 학번 | 총 학점 | 학점 버킷(최소) | 전공필수 | 비학점 요건 |
+|---|---|---|---|---|---|---|
+| `univ__2023` | 전 전공 공통 | 2023 | - | liberal 30 | 0 | gq_practical_english, gq_software, gq_counseling, gq_major_area |
+| `univ__2024_2026` | 전 전공 공통 | 2024~2026 | - | liberal 30 | 0 | gq_practical_english, gq_software, gq_counseling, gq_major_area |
+| `platform_sw_data__2023_2025` | 플랫폼SW&데이터과학전공 | 2023~2025 | 140 | abeek_total 93, basic_literacy 15, major_base 18, engineering_major 60, design 14 | 12 | english_score, field_practice, portfolio, topcit |
+| `global_sw__2023_2025` | 글로벌SW융합전공 | 2023~2025 | 130 | major 51, liberal 30 | 4 | english_score, field_practice |
+| `ai_computing__2023_2025` | 인공지능컴퓨팅전공 | 2023~2025 | 140 | major 72 | 0 | - |
+| `adv_computing__2026` | 심화컴퓨팅전공 | 2026 | 130 | major 72, liberal 30 | 4 | english_score, research_practice, graduation_review |
+| `ai_computing__2026` | 인공지능컴퓨팅전공 | 2026 | 130 | major 72 | 7 | field_practice |
+| `adv_research__2026` | 첨단컴퓨팅연구전공 | 2026 | 130 | major 72, liberal 30, graduate_courses 9 | 4 | english_score, research_activity, graduation_review |
+
+## 필드
+
+| 필드 | 타입 | 설명 |
 |---|---|---|
-| 2023 / 2024 / 2025 | 플랫폼SW&데이터과학 | 2025 ABEEK 안내의 "2023학번~" 열 (세 연도에 같은 값 적용) |
-| 2025 | 글로벌SW융합 | 2025 글로벌소프트웨어융합전공 졸업요건 |
-| 2026 | 심화컴퓨팅 | 2026 심화컴퓨팅전공 안내 |
-| 2026 | 인공지능컴퓨팅 | 2026 인공지능컴퓨팅전공 안내 |
-| 2026 | 첨단컴퓨팅연구 | 2026 첨단컴퓨팅연구전공 안내 |
-
-2023·2024 글솝, 2023~2025 인공지능컴퓨팅은 졸업요건 문서가 없어 이 파일에 행이 없습니다.
-
-## 서비스에서 쓰이는 기능
-
-| 기능 | 사용하는 필드 | 쓰임 |
-|---|---|---|
-| 졸업요건: 총 이수학점 진행률 (③) | `total_credits` | 학생이 이수한 학점 합계를 총 이수학점과 비교해 진행 막대와 "졸업까지 N학점 남음" 표시 |
-| 졸업요건: 영역별 충족 현황 (③) | `credits` | 전공, 교양, 설계 등 영역별 기준 학점과 이수 학점을 비교 (키는 전공마다 다름) |
-| 졸업요건: 남은 전공필수 (③) | `required_courses` | 필수 과목 목록에서 이수한 과목을 빼고 남은 과목을 표시 |
-| 졸업요건: 필수 교양 안내 (③) | `required_liberal` | 필수 교양 영역(첨성인기초 등) 이름을 체크리스트로 표시 (과목 데이터가 없어 학생이 직접 체크) |
-| 졸업요건: 기타 요건 체크리스트 (③) | `other_requirements` | 영어성적, 현장실습, 졸업심사처럼 서비스가 판정할 수 없는 요건을 안내 문구로 표시 |
-| 글솝 트랙 안내 | `tracks` | 글로벌SW융합전공의 세 졸업 트랙 요건을 안내 |
-| 졸업 지연 위험 알림 (선택) | `required_courses` | 남은 필수 과목이 열리는 학기와 비교해 놓치면 졸업이 늦어지는 과목을 경고 (개설학기 데이터는 이 파일에 없음) |
-
-이 파일에 행이 없는 (입학년도, 전공)은 "졸업요건 자료 없음"으로 표시해야 합니다.
-
-## 공통 필드
-
-| 필드 | 타입 | 설명 | 예시 |
-|---|---|---|---|
-| `admission_year` | number | 입학년도 | `2026` |
-| `program_id` | string | 전공 (`programs.json`의 `program_id`) | `"adv_computing"` |
-| `source` | string | 근거가 된 문서 | `"2026 심화컴퓨팅전공 안내"` |
-| `total_credits` | number | 총 이수학점 | `130` |
-| `credits` | object | 영역별 학점 기준 (전공마다 키가 다름, 아래 표) | `{ "major": 72, … }` |
-| `required_courses` | string[] | 전공필수 과목코드 목록 (`courses.json` 참조) | `["COMP0206", …]` |
-| `other_requirements` | object[] | 학점 외 요건. 각 항목은 `item`(항목)과 `rule`(내용) | `{ "item": "영어성적", "rule": "토익 700점 이상 …" }` |
-
-### 전공별로만 있는 필드
-
-| 필드 | 있는 전공 | 설명 |
-|---|---|---|
-| `required_courses_note` | 플랫폼SW&데이터과학, 글솝 | 필수 과목 목록을 교육과정표의 필수 표기에서 가져왔다는 설명 |
-| `required_liberal` | 2026 심화컴퓨팅, 인공지능컴퓨팅, 첨단컴퓨팅연구 | 필수 교양 영역 이름 목록 (과목코드가 아니라 영역 이름) |
-| `tracks` | 글솝 | 졸업 트랙별 요건(다중전공 / 해외복수학위 / 학·석사연계) |
-| `note` | 글솝 | 병합 셀 해석 등 보충 설명 |
-
-## `credits`의 키
-
-`credits`는 전공마다 다른 문서에서 가져와 키가 다릅니다.
-
-| 전공 | 키와 값 |
-|---|---|
-| 플랫폼SW&데이터과학 | `abeek_total` 93, `basic_literacy` 15 (외국어 제외, `basic_literacy_note`에 적음), `major_base` 18, `engineering_major` 60, `design` 14. 총 이수학점은 `total_credits` 140 |
-| 글솝 | `major_min` 51, `liberal_min` 30. `total_credits` 130 |
-| 2026 심화컴퓨팅 | `major` 72, `liberal` 30, `other` 28. `total_credits` 130 |
-| 2026 인공지능컴퓨팅 | `major` 72. `total_credits` 130 (교양·기타 학점은 문서에 없음) |
-| 2026 첨단컴퓨팅연구 | `major` 72, `liberal` 30, `graduate_courses` 9 (대학원 교과목), `other` 19. `total_credits` 130 |
+| `rule_id` | string | 고정 키. `{program_id 또는 univ}__{시작연도}[_{끝연도}]` |
+| `program_id` | string | 전공 또는 `"univ"`(전 전공 공통) |
+| `admission_year_from` / `admission_year_to` | number | 적용 입학년도 범위(양 끝 포함) |
+| `total_credits` | number \| null | 총 졸업학점. univ 행은 학과마다 달라 `null` |
+| `credit_buckets` | object[] | 학점 기준. `bucket_id`는 `curriculum.json`의 `credit_bucket`과 같은 키(+ `design`, `graduate_courses`, `abeek_total`), `label`, `min_credits` |
+| `credits` | object | 원본 학점 표기(레거시). **계산에 쓰지 않음** |
+| `required_courses` | string[] | 전공필수 과목코드. `curriculum.json`의 `is_required`와 같음 |
+| `checklist` | object[] | 비학점 요건. `key`(checklist_key), `rule`(원문 요약), `input_type`(boolean·number·text·date), `auto_judgeable`(항상 false) |
+| `default_major_type` | `"single"` | 기본 단일전공 기준 |
+| `follows_university_credit_rules` | boolean | false면 대학 공통 학점 기준(교양 30 등) 대신 이 행의 버킷만 적용(ABEEK) |
+| `tracks` | object[] | (글솝만) 졸업 트랙 원문 |
+| `needs_confirmation` | string[] | 원문으로 확정하지 못한 해석 |
+| `source` / `note` | string | 근거 문서 / 보충 설명 |
+| `legacy` | object | 원본 행의 `other_requirements` 등 옛 필드(추적용, 계산에 쓰지 않음) |
 
 ## 예시 (2026 심화컴퓨팅)
 
 ```json
 {
-  "admission_year": 2026,
+  "rule_id": "adv_computing__2026",
   "program_id": "adv_computing",
-  "source": "2026 심화컴퓨팅전공 안내",
+  "admission_year_from": 2026,
+  "admission_year_to": 2026,
   "total_credits": 130,
-  "credits": { "major": 72, "liberal": 30, "other": 28 },
-  "required_courses": ["COME0331", "COMP0206", "COMP0319", "ITEC0401"],
-  "required_liberal": ["첨성인기초", "첨성인핵심", "SDG교양"],
-  "other_requirements": [
-    { "item": "영어성적", "rule": "토익 700점 이상 또는 이에 상응하는 공인 영어성적" },
-    { "item": "연구실습", "rule": "3학점 이상 또는 현장실습대체인정" },
-    { "item": "졸업심사", "rule": "전공 학업역량평가 응시" },
-    { "item": "졸업자격인정제", "rule": "경북대학교 졸업자격인정제 충족" }
-  ]
+  "credit_buckets": [
+    {
+      "bucket_id": "major",
+      "label": "전공(단일전공 기준)",
+      "min_credits": 72
+    },
+    {
+      "bucket_id": "liberal",
+      "label": "교양",
+      "min_credits": 30
+    }
+  ],
+  "credits": {
+    "major": 72,
+    "liberal": 30,
+    "other": 28
+  },
+  "required_courses": [
+    "COME0331",
+    "COMP0206",
+    "COMP0319",
+    "ITEC0401"
+  ],
+  "checklist": [
+    {
+      "key": "english_score",
+      "rule": "토익 700점 이상 또는 이에 상응하는 공인 영어성적",
+      "input_type": "number",
+      "auto_judgeable": false
+    },
+    {
+      "key": "research_practice",
+      "rule": "연구실습 3학점 이상 또는 현장실습대체인정",
+      "input_type": "boolean",
+      "auto_judgeable": false
+    },
+    {
+      "key": "graduation_review",
+      "rule": "전공 학업역량평가 응시",
+      "input_type": "boolean",
+      "auto_judgeable": false
+    }
+  ],
+  "default_major_type": "single",
+  "follows_university_credit_rules": true,
+  "needs_confirmation": [
+    "다전공 시 전공 54학점 기준(전공과목 이수 내용 hwp)은 단일전공 기본값이라 버킷에 넣지 않음"
+  ],
+  "source": "2026 심화컴퓨팅전공 안내 · 2026 전공과목 이수 내용(학사안내 첨부 hwp, 학칙 제44조)",
+  "note": null
 }
 ```
 
-## 서비스에서 활용하는 방법
+## 조회 방법
 
-학생의 입학년도와 전공으로 한 줄을 찾습니다. 행이 없으면 "졸업요건 자료 없음"으로 안내합니다.
+```
+univ_rule   = rules.find(r => r.program_id == "univ" && from <= 학번 <= to)
+major_rule  = rules.find(r => r.program_id == 학생 전공 && from <= 학번 <= to)
+```
+모든 전공·학번 조합에 두 행이 정확히 하나씩 있습니다(검증 스크립트로 확인).
 
-- **남은 전공필수**: `required_courses`에서 학생이 이수한 과목을 빼고 남은 과목을 보여줌
-- **학점 진행률**: 학생이 이수한 학점 합계를 `total_credits`와 `credits`의 기준과 비교
-- **학점 외 요건**: `other_requirements`는 서비스가 판정할 수 없으니(영어 점수, 졸업심사 등) 체크리스트나 안내 문구로 표시
+## 확인 필요 (`needs_confirmation`)
 
-## 알아둘 점
+- `univ__2023`: SDG교양 3학점의 2023학번 적용 여부: hwp 표의 병합 셀이 모호함. 홈페이지 학사안내 기준(2024학번부터)에 따라 2023학번은 미적용으로 둠
+- `platform_sw_data__2023_2025`: 전공과목 이수 내용(hwp)의 플랫폼소프트웨어·데이터과학 전공 65학점과 ABEEK 공학전공 60학점의 관계 / 총 졸업학점 140학점은 졸업학점 표의 병합 셀(컴퓨터학부(글솝 제외))을 해석한 값 / 설계 14학점은 과목별 설계학점(courses.design_credit)이 아직 없어 계산 불가 / 전공영역 평가(gq_major_area)를 컴퓨터학부가 실시하는지
+- `global_sw__2023_2025`: 원본은 2025 졸업요건 문서 1건뿐임. 종합설계 요건의 "2022학번부터" 표기를 근거로 2023~2024학번에도 같은 기준을 적용함 / 트랙 선택·글로벌역량(해외대학 인정 학점, 복수학위)·다중전공 이수는 checklist 키가 없어 tracks 원문으로만 둠 (#3에 키 추가 필요) / 총 130학점·종합설계 3학점·전공 51학점·교양 30학점은 표의 병합 셀을 세 트랙 공통으로 해석한 값
+- `ai_computing__2023_2025`: 2023~2025 교육과정·학과 졸업요건 문서가 없음. 전공 학점(단일 72 / 다전공 54)은 전공과목 이수 내용(hwp), 총 140학점은 졸업학점 표의 병합 셀(컴퓨터학부(글솝 제외)) 해석값 / 전공필수 과목과 학과 비학점 요건(영어·현장실습 등)을 확인해야 함
+- `adv_computing__2026`: 다전공 시 전공 54학점 기준(전공과목 이수 내용 hwp)은 단일전공 기본값이라 버킷에 넣지 않음
+- `ai_computing__2026`: 영어성적 요건은 졸업자격인정제 실용영어 영역(univ 행 gq_practical_english)으로 갈음되어 별도 항목을 두지 않음 / 다전공 시 전공 54학점 기준(전공과목 이수 내용 hwp)은 단일전공 기본값이라 버킷에 넣지 않음
+- `adv_research__2026`: 대학원 교과목 9학점의 대상 과목(requirement_courses.json의 graduate_courses__adv_research__2026, 학과 확인 필요) / 다전공 시 전공 54학점 기준(전공과목 이수 내용 hwp)은 단일전공 기본값이라 버킷에 넣지 않음
 
-- **기준 학점은 반드시 `credits`의 키가 전공마다 다르다는 점을 고려해야 합니다.** 서비스에서 "전공 72학점"을 보여주려면 전공별로 키가 `major`인지 `engineering_major`인지 `major_min`인지 분기해야 합니다.
-- 플랫폼SW&데이터과학은 2025 문서의 "2023학번~" 열을 2023~2025에 같이 적용했습니다. 학번대마다 다른 값이 있는 문서이므로, 2022학번 이하 학생은 이 파일로 계산할 수 없습니다.
-- 글솝은 3개 트랙 중 하나를 충족하면 되고, 총 130학점·종합설계 3학점·전공 51학점·교양 30학점이 세 트랙 공통이라고 해석했습니다(원문 표의 병합 셀). 트랙별 세부 요건은 `tracks`에 있습니다.
-- 인공지능컴퓨팅 2026의 교양·기타 학점은 문서에 없어 `credits`에 `major`만 있습니다.
-- 플랫폼SW&데이터과학과 글솝의 `required_courses`는 졸업요건 문서가 아니라 **교육과정표의 필수 표기**에서 가져왔습니다. 2026 전공 3개는 졸업요건 문서와 교육과정표가 일치하는 것을 확인했습니다.
-- `required_liberal`은 영역 이름이라 `courses.json`과 연결되지 않습니다. 첨성인 교양 과목은 이 데이터에 없어서, 학생이 이수 여부를 직접 체크하는 방식이 필요합니다.
-- 영어성적, 현장실습, 졸업심사, 졸업자격인정제처럼 점수나 서류로 판정하는 요건은 이 서비스가 자동으로 확인할 수 없습니다.
+## #2 정규화에서 바뀐 점
+
+- `rule_id`, `admission_year_from/to`를 추가하고, 내용이 같은 행을 학번 범위로 합쳤습니다(플랫폼SW&데이터과학 2023~2025 3행 → 1행).
+- **univ 행 2개 추가**(`univ__2023`, `univ__2024_2026`): 교양 30학점, 졸업자격인정제 4개 영역(`gq_practical_english`, `gq_software`, `gq_counseling`, `gq_major_area`). 근거는 교양과목 이수 내용(hwp)과 학사안내 졸업자격인정제 페이지입니다. SDG교양 적용 시작 학번 때문에 2023과 2024~2026을 나눴습니다.
+- **`ai_computing__2023_2025` 추가**: 교육과정 자료는 없지만 학칙(hwp)의 전공 학점(단일 72 / 다전공 54)과 총 140학점(병합 셀 해석)으로 학점 기준만 둡니다.
+- 글로벌SW융합은 원본이 2025 문서 1행이라 `global_sw__2023_2025`로 2023~2024에도 적용했습니다(확인 필요).
+- `credits`의 전공마다 다른 키를 `credit_buckets`로 표준화했습니다. `credits`는 레거시로 남깁니다.
+- `other_requirements`를 `checklist`(고정 키)로 바꿨습니다. 졸업자격인정제 항목은 univ 행으로 옮겼고, 원문은 `legacy`에 남깁니다.
+- 다전공 기준 학점(54학점)은 단일전공 기본값이라 버킷에 넣지 않았습니다.

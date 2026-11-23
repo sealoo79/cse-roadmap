@@ -34,7 +34,7 @@ course_relations.json ──(from_code / to_code)── courses.json
 | `from_code` | string | **먼저 듣는 과목**의 과목코드 (`courses.json` 참조) | `"COMP0204"` |
 | `to_code` | string | **나중에 듣는 과목**의 과목코드 (`courses.json` 참조) | `"COME0331"` |
 | `type` | string | 관계의 종류 (아래 표) | `"official"` |
-| `group_no` | number | OR 조건 묶음 번호. 같은 번호는 "이 중 하나", 다른 번호는 "모두 필요". 현재 데이터는 전부 `1` | `1` |
+| `group_no` | number | OR 조건 묶음 번호. 같은 `to_code`에서 같은 번호는 "이 중 하나", 다른 번호는 "모두 필요". 종합설계프로젝트1(`ITEC0401`)의 선수 2건만 `1`과 `2`로 나뉘어 있고 나머지는 `1` | `1` |
 | `program_id` | string | 이 관계가 적용되는 전공 (`programs.json`의 `program_id`) | `"platform_sw_data"` |
 | `admission_year_from` | number | 적용 시작 입학년도 | `2023` |
 | `admission_year_to` | number | 적용 마지막 입학년도 | `2025` |
@@ -100,3 +100,9 @@ admission_year_from <= 학생의 입학년도 <= admission_year_to
 - `recommended`는 문서의 권장 이수 체계에서 가져왔고, 인공지능컴퓨팅 2026은 문서가 예시로 적은 흐름 일부만 담았습니다.
 - "관계 없음"이 "선후수가 없다"는 뜻인지 "자료가 없다"는 뜻인지 구분되지 않습니다. 글솝과 첨단컴퓨팅연구는 특히 그렇습니다.
 - `group_no`는 현재 모두 `1`입니다. "A 또는 B"가 필요한 OR 조건이 생기면 같은 `to_code`에 같은 `group_no`로 여러 줄을 추가합니다.
+
+
+## #2 정규화에서 바뀐 점
+
+- **`group_no` AND/OR 재검토**: 플랫폼SW&데이터과학의 종합설계프로젝트1(`ITEC0401`)은 선수 관계가 2건입니다(기초창의공학설계 `COMP0205`, 자바프로그래밍 `COMP0217`). 둘 다 `group_no: 1`이어서 "둘 중 하나(OR)"로 읽혔는데, 원문 선후수 표에서 서로 다른 행이므로 **둘 다 필요(AND)** 로 해석해 id 7의 `group_no`를 `2`로 바꿨습니다. 원문을 다시 확인하면 확정됩니다.
+- 그 밖의 필드와 값은 바꾸지 않았습니다. 서비스 추천(초록선)은 계산 결과라 이 파일에 넣지 않습니다.

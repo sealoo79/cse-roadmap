@@ -37,6 +37,9 @@ course_equivalents.json ──(old_code, new_code)── courses.json
 | `old_placement` / `new_placement` | string | 공지에 적힌 구·신 과목의 교과구분과 학년·학기 | `"전공 3학년 2학기"` |
 | `source`, `source_url` | string | 근거가 된 공지와 주소 | |
 | `note` | string \| null | 보충 설명 | `"총 학점이 다름(6→3학점)…"` |
+| `counts_for_required` | boolean \| null | 구과목을 이수하면 신과목의 전공필수를 충족한 것으로 보는지. 공지에 없어 전부 `null`(학과 확인 필요). **#2에서 추가** | `null` |
+| `credit_recognition` | string \| null | `credit_changed`가 true인 2건의 학점 인정 방식. 공지에 없어 `null`. **#2에서 추가** | `null` |
+| `applies_to_years` | number[] \| null | 이 대응을 적용하는 입학년도. 원문에 학번 기준이 없어 `null`. **#2에서 추가** | `null` |
 
 ## 대응 목록
 
@@ -93,3 +96,9 @@ course_equivalents.json ──(old_code, new_code)── courses.json
 - 공지는 "동일 과목을 다시 수강하면 재이수"라고만 적었습니다. **구과목 이수가 신교과목의 전공필수·졸업요건을 충족시키는지**(예: 프로그래밍기초 → 신 전공필수 기초프로그래밍)는 공지에 명시되어 있지 않아, 서비스는 "동일과목"으로 표시하는 데까지만 하고 요건 충족 판정은 학과 확인 후 반영하는 것이 안전합니다.
 - `effective_from` 이후에 신교과목 기준이 적용됩니다. 적용 시기는 공지가 신교과목의 학년 기준으로 안내한 값을 옮긴 것이고, 학번별 적용 기준은 원문에 명시되어 있지 않습니다.
 - 이전에 "자료구조응용 ↔ 자료구조실습"이 대체 관계인지 확인이 필요하다고 했는데, **이 공지의 대응 표에는 없습니다.** 따라서 이 쌍은 연결하지 않았습니다.
+
+
+## #2 정규화에서 바뀐 점
+
+- `counts_for_required`, `credit_recognition`, `applies_to_years`를 추가했습니다. 세 값 모두 공지에 근거가 없어 `null`이며, 학과 확인 후 채웁니다.
+- `null`일 때의 기본 처리(이수 판정 #6): 구·신 코드 중 하나만 이수해도 같은 과목으로 보고 학점은 1회만 인정합니다. 학점이 달라진 2건은 확인 전까지 신과목 학점을 쓰고 "학점 차이 있음"을 안내합니다.
