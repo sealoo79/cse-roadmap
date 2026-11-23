@@ -7,6 +7,7 @@ import type { CourseCode, FieldId } from '@/types/reference';
 import { useCompletion, useProfile, useReference } from '@/lib/user-data/hooks';
 import { useRecommendations } from '@/features/recommend/useRecommendations';
 import { RoadmapView } from '@/features/roadmap';
+import { roadmapFieldOf } from '@/features/roadmap/layout-roadmap';
 import { RoadmapSearch } from '@/features/roadmap-search';
 import { CourseDetailPanel } from '@/features/course-detail';
 
@@ -22,6 +23,10 @@ function RoadmapContent(): JSX.Element {
   const code = params.get('course');
   const selectedCode = code && ref.courses.has(code) ? code : null;
   const select = (next: CourseCode | null): void => {
+    if (next) {
+      const field = roadmapFieldOf(next, ref.courseFields);
+      setVisibleFields((current) => current.includes(field) ? current : [...current, field]);
+    }
     router.replace(next ? `/roadmap?course=${encodeURIComponent(next)}` : '/roadmap', { scroll: false });
   };
   if (loading) return <p role="status">로드맵을 불러오는 중입니다.</p>;
