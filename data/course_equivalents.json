@@ -1,0 +1,222 @@
+[
+  {
+    "equivalent_id": 1,
+    "old_code": "ITEC0201",
+    "new_code": "COMP0218",
+    "relation": "same_course",
+    "old_credit_sys": "3-3-0",
+    "new_credit_sys": "3-3-0",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 1,
+    "effective_from": "2026-1",
+    "old_placement": "전공 1학년 1학기",
+    "new_placement": "전공 1학년 1학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 2,
+    "old_code": "COMP0204",
+    "new_code": "COMP0206",
+    "relation": "same_course",
+    "old_credit_sys": "6-4-4",
+    "new_credit_sys": "3-2-2",
+    "credit_changed": true,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 1,
+    "effective_from": "2026-1",
+    "old_placement": "전공 1학년 2학기",
+    "new_placement": "전공필수 1학년 1학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": "총 학점이 다름(6→3학점). 학점 인정 방식은 공지에 없음"
+  },
+  {
+    "equivalent_id": 3,
+    "old_code": "COMP0453",
+    "new_code": "COMP0333",
+    "relation": "same_course",
+    "old_credit_sys": "3-2-2",
+    "new_credit_sys": "3-2-2",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 1,
+    "effective_from": "2026-1",
+    "old_placement": "전공 1학년 1학기",
+    "new_placement": "전공 1학년 2학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 4,
+    "old_code": "COMP0217",
+    "new_code": "COMP0336",
+    "relation": "same_course",
+    "old_credit_sys": "3-2-2",
+    "new_credit_sys": "3-2-2",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 1,
+    "effective_from": "2026-1",
+    "old_placement": "전공 2학년 1학기",
+    "new_placement": "전공 1학년 2학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 5,
+    "old_code": "COMP0320",
+    "new_code": "CAIB0223",
+    "relation": "same_course",
+    "old_credit_sys": "3-2-2",
+    "new_credit_sys": "3-2-2",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 3,
+    "effective_from": "2028-1",
+    "old_placement": "전공 3학년 2학기",
+    "new_placement": "전공 3학년 1학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 6,
+    "old_code": "COMP0322",
+    "new_code": "COME0427",
+    "relation": "same_course",
+    "old_credit_sys": "3-2-2",
+    "new_credit_sys": "3-3-0",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 3,
+    "effective_from": "2028-1",
+    "old_placement": "전공 3학년 2학기",
+    "new_placement": "전공 3학년 1학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 7,
+    "old_code": "EECS0312",
+    "new_code": "COMP0340",
+    "relation": "same_course",
+    "old_credit_sys": "3-2-2",
+    "new_credit_sys": "3-3-0",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 3,
+    "effective_from": "2028-1",
+    "old_placement": "전공 3학년 2학기",
+    "new_placement": "전공 3학년 2학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 8,
+    "old_code": "ITEC0402",
+    "new_code": "COMP0342",
+    "relation": "same_course",
+    "old_credit_sys": "4-3-2",
+    "new_credit_sys": "3-3-0",
+    "credit_changed": true,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 4,
+    "effective_from": "2029-1",
+    "old_placement": "전공 4학년 1학기",
+    "new_placement": "전공 4학년 1학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": "총 학점이 다름(4→3학점). 학점 인정 방식은 공지에 없음"
+  },
+  {
+    "equivalent_id": 9,
+    "old_code": "GLSO0224",
+    "new_code": "EECS0442",
+    "relation": "same_course",
+    "old_credit_sys": "3-3-0",
+    "new_credit_sys": "3-3-0",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 4,
+    "effective_from": "2029-1",
+    "old_placement": "전공 4학년 1학기",
+    "new_placement": "전공 4학년 2학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 10,
+    "old_code": "COMP0420",
+    "new_code": "COMP0343",
+    "relation": "same_course",
+    "old_credit_sys": "3-2-2",
+    "new_credit_sys": "3-3-0",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 4,
+    "effective_from": "2029-1",
+    "old_placement": "전공 4학년 1학기",
+    "new_placement": "전공 4학년 2학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  },
+  {
+    "equivalent_id": 11,
+    "old_code": "COME0368",
+    "new_code": "COMP0345",
+    "relation": "same_course",
+    "old_credit_sys": "3-3-0",
+    "new_credit_sys": "3-3-0",
+    "credit_changed": false,
+    "new_course_programs": [
+      "adv_computing",
+      "adv_research"
+    ],
+    "new_course_grade": 3,
+    "effective_from": "2028-1",
+    "old_placement": "전공 4학년 1학기",
+    "new_placement": "전공 3학년 2학기",
+    "source": "학부 공지 \"[필독] 2026학년도 신설(심화컴퓨팅전공,첨단컴퓨팅연구전공) 교육과정에 따른 동일과목 지정 현황\" (2026-02-09)",
+    "source_url": "https://aicollege.knu.ac.kr/bbs/board.php?bo_table=sub6_1_a&wr_id=29080",
+    "note": null
+  }
+]

@@ -1,0 +1,6143 @@
+[
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0218",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0206",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0332",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0207",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0333",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COME0331",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "MTED0231",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0334",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0335",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0336",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0419",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ELEC0247",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0432",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0337",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0225",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0324",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0416",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0315",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0338",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0323",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0319",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0422",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0312",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0462",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "CAIB0223",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "TCHR0499",
+    "grade": 3,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0414",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COME0427",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "MOBI0224",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0424",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0423",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "CAIB0211",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0339",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "TCHR0593",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "TCHR0594",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0401",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0413",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0321",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0415",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0340",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0341",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0342",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0460",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "TCHR0522",
+    "grade": 4,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0455",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0226",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0428",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0328",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "EECS0442",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0343",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_computing",
+    "course_code": "COMP0461",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0045",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0218",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0453",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "FUTR0208",
+    "grade": 1,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0246",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0205",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0454",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COME0331",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0217",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0315",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "MTED0231",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0312",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0324",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ITEC0419",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0212",
+    "grade": 2,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CAIB0233",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0319",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0321",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0323",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "GLSO0215",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "FUTR0201",
+    "grade": 3,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CAIB0211",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CAIB0216",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0322",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ITEC0401",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ITEC0424",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "MOBI0224",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CLTR0078",
+    "grade": 3,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CAIB0222",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CAIB0225",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CAIB0234",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0219",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0419",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0460",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0462",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ITEC0415",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "CAIB0224",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COME0368",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0220",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0328",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0455",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "ai_computing",
+    "course_code": "ITEC0514",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0218",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0206",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0332",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0336",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COME0331",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "MTED0231",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ELEC0247",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0334",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0315",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0337",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0344",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0225",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0324",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0323",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0312",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0319",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0338",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ITEC0419",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0414",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0422",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COME0427",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ITEC0415",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0462",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "CAIB0223",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "MOBI0224",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ITEC0424",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0413",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0423",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0345",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0340",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0460",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ITEC0401",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0461",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ITEC0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0321",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "CAIB0211",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0342",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0455",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0226",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "CAIB0216",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0510",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2026,
+    "program_id": "adv_research",
+    "course_code": "COMP0343",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(글쓰기)"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(수리)"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0201",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(예술과 표현)",
+      "SDG"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(자연과학)"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COME0331",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0216",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0453",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0213",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "FUTR0201",
+    "grade": 2,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "FUTR0208",
+    "grade": 2,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0217",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0214",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CLTR0043",
+    "grade": 2,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(인문사회)",
+      "SDG"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "FUTR0214",
+    "grade": 2,
+    "semester": 2,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0312",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0323",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0324",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0212",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CLTR0264",
+    "grade": 3,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(SW)"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0432",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "EECS0312",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0219",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0415",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0419",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CLTR0089",
+    "grade": 3,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "첨성인핵심(인문사회)"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0322",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0328",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0414",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0460",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "FUTR0226",
+    "grade": 4,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0321",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0413",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0420",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0462",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0215",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0223",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0401",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0403",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "MOBI0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "FUTR0231",
+    "grade": 4,
+    "semester": 2,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "CAIB0211",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COME0368",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0423",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0428",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "GLSO0229",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "global_sw",
+    "course_code": "ITEC0424",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0045",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0112",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0208",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0453",
+    "grade": 1,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0201",
+    "grade": 1,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0205",
+    "grade": 1,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0213",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "MTED0231",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0331",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0217",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0315",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ELEC0247",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0246",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0419",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0225",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0432",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0201",
+    "grade": 3,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0312",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0319",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0321",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0323",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0324",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0422",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0499",
+    "grade": 3,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0214",
+    "grade": 3,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "STAT0452",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0320",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0322",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0328",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0423",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "EECS0312",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0401",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0593",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0594",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0417",
+    "grade": 4,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0403",
+    "grade": 4,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0413",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0419",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0420",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0462",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0460",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0215",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0415",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0416",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "MOBI0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0522",
+    "grade": 4,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0043",
+    "grade": 4,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0428",
+    "grade": 4,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "CAIB0211",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0368",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0226",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0435",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0455",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0458",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0461",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0424",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2025,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0425",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(글쓰기)",
+      "인문교양"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(수리)"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0201",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(예술과 표현)",
+      "인문교양"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(자연과학)"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COME0331",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0216",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0453",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0213",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "FUTR0201",
+    "grade": 2,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "FUTR0208",
+    "grade": 2,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0217",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0214",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CLTR0043",
+    "grade": 2,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(인문사회)",
+      "인문교양"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "FUTR0214",
+    "grade": 2,
+    "semester": 2,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0312",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0323",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0324",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0212",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CLTR0264",
+    "grade": 3,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(SW)"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0432",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "EECS0312",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0219",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0415",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0419",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CLTR0089",
+    "grade": 3,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "첨성인핵심(인문사회)"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0322",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0328",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0414",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0460",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "FUTR0226",
+    "grade": 4,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0321",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0413",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0420",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0462",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0215",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0223",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0401",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0403",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "MOBI0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "FUTR0231",
+    "grade": 4,
+    "semester": 2,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "CAIB0211",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COME0368",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0423",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0428",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "GLSO0229",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "global_sw",
+    "course_code": "ITEC0424",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0045",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0112",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0453",
+    "grade": 1,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0201",
+    "grade": 1,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0205",
+    "grade": 1,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0208",
+    "grade": 2,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0213",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "MTED0231",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0217",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0315",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ELEC0247",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0331",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0419",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0246",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0225",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0432",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0201",
+    "grade": 3,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0264",
+    "grade": 3,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0499",
+    "grade": 3,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0312",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0319",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0321",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0323",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0324",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0422",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0214",
+    "grade": 3,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "STAT0452",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0593",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0594",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0320",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0322",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0328",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0423",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "EECS0312",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0401",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0403",
+    "grade": 4,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0417",
+    "grade": 4,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0522",
+    "grade": 4,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0413",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0419",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0420",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0462",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0215",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0460",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0415",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0416",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "MOBI0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0043",
+    "grade": 4,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0428",
+    "grade": 4,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "CAIB0211",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0368",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0435",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0455",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0458",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0461",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0424",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2024,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0425",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(글쓰기)",
+      "인문교양"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(수리)"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0201",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(예술과 표현)",
+      "인문교양"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(자연과학)"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COME0331",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0216",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0453",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0213",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "FUTR0201",
+    "grade": 2,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "FUTR0208",
+    "grade": 2,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0217",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0214",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CLTR0043",
+    "grade": 2,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인핵심(인문사회)",
+      "인문교양"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "FUTR0214",
+    "grade": 2,
+    "semester": 2,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0312",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0323",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0324",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0212",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CLTR0264",
+    "grade": 3,
+    "semester": 1,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "첨성인기초(SW)"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0432",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "EECS0312",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0219",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0415",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0419",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CLTR0089",
+    "grade": 3,
+    "semester": 2,
+    "category": "교양",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "첨성인핵심(인문사회)"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0322",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0328",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0414",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0460",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "FUTR0226",
+    "grade": 4,
+    "semester": 1,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0321",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0413",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0420",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0462",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0215",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0223",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0401",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0403",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "MOBI0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "FUTR0231",
+    "grade": 4,
+    "semester": 2,
+    "category": "일반선택",
+    "is_required": false,
+    "tags": [
+      "창업",
+      "KNU미래설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "CAIB0211",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COME0368",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0423",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0428",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "GLSO0229",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": [
+      "창업"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "global_sw",
+    "course_code": "ITEC0424",
+    "grade": 4,
+    "semester": 2,
+    "category": "전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0045",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0112",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0205",
+    "grade": 1,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0819",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0453",
+    "grade": 1,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0201",
+    "grade": 1,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0003",
+    "grade": 1,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0301",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0211",
+    "grade": 1,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0205",
+    "grade": 1,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0208",
+    "grade": 2,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0213",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "MTED0231",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0217",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0315",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ELEC0247",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0331",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0311",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0419",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0246",
+    "grade": 2,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0224",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0225",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0411",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0432",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ELEC0462",
+    "grade": 2,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0201",
+    "grade": 3,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0264",
+    "grade": 3,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0499",
+    "grade": 3,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0312",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0319",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0321",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0323",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0324",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0422",
+    "grade": 3,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "FUTR0214",
+    "grade": 3,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "STAT0452",
+    "grade": 3,
+    "semester": 2,
+    "category": "전공기반",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0593",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0594",
+    "grade": 3,
+    "semester": 2,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0320",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0322",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0328",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0423",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "EECS0312",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0417",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0401",
+    "grade": 3,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0403",
+    "grade": 4,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0417",
+    "grade": 4,
+    "semester": 1,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "TCHR0522",
+    "grade": 4,
+    "semester": 1,
+    "category": "교직",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0413",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0419",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0420",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0462",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0215",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0460",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": true,
+    "tags": [
+      "설계"
+    ]
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0414",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0415",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0416",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "MBIO0402",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "MOBI0224",
+    "grade": 4,
+    "semester": 1,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CLTR0043",
+    "grade": 4,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0428",
+    "grade": 4,
+    "semester": 2,
+    "category": "기본소양",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "CAIB0211",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COME0368",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0435",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0436",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0455",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0457",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0458",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "COMP0461",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "GLSO0227",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0418",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0424",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "admission_year": 2023,
+    "program_id": "platform_sw_data",
+    "course_code": "ITEC0425",
+    "grade": 4,
+    "semester": 2,
+    "category": "공학전공",
+    "is_required": false,
+    "tags": []
+  }
+]
