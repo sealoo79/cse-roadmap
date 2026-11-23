@@ -1,0 +1,1044 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cse-roadmap</title>
+<script>if (!(window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.setAttribute('data-theme', 'light');</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* cse-roadmap 프로토타입 공통 스타일 */
+:root {
+  --ink: #15171b;
+  --muted: #5a606b;
+  --rule: #d8dbe0;
+  --soft: #f3f4f6;
+  --base: #3a3f47;
+  --ai: #8b50a4;
+  --sys: #0052a4;
+  --net: #ef7c1c;
+  --sw: #00a84d;
+  --ok: #0b6b35;
+  --warn: #a33a00;
+  --font: 'IBM Plex Sans KR', system-ui, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--font); font-size: 15px; line-height: 1.6; color: var(--ink); background: #fff; }
+a { color: var(--ink); }
+:focus-visible { outline: 2px solid var(--sys); outline-offset: 2px; }
+
+/* ---------- 상단 ---------- */
+.top { background: var(--ink); color: #fff; }
+.top-in { max-width: 1280px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 0 28px; min-height: 56px; }
+.brand { color: #fff; text-decoration: none; font-weight: 700; font-size: 17px; margin-right: auto; display: flex; align-items: baseline; gap: 10px; }
+.brand span { font-weight: 400; font-size: 12px; color: #b4b9c2; }
+.top nav { display: flex; flex-wrap: wrap; }
+.top nav a { color: #cfd3d9; text-decoration: none; font-size: 14px; padding: 16px 10px 13px; border-bottom: 3px solid transparent; }
+.top nav a:hover { color: #fff; }
+.top nav a[aria-current="page"] { color: #fff; font-weight: 600; border-bottom-color: #fff; }
+.nav-out { border-left: 1px solid #3a3e46; padding-left: 18px; }
+.strip { display: flex; height: 4px; }
+.strip i { flex: 1; }
+.ctx { background: var(--soft); border-bottom: 1px solid var(--rule); }
+.ctx-in { max-width: 1280px; margin: 0 auto; padding: 8px 24px; font-size: 13px; color: var(--muted); }
+
+/* ---------- 본문 공통 ---------- */
+.wrap { max-width: 1080px; margin: 0 auto; padding: 40px 24px 96px; }
+.wrap.wide { max-width: 1280px; }
+.kicker { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; color: var(--muted); margin: 0 0 6px; }
+h1 { font-size: 28px; line-height: 1.3; margin: 0 0 8px; letter-spacing: -.02em; }
+h2 { font-size: 18px; margin: 0 0 12px; }
+h3 { font-size: 14px; margin: 22px 0 6px; }
+.lead { color: var(--muted); margin: 0 0 32px; }
+.hint { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.sec { border-top: 2px solid var(--ink); padding-top: 14px; margin-top: 36px; }
+main > .sec:first-of-type, .kicker + h1 + .lead + .sec { margin-top: 0; }
+.sec-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+.sec-h h2 { margin: 0; }
+.mono { font-family: var(--mono); }
+.sw { display: inline-block; width: 11px; height: 11px; background: var(--c); flex: none; }
+
+/* ---------- 폼 요소 ---------- */
+label { cursor: pointer; }
+select, input[type="text"], input[type="url"] { font: inherit; height: 44px; padding: 0 12px; border: 1px solid #b4b9c2; border-radius: 3px; background: #fff; color: var(--ink); }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field > span { font-size: 13px; font-weight: 600; }
+.fields { display: flex; flex-wrap: wrap; gap: 16px; }
+.fields .field { flex: 1 1 220px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px; border: 1px solid var(--ink); border-radius: 3px; background: #fff; color: var(--ink); font: inherit; font-weight: 600; text-decoration: none; cursor: pointer; }
+.btn:hover { background: var(--soft); }
+.btn-primary { background: var(--ink); color: #fff; }
+.btn-primary:hover { background: #000; }
+.btn-sm { min-height: 32px; padding: 0 10px; font-size: 13px; }
+.actions { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--rule); }
+
+/* 라디오/체크 목록 */
+.opt { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 6px; border-bottom: 1px solid var(--rule); }
+.opt:hover { background: var(--soft); }
+.opt input { width: 18px; height: 18px; margin: 0; accent-color: var(--ink); }
+.opt .meta { font-size: 13px; color: var(--muted); }
+.opt:has(input:checked) { background: var(--soft); font-weight: 600; }
+
+/* 탭(입력 방법) */
+.tabs { display: flex; border-bottom: 2px solid var(--ink); margin-bottom: 20px; flex-wrap: wrap; }
+.tabs button { font: inherit; font-size: 14px; padding: 10px 16px; border: 1px solid var(--rule); border-bottom: 0; background: var(--soft); color: var(--muted); margin-right: -1px; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 600; }
+.urlrow { display: flex; gap: 8px; flex-wrap: wrap; }
+.urlrow input { flex: 1 1 320px; }
+.notice { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--rule); background: var(--soft); font-size: 14px; }
+.notice b { color: var(--ok); }
+
+/* 수강 과목 표 */
+.term { margin-top: 24px; }
+.term-h { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--ink); padding-bottom: 4px; }
+.term-h h3 { margin: 0; font-family: var(--mono); font-size: 15px; }
+.term-h span { font-size: 13px; color: var(--muted); }
+.crow { display: grid; grid-template-columns: 22px minmax(0, 1fr) 92px 56px 70px; gap: 10px; align-items: center; padding: 9px 4px; border-bottom: 1px solid var(--rule); font-size: 14px; }
+.crow input { width: 18px; height: 18px; margin: 0; accent-color: var(--ink); }
+.crow .nm { display: flex; align-items: center; gap: 8px; }
+.crow .cd { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.crow .ty { font-size: 12px; color: var(--muted); text-align: right; }
+.crow:has(input:not(:checked)) { color: var(--muted); }
+@media (max-width: 600px) { .crow { grid-template-columns: 22px 1fr 56px; } .crow .cd, .crow .ty { display: none; } }
+.sumbar { position: sticky; bottom: 0; background: #fff; border-top: 2px solid var(--ink); }
+.sumbar-in { max-width: 1080px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+
+/* 관심 분야 카드 */
+.icards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.icard { display: block; border: 1px solid var(--rule); border-top: 8px solid var(--c); padding: 16px 18px 18px; }
+.icard:has(input:checked) { border-color: var(--ink); border-top-color: var(--c); box-shadow: inset 0 0 0 1px var(--ink); }
+.icard .row { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; }
+.icard input { width: 18px; height: 18px; margin: 0; accent-color: var(--ink); }
+.icard p { margin: 8px 0 12px; color: var(--muted); font-size: 14px; }
+.icard ul { margin: 0; padding: 0; list-style: none; font-size: 13px; border-top: 1px solid var(--rule); }
+.icard li { padding: 5px 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; }
+.icard li span { font-family: var(--mono); color: var(--muted); font-size: 12px; }
+
+/* ---------- 노선도 ---------- */
+.tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 0; padding: 0; list-style: none; font-size: 13px; }
+.legend li { display: flex; align-items: center; gap: 8px; }
+.lg { width: 16px; height: 16px; border-radius: 50%; border: 4px solid var(--sys); background: #fff; }
+.lg.done { background: var(--sys); }
+.lg { position: relative; }
+.lg.rec { border-width: 5px; box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--ink); }
+.lg.lock { border: 3px dashed #8a909a; }
+.tool-r { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; }
+.zoom { display: flex; align-items: center; }
+.zoom .btn { min-width: 40px; min-height: 36px; padding: 0 10px; font-size: 14px; margin-left: -1px; border-radius: 0; }
+.zoom .btn:first-child { border-radius: 3px 0 0 3px; }
+.zoom .btn:last-child { border-radius: 0 3px 3px 0; }
+.zoom #zoomReset { min-width: 64px; font-family: var(--mono); font-weight: 500; }
+.rec-pop { position: absolute; z-index: 6; width: 260px; background: #fff; border: 2px solid var(--ink); box-shadow: 4px 4px 0 rgba(21, 23, 27, .14); padding: 8px 14px 14px; font-size: 13px; cursor: auto; }
+.rec-pop[hidden] { display: none; }
+.pop-h { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.pop-x { width: 36px; height: 36px; margin-right: -10px; border: 0; background: none; font: inherit; font-size: 20px; color: var(--ink); cursor: pointer; }
+.rec-pop strong { display: block; font-size: 16px; margin: 0 0 8px; }
+.rec-pop ul { margin: 0; padding: 0; list-style: none; }
+.rec-pop li { position: relative; padding: 6px 0 6px 18px; border-top: 1px solid var(--rule); }
+.rec-pop li::before { content: ''; position: absolute; left: 1px; top: 11px; width: 9px; height: 9px; background: #ffb800; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.rec-pop .meta { margin: 8px 0 0; color: var(--muted); display: flex; justify-content: space-between; gap: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  .st.is-rec .dot::after, .st.is-rec .dot::before, .lg.rec::after, .lg.rec::before, .st.is-rec .tag, .edges path.rec { animation: none; }
+}
+.chk { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+.chk input { width: 18px; height: 18px; margin: 0; accent-color: var(--ink); }
+
+.rm { display: flex; flex-direction: column; gap: 20px; }
+.map-scroll { min-width: 0; overflow-x: auto; border: 1px solid var(--rule); }
+.map-scroll { cursor: grab; }
+.map-scroll.is-panning { cursor: grabbing; user-select: none; }
+.map-sizer { position: relative; }
+.map { position: relative; width: 1068px; transform-origin: 0 0; background: #fff; }
+.edges { position: absolute; left: 0; top: 0; z-index: 1; pointer-events: none; overflow: visible; }
+.edges path.e { fill: none; }
+.edges path.plain { display: none; stroke: var(--ink); stroke-width: 2.5; }
+.map.has-sel .edges path.plain.on { display: inline; }
+.edges path.rec { stroke: #22c55e; stroke-width: 2.5; stroke-dasharray: 7 5; animation: flow .9s linear infinite; }
+.map.no-arrows .edges path.rec { display: none; }
+.map.has-sel .edges path.rec:not(.on) { opacity: .15; }
+@keyframes flow { to { stroke-dashoffset: -12; } }
+.mhead, .trow { display: grid; grid-template-columns: 124px repeat(8, minmax(118px, 1fr)); }
+.yr { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; text-align: center; padding: 10px 0 8px; border-bottom: 1px solid var(--rule); }
+.yr b { grid-column: span 2; font-size: 14px; }
+.yr span { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.y-even { --bg: #f6f7f8; background: #f6f7f8; }
+.trow { position: relative; border-bottom: 1px solid var(--rule); }
+.trow::before { content: ''; position: absolute; z-index: 1; top: 26px; height: 8px; left: calc(124px + (100% - 124px) / 16); right: calc((100% - 124px) / 16); background: var(--c); }
+.tlab { position: relative; z-index: 2; display: flex; gap: 8px; align-items: flex-start; padding: 20px 10px 12px 14px; font-weight: 700; font-size: 14px; line-height: 1.35; background: #fff; border-right: 1px solid var(--rule); }
+.tlab .sw { margin-top: 4px; }
+.cell { --bg: #fff; display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 20px 4px; min-height: 100px; }
+.trow.is-dim .cell, .trow.is-dim::before, .trow.is-dim .tlab { opacity: .3; }
+.st { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 4px; width: 112px; padding: 0; border: 0; background: none; font: inherit; color: var(--ink); text-align: center; cursor: pointer; }
+.st .dot { position: relative; flex: none; width: 20px; height: 20px; border-radius: 50%; border: 4px solid var(--c); background: #fff; box-sizing: border-box; }
+.st.is-done .dot { background: var(--c); }
+.st.is-rec .dot { border-width: 6px; box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--ink); }
+/* 추천역: 퍼지는 링 + 반짝이는 별 */
+.st.is-rec .dot::after, .lg.rec::after { content: ''; position: absolute; inset: -8px; border-radius: 50%; border: 3px solid var(--c, var(--sys)); animation: ping 1.6s ease-out infinite; pointer-events: none; }
+.st.is-rec .dot::before, .lg.rec::before { content: ''; position: absolute; width: 13px; height: 13px; right: -15px; top: -15px; background: #ffb800; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); animation: twinkle 1.4s ease-in-out infinite; pointer-events: none; }
+.lg.rec::before { width: 10px; height: 10px; right: -11px; top: -11px; }
+.lg.rec::after { inset: -6px; }
+@keyframes ping { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(1.9); opacity: 0; } }
+@keyframes twinkle { 0%, 100% { transform: scale(.35) rotate(0deg); opacity: .25; } 50% { transform: scale(1.15) rotate(45deg); opacity: 1; } }
+.st.is-lock .dot { border: 3px dashed #8a909a; }
+.st .nm { font-size: 13px; font-weight: 600; line-height: 1.3; word-break: keep-all; }
+.st.is-lock .nm { color: #5c626c; font-weight: 500; }
+.st .cd { font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
+.st .nm, .st .cd { background: var(--bg); padding: 0 3px; }
+.st:hover .nm, .st.is-sel .nm { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 2px; }
+.st.is-rec .tag { color: var(--ink); background: linear-gradient(110deg, #ffc21a 0%, #ffc21a 38%, #fff4cc 50%, #ffc21a 62%, #ffc21a 100%); background-size: 260% 100%; animation: shine 2.2s linear infinite; }
+@keyframes shine { from { background-position: 100% 0; } to { background-position: -160% 0; } }
+.tag { font-style: normal; font-size: 10.5px; font-weight: 700; color: #fff; background: var(--ink); padding: 1px 5px; margin-left: 3px; white-space: nowrap; vertical-align: 1px; }
+.map.has-sel .st:not(.is-chain) { opacity: .4; }
+
+.detail { border: 1px solid var(--rule); border-top: 2px solid var(--ink); padding: 20px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px 40px; }
+.detail h3:first-child { margin-top: 0; }
+.detail h2 { font-size: 22px; margin: 0 0 14px; }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; margin: 0 0 18px; font-size: 14px; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; }
+.reqs { list-style: none; padding: 0; margin: 0; }
+.reqs li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 7px 0; border-top: 1px solid var(--rule); font-size: 14px; }
+.ok { font-family: var(--mono); font-size: 11px; padding: 0 6px; border: 1px solid currentColor; white-space: nowrap; }
+.ok.y { color: var(--ok); }
+.ok.n { color: var(--warn); }
+.note { font-size: 12px; color: var(--muted); margin-top: 18px; }
+.btn.block { width: 100%; }
+
+/* ---------- 졸업요건 ---------- */
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0; border-top: 2px solid var(--ink); }
+.stat { padding: 16px 18px 18px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.stat:last-child { border-right: 0; }
+.stat .lb { font-size: 13px; color: var(--muted); }
+.stat .v { font-family: var(--mono); font-size: 26px; font-weight: 500; margin: 2px 0 10px; }
+.stat .v small { font-size: 14px; color: var(--muted); }
+.bar { height: 8px; background: #e5e7eb; }
+.bar i { display: block; height: 100%; background: var(--c, var(--ink)); }
+.tbl { width: 100%; border-collapse: collapse; font-size: 14px; }
+.tbl th { text-align: left; font-size: 12px; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--ink); padding: 8px 6px; }
+.tbl td { border-bottom: 1px solid var(--rule); padding: 10px 6px; vertical-align: middle; }
+.tbl .num { font-family: var(--mono); text-align: right; white-space: nowrap; }
+.tbl .barcell { width: 34%; }
+.tbl .tdname { display: flex; align-items: center; gap: 8px; }
+
+/* ---------- 추천 ---------- */
+.rlist { list-style: none; padding: 0; margin: 0; border-top: 2px solid var(--ink); }
+.ritem { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: 16px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+.ritem .n { font-family: var(--mono); font-size: 22px; color: var(--muted); line-height: 1.2; }
+.ritem h3 { margin: 0; font-size: 17px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.ritem .cd { font-family: var(--mono); font-size: 12px; color: var(--muted); font-weight: 400; }
+.ritem .why { margin: 6px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.ritem .why li { font-size: 12px; border: 1px solid var(--rule); padding: 1px 8px; color: var(--ink); }
+.ritem .side { text-align: right; font-size: 13px; white-space: nowrap; display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+.total { display: flex; justify-content: space-between; padding: 14px 0; font-weight: 600; border-bottom: 2px solid var(--ink); }
+
+.view[hidden] { display: none; }
+
+/* ===== roadmap.sh 느낌: 검은 바탕 + 슬레이트 톤 ===== */
+:root {
+  --ink: #f1f5f9; --muted: #94a3b8; --rule: #1e293b; --soft: #0f172a;
+  --bg0: #000; --bg1: #020617; --bg2: #0f172a; --bg3: #1e293b; --bd: #334155;
+  --base: #94a3b8; --ai: #b07cf0; --sys: #4f8ff7; --net: #f97316; --sw: #22c55e;
+  --ok: #4ade80; --warn: #fb923c; --yel: #fde047;
+  --font: 'Pretendard Variable', Pretendard, system-ui, -apple-system, sans-serif;
+  color-scheme: dark;
+}
+html, body { background: var(--bg0); }
+body { color: var(--ink); background: linear-gradient(180deg, #0f172a 0, #000 560px) no-repeat, #000; }
+a { color: var(--ink); }
+::selection { background: var(--yel); color: #000; }
+
+/* 상단 */
+.top { background: rgba(0, 0, 0, .6); border-bottom: 1px solid var(--rule); }
+.top nav a { color: var(--muted); }
+.top nav a:hover { color: #fff; }
+.top nav a[aria-current="page"] { color: #fff; border-bottom-color: var(--yel); }
+.nav-out { border-left-color: var(--rule); }
+.brand span { color: #64748b; }
+.strip { height: 2px; opacity: .8; }
+.ctx { background: transparent; border-bottom: 1px solid var(--rule); }
+
+/* 제목·구획: roadmap.sh 섹션 라벨처럼 */
+.kicker { display: inline-block; padding: 2px 10px; border: 1px solid var(--rule); border-radius: 6px; background: var(--bg2); color: var(--muted); }
+h1 { font-size: 34px; font-weight: 800; color: #fff; letter-spacing: -.03em; }
+.lead, .hint { color: var(--muted); }
+.sec { border-top: 1px solid var(--rule); }
+.sec-h h2, h2, h3 { color: #fff; }
+
+/* 폼·버튼 */
+select, input[type="text"], input[type="url"] { background: var(--bg2); border: 1px solid var(--bd); color: var(--ink); border-radius: 6px; }
+.btn { background: var(--bg2); color: var(--ink); border: 1px solid var(--bd); border-radius: 6px; }
+.btn:hover { background: var(--bg3); border-color: #475569; }
+.btn-primary { background: #f1f5f9; color: #0f172a; border-color: #f1f5f9; }
+.btn-primary:hover { background: #fff; }
+.zoom .btn { border-radius: 0; }
+.zoom .btn:first-child { border-radius: 6px 0 0 6px; }
+.zoom .btn:last-child { border-radius: 0 6px 6px 0; }
+.actions { border-top-color: var(--rule); }
+.opt { border-bottom-color: var(--rule); border-radius: 6px; }
+.opt:hover, .opt:has(input:checked) { background: var(--bg2); }
+.tabs { border-bottom: 1px solid var(--rule); gap: 6px; }
+.tabs button { background: var(--bg2); border: 1px solid var(--rule); border-bottom: 0; color: var(--muted); border-radius: 6px 6px 0 0; }
+.tabs button[aria-selected="true"] { background: #f1f5f9; color: #0f172a; border-color: #f1f5f9; }
+.notice { background: var(--bg2); border-color: var(--rule); border-radius: 6px; }
+.term-h { border-bottom-color: var(--bd); }
+.crow { border-bottom-color: var(--rule); }
+.crow:has(input:not(:checked)) { color: #64748b; }
+.sumbar { background: rgba(0, 0, 0, .92); border-top: 1px solid var(--rule); }
+.icard { background: var(--bg2); border-color: var(--rule); border-radius: 8px; }
+.icard:hover { border-color: #475569; }
+.icard:has(input:checked) { border-color: #64748b; box-shadow: none; }
+.icard ul, .icard li { border-color: var(--rule); }
+
+/* 졸업요건·추천 */
+.stats { border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; background: var(--bg2); }
+.stat { border-color: var(--rule); }
+.bar { background: var(--bg3); border-radius: 4px; overflow: hidden; }
+.tbl th { border-bottom-color: var(--bd); }
+.tbl td { border-bottom-color: var(--rule); }
+.rlist { border-top: 1px solid var(--bd); }
+.ritem { border-bottom-color: var(--rule); }
+.ritem .why li { border-color: var(--bd); background: var(--bg2); border-radius: 4px; color: var(--ink); }
+.total { border-bottom: 1px solid var(--bd); }
+.ok { border-radius: 4px; }
+
+/* 노선도 */
+.map-scroll { border: 1px solid var(--rule); border-radius: 8px; background: var(--bg1); }
+.map { background: var(--bg1); }
+.cell { --bg: #020617; }
+.y-even { --bg: #0b1222; background: #0b1222; }
+.yr { border-bottom-color: var(--rule); }
+.trow { border-bottom-color: var(--rule); }
+.tlab { background: var(--bg1); border-right-color: var(--rule); color: var(--ink); }
+.st { color: var(--ink); }
+.st .dot { background: var(--bg); }
+.st.is-done .dot { background: var(--c); }
+.st.is-lock .dot { border-color: #64748b; }
+.st.is-lock .nm { color: #7c8799; }
+.st.is-rec .dot { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--yel); }
+.st.is-rec .nm { color: #fff; }
+.st.is-rec .tag { color: #0f172a; }
+.tag { color: #0f172a; background: #e2e8f0; border-radius: 3px; }
+.st.is-rec .tag { border-radius: 3px; }
+.lg { background: var(--bg1); }
+.lg.rec { box-shadow: 0 0 0 2px var(--bg0), 0 0 0 4px var(--yel); }
+.lg.lock { border-color: #64748b; }
+.edges path.rec { stroke: #22c55e; }
+.edges path.plain { stroke: #e2e8f0; }
+.rec-pop { background: var(--bg2); border: 1px solid #475569; border-radius: 8px; box-shadow: 0 10px 30px rgba(0, 0, 0, .6); }
+.rec-pop li { border-top-color: var(--rule); }
+.pop-x { color: var(--ink); }
+.detail { background: var(--bg2); border: 1px solid var(--rule); border-radius: 8px; }
+.reqs li { border-top-color: var(--rule); }
+:focus-visible { outline-color: var(--yel); }
+
+/* ===== 라이트 모드 ===== */
+:root { --arrow: #22c55e; }
+html[data-theme="light"] {
+  --ink: #0f172a; --muted: #475569; --rule: #e2e8f0; --soft: #f8fafc;
+  --bg0: #fff; --bg1: #fff; --bg2: #f8fafc; --bg3: #e2e8f0; --bd: #cbd5e1;
+  --base: #475569; --ai: #8b50a4; --sys: #0052a4; --net: #ea6a0c; --sw: #00a84d;
+  --ok: #0b6b35; --warn: #a33a00; --yel: #eab308; --arrow: #16a34a;
+  color-scheme: light;
+}
+html[data-theme="light"] body { background: linear-gradient(180deg, #f1f5f9 0, #fff 560px) no-repeat, #fff; }
+html[data-theme="light"] .top { background: rgba(255, 255, 255, .9); }
+html[data-theme="light"] .brand { color: #0f172a; }
+html[data-theme="light"] .top nav a:hover,
+html[data-theme="light"] .top nav a[aria-current="page"] { color: #0f172a; }
+html[data-theme="light"] h1, html[data-theme="light"] h2, html[data-theme="light"] h3,
+html[data-theme="light"] .sec-h h2 { color: var(--ink); }
+html[data-theme="light"] .btn,
+html[data-theme="light"] select, html[data-theme="light"] input[type="text"], html[data-theme="light"] input[type="url"] { background: #fff; }
+html[data-theme="light"] .btn:hover { background: #f1f5f9; }
+html[data-theme="light"] .btn-primary,
+html[data-theme="light"] .tabs button[aria-selected="true"] { background: #0f172a; color: #fff; border-color: #0f172a; }
+html[data-theme="light"] .btn-primary:hover { background: #000; }
+html[data-theme="light"] .sumbar { background: rgba(255, 255, 255, .95); }
+html[data-theme="light"] .cell { --bg: #fff; }
+html[data-theme="light"] .y-even { --bg: #f6f7f8; background: #f6f7f8; }
+html[data-theme="light"] .st.is-lock .nm { color: #64748b; }
+html[data-theme="light"] .st.is-rec .nm { color: var(--ink); }
+html[data-theme="light"] .edges path.plain { stroke: #0f172a; }
+html[data-theme="light"] .rec-pop { background: #fff; box-shadow: 0 10px 30px rgba(15, 23, 42, .15); }
+html[data-theme="light"] :focus-visible { outline-color: #2563eb; }
+html[data-theme="light"] ::selection { background: #fde047; }
+.edges path.rec { stroke: var(--arrow); }
+.arrow-fill { fill: var(--arrow); }
+.arrow-stroke { stroke: var(--arrow); }
+
+
+/* ===== 첫 화면: 회전하는 기능 미리보기 ===== */
+.hero { text-align: center; padding: 72px 24px 0; }
+.hero .kicker { margin-bottom: 14px; }
+.hero h1 { font-size: 48px; line-height: 1.2; margin: 0 auto 14px; max-width: 760px; }
+.hero .lead { max-width: 620px; margin: 0 auto; }
+.hero-cta { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 28px 0 0; }
+.stage { position: relative; height: 500px; margin-top: 0; perspective: 2000px; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 12%, #000 88%, transparent 100%); }
+.stage::after { content: ''; position: absolute; left: 50%; bottom: 30px; width: 900px; height: 70px; margin-left: -450px; border-radius: 50%; background: radial-gradient(closest-side, rgba(148, 163, 184, .2), transparent); pointer-events: none; }
+.ring { position: absolute; left: 50%; top: 40px; width: 440px; height: 320px; margin-left: -220px; transform-style: preserve-3d; animation: spin 40s linear infinite; }
+.stage:hover .ring, .stage:focus-within .ring, .stage.is-paused .ring { animation-play-state: paused; }
+@keyframes spin { from { transform: translateZ(-480px) rotateX(-6deg) rotateY(0deg); } to { transform: translateZ(-480px) rotateX(-6deg) rotateY(-360deg); } }
+.pv { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 18px 20px 20px; border: 1px solid var(--bd); border-radius: 14px; background: var(--bg2); color: var(--ink); text-decoration: none; text-align: left;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: rotateY(calc(var(--i) * 60deg)) translateZ(480px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, .3); transition: border-color .2s; }
+.pv:hover, .pv:focus-visible { border-color: var(--yel); }
+.pv-h { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+.pv-t { font-size: 19px; font-weight: 700; margin: 2px 0 12px; color: var(--ink); }
+.pv-b { position: relative; flex: 1; overflow: hidden; border: 1px solid var(--rule); border-radius: 8px; background: var(--bg1); padding: 16px; font-size: 14px; }
+.spin-ctl { display: flex; justify-content: center; align-items: center; gap: 14px; margin: -10px 0 56px; font-size: 13px; color: var(--muted); }
+html[data-theme="light"] .pv { box-shadow: 0 16px 36px rgba(15, 23, 42, .10); }
+@media (max-width: 760px) { .hero h1 { font-size: 34px; } .ring { scale: .62; } .stage { height: 400px; } }
+@media (prefers-reduced-motion: reduce) { .ring { animation: none; transform: translateZ(-480px) rotateX(-6deg); } }
+
+/* 미리보기 안 작은 그림들 */
+.mm-line { position: relative; display: flex; justify-content: space-between; align-items: center; height: 40px; padding: 0 4px; }
+.mm-line::before { content: ''; position: absolute; left: 10px; right: 10px; top: 50%; height: 5px; margin-top: -2.5px; background: var(--c); }
+.mm-line i { position: relative; width: 13px; height: 13px; border-radius: 50%; border: 3px solid var(--c); background: var(--bg1); box-sizing: border-box; }
+.mm-line i.f { background: var(--c); }
+.mm-line i.r { box-shadow: 0 0 0 2px var(--bg1), 0 0 0 4px var(--yel); }
+.mm-line i.l { border-style: dashed; border-color: #64748b; }
+.mm-pop { display: block; border: 1px solid var(--bd); border-radius: 6px; padding: 8px 10px; background: var(--bg2); }
+.mm-pop b { display: block; font-size: 16px; margin-bottom: 4px; }
+.mm-pop span { display: block; padding: 3px 0 3px 14px; border-top: 1px solid var(--rule); position: relative; }
+.mm-pop span::before, .mm-star { content: ''; position: absolute; left: 0; top: 7px; width: 8px; height: 8px; background: #ffb800; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); }
+.mm-bar { margin-bottom: 9px; }
+.mm-bar div { display: flex; justify-content: space-between; margin-bottom: 3px; }
+.mm-bar p { margin: 0; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.mm-bar p i { display: block; height: 100%; background: var(--c, var(--ink)); }
+.mm-in { border: 1px solid var(--bd); border-radius: 5px; padding: 7px 10px; margin-bottom: 10px; color: var(--muted); font-family: var(--mono); font-size: 12px; }
+.mm-row { display: flex; align-items: center; gap: 7px; padding: 4px 0; border-top: 1px solid var(--rule); }
+.mm-ck { width: 12px; height: 12px; border-radius: 3px; background: var(--ink); flex: none; }
+.mm-ck.o { background: none; border: 1.5px solid var(--bd); }
+.mm-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.mm-chip { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border: 1px solid var(--bd); border-radius: 999px; }
+.mm-chip.on { border-color: var(--c); box-shadow: inset 0 0 0 1px var(--c); font-weight: 700; }
+.mm-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.mm-rank { display: flex; align-items: center; gap: 8px; padding: 5px 0; border-top: 1px solid var(--rule); }
+.mm-rank:first-child { border-top: 0; }
+.mm-rank em { font-style: normal; font-family: var(--mono); color: var(--muted); width: 18px; }
+.mm-rank u { text-decoration: none; margin-left: auto; font-size: 11px; font-weight: 700; color: #0f172a; background: #ffc21a; padding: 0 5px; border-radius: 3px; }
+.mm-theme { display: flex; height: 100%; border-radius: 6px; overflow: hidden; border: 1px solid var(--bd); }
+.mm-theme div { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; font-weight: 700; }
+.mm-theme .dk { background: #020617; color: #f1f5f9; }
+.mm-theme .lt { background: #fff; color: #0f172a; }
+.mm-theme svg { width: 22px; height: 22px; }
+
+/* 관심 분야 카드: 분야 색 다시 살리기 */
+.icard { border-top: 8px solid var(--c); }
+.icard:hover { border-color: color-mix(in srgb, var(--c) 55%, var(--bd)); border-top-color: var(--c); }
+.icard:has(input:checked) { border-color: var(--c); border-top-color: var(--c); box-shadow: inset 0 0 0 1px var(--c); background: color-mix(in srgb, var(--c) 9%, var(--bg2)); }
+.icard input { accent-color: var(--c); }
+.icard .row::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-left: auto; }
+.icard:has(input:checked) .row::after { content: '선택됨'; width: auto; height: auto; border-radius: 4px; padding: 1px 8px; font-size: 12px; font-weight: 700; color: #fff; background: color-mix(in srgb, var(--c) 72%, #000); }
+
+/* 첫 화면에서는 상단 메뉴 숨김 */
+body[data-view="home"] .top, body[data-view="home"] .strip { display: none; }
+body[data-view="home"] .hero { padding-top: 112px; }
+
+/* 첫 화면 배경: 지하철 노선도 */
+#view-home { position: relative; overflow: hidden; min-height: 100vh; }
+.home-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; opacity: .2; pointer-events: none; }
+html:not([data-theme="light"]) .home-bg { opacity: .3; }
+#view-home::after { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse 40% 27% at 50% 26%, color-mix(in srgb, var(--bg0) 97%, transparent) 0, color-mix(in srgb, var(--bg0) 85%, transparent) 60%, transparent 100%); }
+#view-home > .hero, #view-home > .stage, #view-home > .spin-ctl { position: relative; z-index: 1; }
+
+/* ===== 로그인·처음 설정·회원정보 ===== */
+.nav-main { display: flex; flex-wrap: wrap; }
+.nav-acct { display: flex; align-items: center; gap: 2px; margin-left: 12px; padding-left: 14px; border-left: 1px solid var(--rule); }
+.nav-acct a, .nav-acct button { color: var(--muted); font: inherit; font-size: 14px; text-decoration: none; padding: 8px 10px; border: 0; border-radius: 6px; background: none; cursor: pointer; }
+.nav-acct a:hover, .nav-acct button:hover, .nav-acct a[aria-current="page"] { color: var(--ink); background: var(--bg3); }
+.who { display: flex; align-items: center; gap: 8px; margin-right: 6px; font-size: 14px; color: var(--ink); }
+.avatar { flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 13px; font-weight: 700; color: #fff; background: #7c3aed; }
+.avatar.alt { background: var(--bg3); color: var(--muted); }
+.avatar.avatar-lg { width: 56px; height: 56px; font-size: 22px; }
+.onb-steps { display: flex; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.onb-steps li { font-size: 13px; color: var(--muted); padding: 5px 12px; border: 1px solid var(--rule); border-radius: 999px; }
+.onb-steps li.is-now { color: var(--ink); border-color: var(--ink); font-weight: 700; }
+.onb-steps li.is-done { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 50%, transparent); }
+body[data-area="onb"] .nav-main, body[data-area="onb"] .acct-edit { display: none; }
+body[data-area="main"] .onb-steps { display: none; }
+body[data-mode="edit"] .only-onb, body[data-mode="onb"] .only-edit { display: none !important; }
+
+.gbtn { display: inline-flex; align-items: center; gap: 12px; height: 50px; padding: 0 24px 0 18px; border-radius: 999px; border: 1px solid #747775; background: #fff; color: #1f1f1f; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; box-shadow: 0 1px 2px rgba(0, 0, 0, .08); }
+.gbtn:hover { background: #f8fafd; box-shadow: 0 2px 8px rgba(0, 0, 0, .12); }
+html:not([data-theme="light"]) .gbtn { background: #131314; color: #e3e3e3; border-color: #8e918f; }
+html:not([data-theme="light"]) .gbtn:hover { background: #1f1f20; }
+.g-logo { width: 20px; height: 20px; flex: none; }
+.hero-note { margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+
+.gdlg { width: min(420px, 92vw); padding: 24px 24px 18px; border: 1px solid var(--bd); border-radius: 14px; background: var(--bg2); color: var(--ink); box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+html[data-theme="light"] .gdlg { background: #fff; }
+.gdlg::backdrop { background: rgba(2, 6, 23, .55); }
+.gdlg-top { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.gdlg h2 { font-size: 24px; margin: 18px 0 4px; }
+.gdlg-sub { margin: 0 0 16px; color: var(--muted); font-size: 14px; }
+.acct-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+.acct-list li { border-bottom: 1px solid var(--rule); }
+.acct-row { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 60px; padding: 8px 6px; border: 0; background: none; color: var(--ink); font: inherit; text-align: left; cursor: pointer; border-radius: 8px; }
+.acct-row:hover { background: var(--bg3); }
+.acct-row span { display: flex; flex-direction: column; font-size: 14px; }
+.acct-row small { color: var(--muted); font-size: 13px; }
+.gdlg-note { margin: 14px 0 0; font-size: 12px; color: var(--muted); }
+.gdlg-act { display: flex; justify-content: flex-end; margin-top: 12px; }
+
+.acct-card { display: flex; align-items: center; gap: 16px; padding: 20px; border: 1px solid var(--rule); border-radius: 10px; background: var(--bg2); margin-bottom: 28px; }
+.acct-card div { display: flex; flex-direction: column; gap: 2px; }
+.acct-card b { font-size: 18px; }
+.acct-card span { color: var(--muted); font-size: 14px; }
+.acct-card small { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); margin-top: 4px; }
+.acct-card small .g-logo { width: 14px; height: 14px; }
+.set-list { list-style: none; margin: 0; padding: 0; }
+.set-list li { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.set-list li div { display: flex; flex-direction: column; gap: 2px; }
+.set-list b { font-size: 15px; }
+.set-list span { font-size: 14px; color: var(--muted); }
+.set-list .chips i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; background: var(--c); margin: 0 2px 0 6px; }
+.set-list .chips i:first-child { margin-left: 0; }
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+<a class="brand" href="#home">cse-roadmap<span>컴퓨터학부 2026 교육과정</span></a>
+<nav class="nav-main" aria-label="주 메뉴"><a href="#roadmap">노선도</a><a href="#progress">졸업요건</a><a href="#recommend">다음 학기 추천</a></nav>
+<ol class="onb-steps" aria-label="처음 설정 단계"><li data-step="setup">1 전공·학번</li><li data-step="courses">2 수강 내역</li><li data-step="interests">3 관심 분야</li></ol>
+<div class="nav-acct"><span class="who"><i class="avatar" aria-hidden="true">홍</i><span>홍길동</span></span><a class="acct-edit" href="#account">회원정보 변경</a><button type="button" class="logout" data-logout>로그아웃</button></div>
+</div></header>
+<div class="strip" aria-hidden="true"><i style="background:var(--base)"></i><i style="background:var(--ai)"></i><i style="background:var(--sys)"></i><i style="background:var(--net)"></i><i style="background:var(--sw)"></i></div>
+<div class="view" id="view-home" data-title="소개">
+<svg class="home-bg" id="homeBg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><path id="bg-ai" d="M-60 150 H330 L500 320 H960 L1130 150 H1500" fill="none" style="stroke:var(--ai)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path id="bg-sys" d="M-60 760 H230 L430 560 V300 L600 130 V-60" fill="none" style="stroke:var(--sys)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path id="bg-sw" d="M1500 820 H1180 L1010 650 H700 L560 790 V960" fill="none" style="stroke:var(--sw)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path id="bg-net" d="M1060 -60 V250 L1260 450 V620 L1420 780 H1500" fill="none" style="stroke:var(--net)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path id="bg-base" d="M-60 470 H120 L300 650 H900 L1060 490 H1500" fill="none" style="stroke:var(--base)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><circle cx="120" cy="150" r="9" style="fill:var(--bg0);stroke:var(--ai)" stroke-width="5"/><circle cx="330" cy="150" r="9" style="fill:var(--bg0);stroke:var(--ai)" stroke-width="5"/><circle cx="500" cy="320" r="9" style="fill:var(--bg0);stroke:var(--ai)" stroke-width="5"/><circle cx="730" cy="320" r="9" style="fill:var(--bg0);stroke:var(--ai)" stroke-width="5"/><circle cx="960" cy="320" r="9" style="fill:var(--bg0);stroke:var(--ai)" stroke-width="5"/><circle cx="1130" cy="150" r="9" style="fill:var(--bg0);stroke:var(--ai)" stroke-width="5"/><circle cx="1320" cy="150" r="9" style="fill:var(--bg0);stroke:var(--ai)" stroke-width="5"/><circle cx="90" cy="760" r="9" style="fill:var(--bg0);stroke:var(--sys)" stroke-width="5"/><circle cx="230" cy="760" r="9" style="fill:var(--bg0);stroke:var(--sys)" stroke-width="5"/><circle cx="430" cy="560" r="9" style="fill:var(--bg0);stroke:var(--sys)" stroke-width="5"/><circle cx="430" cy="420" r="9" style="fill:var(--bg0);stroke:var(--sys)" stroke-width="5"/><circle cx="430" cy="300" r="9" style="fill:var(--bg0);stroke:var(--sys)" stroke-width="5"/><circle cx="600" cy="130" r="9" style="fill:var(--bg0);stroke:var(--sys)" stroke-width="5"/><circle cx="1360" cy="820" r="9" style="fill:var(--bg0);stroke:var(--sw)" stroke-width="5"/><circle cx="1180" cy="820" r="9" style="fill:var(--bg0);stroke:var(--sw)" stroke-width="5"/><circle cx="1010" cy="650" r="9" style="fill:var(--bg0);stroke:var(--sw)" stroke-width="5"/><circle cx="850" cy="650" r="9" style="fill:var(--bg0);stroke:var(--sw)" stroke-width="5"/><circle cx="700" cy="650" r="9" style="fill:var(--bg0);stroke:var(--sw)" stroke-width="5"/><circle cx="560" cy="790" r="9" style="fill:var(--bg0);stroke:var(--sw)" stroke-width="5"/><circle cx="1060" cy="60" r="9" style="fill:var(--bg0);stroke:var(--net)" stroke-width="5"/><circle cx="1060" cy="250" r="9" style="fill:var(--bg0);stroke:var(--net)" stroke-width="5"/><circle cx="1260" cy="450" r="9" style="fill:var(--bg0);stroke:var(--net)" stroke-width="5"/><circle cx="1260" cy="620" r="9" style="fill:var(--bg0);stroke:var(--net)" stroke-width="5"/><circle cx="1420" cy="780" r="9" style="fill:var(--bg0);stroke:var(--net)" stroke-width="5"/><circle cx="120" cy="470" r="9" style="fill:var(--bg0);stroke:var(--base)" stroke-width="5"/><circle cx="300" cy="650" r="9" style="fill:var(--bg0);stroke:var(--base)" stroke-width="5"/><circle cx="520" cy="650" r="9" style="fill:var(--bg0);stroke:var(--base)" stroke-width="5"/><circle cx="760" cy="650" r="9" style="fill:var(--bg0);stroke:var(--base)" stroke-width="5"/><circle cx="900" cy="650" r="9" style="fill:var(--bg0);stroke:var(--base)" stroke-width="5"/><circle cx="1060" cy="490" r="9" style="fill:var(--bg0);stroke:var(--base)" stroke-width="5"/><circle cx="1300" cy="490" r="9" style="fill:var(--bg0);stroke:var(--base)" stroke-width="5"/><rect x="416" y="586" width="28" height="28" rx="14" style="fill:var(--bg0);stroke:var(--ink)" stroke-width="4"/><rect x="586" y="306" width="28" height="28" rx="14" style="fill:var(--bg0);stroke:var(--ink)" stroke-width="4"/><rect x="1046" y="476" width="28" height="28" rx="14" style="fill:var(--bg0);stroke:var(--ink)" stroke-width="4"/><rect x="1136" y="636" width="28" height="28" rx="14" style="fill:var(--bg0);stroke:var(--ink)" stroke-width="4"/><rect x="776" y="636" width="28" height="28" rx="14" style="fill:var(--bg0);stroke:var(--ink)" stroke-width="4"/><rect x="-13" y="-6" width="26" height="12" rx="6" style="fill:var(--ai)" class="hb-train"><animateMotion dur="26s" begin="0s" repeatCount="indefinite" rotate="auto"><mpath href="#bg-ai"/></animateMotion></rect><rect x="-13" y="-6" width="26" height="12" rx="6" style="fill:var(--base)" class="hb-train"><animateMotion dur="30s" begin="-8s" repeatCount="indefinite" rotate="auto"><mpath href="#bg-base"/></animateMotion></rect><rect x="-13" y="-6" width="26" height="12" rx="6" style="fill:var(--sw)" class="hb-train"><animateMotion dur="22s" begin="-5s" repeatCount="indefinite" rotate="auto"><mpath href="#bg-sw"/></animateMotion></rect><rect x="-13" y="-6" width="26" height="12" rx="6" style="fill:var(--sys)" class="hb-train"><animateMotion dur="24s" begin="-12s" repeatCount="indefinite" rotate="auto"><mpath href="#bg-sys"/></animateMotion></rect><rect x="-13" y="-6" width="26" height="12" rx="6" style="fill:var(--net)" class="hb-train"><animateMotion dur="20s" begin="-3s" repeatCount="indefinite" rotate="auto"><mpath href="#bg-net"/></animateMotion></rect></svg>
+<section class="hero">
+<p class="kicker">컴퓨터학부 2026 교육과정</p>
+<h1>들은 과목을 넣으면<br>다음 학기가 보여요</h1>
+<p class="lead">수강 내역과 관심 분야로 내 전공 노선도를 그리고, 선수과목과 졸업요건에 맞춰 다음 학기 과목을 추천해요.</p>
+<div class="hero-cta"><button type="button" class="gbtn" data-login><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span>Google 계정으로 로그인</span></button></div>
+<p class="hero-note">처음 로그인하면 전공·학번, 수강 내역, 관심 분야를 한 번만 설정해요.</p>
+</section>
+<div class="stage" id="stage" role="region" aria-label="기능 미리보기">
+<div class="ring">
+<a class="pv pv-map" style="--i:0" href="#roadmap"><span class="pv-h">결과 · 내 전공 노선도</span><span class="pv-t">지나온 역과 다음 학기 추천역</span><span class="pv-b" style="padding:6px 6px 4px"><svg viewBox="0 0 268 158" width="100%" height="100%" role="img" aria-label="노선도 미리보기: 2학년까지 이수, 3학년 1학기 추천 과목 알고리즘1과 기계학습개론"><defs><marker id="mmArrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><polygon class="arrow-fill" points="0,0 10,5 0,10"/></marker></defs><text x="60.5" y="10" text-anchor="middle" style="fill:var(--muted);font-size:7.5px;font-weight:700">1학년</text><rect x="90" y="14" width="57" height="140" style="fill:var(--bg3);opacity:.45"/><text x="118.5" y="10" text-anchor="middle" style="fill:var(--muted);font-size:7.5px;font-weight:700">2학년</text><text x="176.5" y="10" text-anchor="middle" style="fill:var(--muted);font-size:7.5px;font-weight:700">3학년</text><rect x="206" y="14" width="57" height="140" style="fill:var(--bg3);opacity:.45"/><text x="234.5" y="10" text-anchor="middle" style="fill:var(--muted);font-size:7.5px;font-weight:700">4학년</text><line x1="147.5" y1="18" x2="147.5" y2="150" style="stroke:var(--muted)" stroke-width="1" stroke-dasharray="2 2"/><text x="2" y="45" style="fill:var(--ink);font-size:7.5px;font-weight:700">기초</text><line x1="46" y1="42" x2="249" y2="42" style="stroke:var(--base)" stroke-width="4"/><text x="2" y="81" style="fill:var(--ink);font-size:7.5px;font-weight:700">AI</text><line x1="46" y1="78" x2="249" y2="78" style="stroke:var(--ai)" stroke-width="4"/><text x="2" y="113" style="fill:var(--ink);font-size:7.5px;font-weight:700">시스템</text><line x1="46" y1="110" x2="249" y2="110" style="stroke:var(--sys)" stroke-width="4"/><text x="2" y="139" style="fill:var(--ink);font-size:7.5px;font-weight:700">SW</text><line x1="46" y1="136" x2="249" y2="136" style="stroke:var(--sw)" stroke-width="4"/><path d="M104 42 C124 28 136 28 154 39" fill="none" style="stroke:var(--arrow)" stroke-width="1.6" stroke-dasharray="3 2" marker-end="url(#mmArrow)"/><path d="M104 78 C126 94 136 94 154 81" fill="none" style="stroke:var(--arrow)" stroke-width="1.6" stroke-dasharray="3 2" marker-end="url(#mmArrow)"/><circle cx="46" cy="42" r="5" style="fill:var(--base)"/><circle cx="75" cy="42" r="5" style="fill:var(--base)"/><circle cx="104" cy="42" r="5" style="fill:var(--base)"/><circle cx="162" cy="42" r="8.5" fill="none" style="stroke:var(--yel)" stroke-width="2"><animate attributeName="r" values="7;10;7" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.3;1" dur="1.6s" repeatCount="indefinite"/></circle><circle cx="162" cy="42" r="5" style="fill:var(--bg1);stroke:var(--base)" stroke-width="3"/><path d="M0 -6 L1.5 -1.5 L6 0 L1.5 1.5 L0 6 L-1.5 1.5 L-6 0 L-1.5 -1.5 Z" transform="translate(170 34)" fill="#ffb800"><animateTransform attributeName="transform" type="scale" additive="sum" values=".5;1.1;.5" dur="1.4s" repeatCount="indefinite"/></path><rect x="133.0" y="50" width="58.0" height="11" rx="2" fill="#ffc21a"/><text x="162" y="58.2" text-anchor="middle" style="font-size:7px;font-weight:700" fill="#0f172a">알고리즘1 · 추천</text><circle cx="191" cy="42" r="4.2" style="fill:var(--bg1);stroke:var(--base)" stroke-width="2.4"/><circle cx="249" cy="42" r="4" style="fill:var(--bg1);stroke:#64748b" stroke-width="1.8" stroke-dasharray="2 1.6"/><circle cx="46" cy="78" r="5" style="fill:var(--ai)"/><circle cx="75" cy="78" r="5" style="fill:var(--ai)"/><circle cx="104" cy="78" r="5" style="fill:var(--ai)"/><circle cx="133" cy="78" r="5" style="fill:var(--ai)"/><circle cx="162" cy="78" r="8.5" fill="none" style="stroke:var(--yel)" stroke-width="2"><animate attributeName="r" values="7;10;7" dur="1.6s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.3;1" dur="1.6s" repeatCount="indefinite"/></circle><circle cx="162" cy="78" r="5" style="fill:var(--bg1);stroke:var(--ai)" stroke-width="3"/><path d="M0 -6 L1.5 -1.5 L6 0 L1.5 1.5 L0 6 L-1.5 1.5 L-6 0 L-1.5 -1.5 Z" transform="translate(170 70)" fill="#ffb800"><animateTransform attributeName="transform" type="scale" additive="sum" values=".5;1.1;.5" dur="1.4s" repeatCount="indefinite"/></path><rect x="129.4" y="86" width="65.2" height="11" rx="2" fill="#ffc21a"/><text x="162" y="94.2" text-anchor="middle" style="font-size:7px;font-weight:700" fill="#0f172a">기계학습개론 · 추천</text><circle cx="191" cy="78" r="4" style="fill:var(--bg1);stroke:#64748b" stroke-width="1.8" stroke-dasharray="2 1.6"/><circle cx="220" cy="78" r="4" style="fill:var(--bg1);stroke:#64748b" stroke-width="1.8" stroke-dasharray="2 1.6"/><circle cx="249" cy="78" r="4" style="fill:var(--bg1);stroke:#64748b" stroke-width="1.8" stroke-dasharray="2 1.6"/><circle cx="104" cy="110" r="5" style="fill:var(--sys)"/><circle cx="133" cy="110" r="5" style="fill:var(--sys)"/><circle cx="141.5" cy="110" r="4.2" style="fill:var(--bg1);stroke:var(--sys)" stroke-width="2.4"/><circle cx="162" cy="110" r="4" style="fill:var(--bg1);stroke:#64748b" stroke-width="1.8" stroke-dasharray="2 1.6"/><circle cx="249" cy="110" r="4.2" style="fill:var(--bg1);stroke:var(--sys)" stroke-width="2.4"/><circle cx="104" cy="136" r="5" style="fill:var(--sw)"/><circle cx="133" cy="136" r="4.2" style="fill:var(--bg1);stroke:var(--sw)" stroke-width="2.4"/><circle cx="162" cy="136" r="4" style="fill:var(--bg1);stroke:#64748b" stroke-width="1.8" stroke-dasharray="2 1.6"/><circle cx="191" cy="136" r="4.2" style="fill:var(--bg1);stroke:var(--sw)" stroke-width="2.4"/><rect x="130.5" y="146" width="34" height="10" rx="2" style="fill:var(--ink)"/><text x="147.5" y="153.3" text-anchor="middle" style="font-size:6.5px;font-weight:700;fill:var(--bg1)">지금 여기</text></svg></span></a><a class="pv" style="--i:1" href="#roadmap"><span class="pv-h">결과 · 추천 이유</span><span class="pv-t">왜 이 과목인지 바로 확인</span><span class="pv-b"><span class="mm-pop"><b>기계학습개론</b><span>전공필수</span><span>관심 분야(AI·데이터)</span><span>후수 4과목의 선수과목</span></span></span></a><a class="pv" style="--i:2" href="#progress"><span class="pv-h">결과 · 졸업요건</span><span class="pv-t">졸업까지 얼마나 남았나</span><span class="pv-b"><span class="mm-bar" style="display:block"><div><span>전공필수</span><span class="mono">3 / 7</span></div><p><i style="width:43%"></i></p></span><span class="mm-bar" style="display:block;--c:var(--ai)"><div><span>AI·데이터</span><span class="mono">18 / 45</span></div><p><i style="width:40%"></i></p></span><span class="mm-bar" style="display:block;--c:var(--sys)"><div><span>시스템</span><span class="mono">6 / 21</span></div><p><i style="width:29%"></i></p></span><span class="mm-bar" style="display:block;--c:var(--sw)"><div><span>소프트웨어·웹</span><span class="mono">3 / 15</span></div><p><i style="width:20%"></i></p></span></span></a><a class="pv" style="--i:3" href="#courses"><span class="pv-h">STEP 2 · 수강 내역</span><span class="pv-t">시간표 링크로 한 번에</span><span class="pv-b"><span class="mm-in" style="display:block">everytime.kr/@xxxxxxxx</span><span class="mm-row"><i class="mm-ck"></i>자료구조<span class="mono" style="margin-left:auto;color:var(--muted)">COME0331</span></span><span class="mm-row"><i class="mm-ck"></i>선형대수<span class="mono" style="margin-left:auto;color:var(--muted)">MTED0231</span></span><span class="mm-row"><i class="mm-ck o"></i>오토마타및형식언어<span class="mono" style="margin-left:auto;color:var(--muted)">COMP0315</span></span></span></a><a class="pv" style="--i:4" href="#interests"><span class="pv-h">STEP 3 · 관심 분야</span><span class="pv-t">관심 있는 노선을 골라요</span><span class="pv-b"><span class="mm-chips"><span class="mm-chip on" style="--c:var(--ai)"><i></i>AI·데이터</span><span class="mm-chip" style="--c:var(--sys)"><i></i>시스템</span><span class="mm-chip" style="--c:var(--net)"><i></i>네트워크·보안</span><span class="mm-chip on" style="--c:var(--sw)"><i></i>소프트웨어·웹</span></span></span></a><a class="pv" style="--i:5" href="#recommend"><span class="pv-h">결과 · 다음 학기 추천</span><span class="pv-t">3-1에 들을 과목 순위</span><span class="pv-b"><span class="mm-rank"><em>01</em>인공지능<u>추천</u></span><span class="mm-rank"><em>02</em>기계학습개론<u>추천</u></span><span class="mm-rank"><em>03</em>알고리즘1<u>추천</u></span><span class="mm-rank"><em>04</em>영상이해<u>추천</u></span></span></a>
+
+</div>
+</div>
+<div class="spin-ctl"><span>로그인하면 내 수강 내역으로 이 화면들을 볼 수 있어요</span><button type="button" class="btn btn-sm" id="spinBtn" aria-pressed="false">회전 멈춤</button></div>
+</div>
+<div class="view" id="view-setup" data-title="전공 선택">
+<main class="wrap">
+<p class="kicker only-onb">처음 설정 1 / 3</p><p class="kicker only-edit">회원정보 변경</p>
+<h1>세부전공과 학기 선택</h1>
+<p class="lead">전공마다 교육과정·이수구분·졸업요건이 달라서 먼저 골라야 해요.</p>
+
+<section class="sec">
+<div class="fields">
+<label class="field"><span>학번</span><select><option>2023학번</option></select></label>
+<label class="field"><span>적용 교육과정</span><select><option>2026 교육과정</option></select></label>
+<label class="field"><span>다음에 들을 학기</span><select><option>3학년 1학기</option></select></label>
+</div>
+</section>
+
+<section class="sec">
+<fieldset style="border:0;padding:0;margin:0">
+<legend><h2 style="margin:0 0 6px">세부전공</h2></legend>
+<label class="opt"><input type="radio" name="major" checked><span>인공지능컴퓨팅전공</span><span class="meta">과목 50개 · 전공필수 7개</span></label><label class="opt"><input type="radio" name="major"><span>심화컴퓨팅전공</span><span class="meta">과목 45개 · 전공필수 2개</span></label><label class="opt"><input type="radio" name="major"><span>첨단컴퓨팅연구전공</span><span class="meta">과목 40개 · 전공필수 2개</span></label><label class="opt"><input type="radio" name="major"><span>글로벌소프트웨어융합전공</span><span class="meta">과목 52개 · 전공필수 2개</span></label><label class="opt"><input type="radio" name="major"><span>플랫폼소프트웨어전공</span><span class="meta">과목 44개 · 전공필수 0개</span></label>
+</fieldset>
+<p class="hint">과목 수는 2026 교육과정 데이터 기준(전공 개설 + 공통 개설)입니다.</p>
+</section>
+
+<div class="actions"><span class="only-onb"></span><a class="btn btn-primary only-onb" href="#courses">다음: 수강 내역</a><a class="btn only-edit" href="#account">취소</a><a class="btn btn-primary only-edit" href="#account">저장</a></div>
+</main>
+</div>
+<div class="view" id="view-courses" data-title="수강 내역">
+<div class="ctx"><div class="ctx-in">예시 학생 · 2023학번 · 인공지능컴퓨팅전공 · 2학년 2학기까지 이수 (14과목 45학점)</div></div>
+<main class="wrap">
+<p class="kicker only-onb">처음 설정 2 / 3</p><p class="kicker only-edit">회원정보 변경</p>
+<h1>수강 내역 불러오기</h1>
+<p class="lead">세 가지 방법 중 하나로 불러온 뒤, 아래 목록에서 빠진 과목을 고쳐 주세요.</p>
+
+<section class="sec">
+<div class="tabs" role="tablist" aria-label="불러오기 방법">
+<button type="button" role="tab" aria-selected="true">에브리타임 시간표 URL</button>
+<button type="button" role="tab" aria-selected="false">성적증명서 PDF</button>
+<button type="button" role="tab" aria-selected="false">시간표 캡처 이미지</button>
+</div>
+<label class="field"><span>시간표 공유 링크 (학기마다 하나씩)</span></label>
+<div class="urlrow">
+<input type="url" aria-label="에브리타임 시간표 URL" value="https://everytime.kr/@xxxxxxxxxxxx">
+<button type="button" class="btn">링크 추가</button>
+<button type="button" class="btn btn-primary">불러오기</button>
+</div>
+<div class="notice"><b>4개 학기 · 14과목</b>을 찾았어요. 교육과정에 없는 교양 과목 6개는 제외했습니다.</div>
+</section>
+
+<section class="sec">
+<div class="sec-h"><h2>이수한 전공 과목</h2><button type="button" class="btn btn-sm">과목 직접 추가</button></div>
+<p class="hint" style="margin:0">체크를 해제하면 들은 과목에서 빠져요. 회색 줄은 같은 학기 권장 과목 중 아직 안 들은 과목입니다.</p>
+<div class="term"><div class="term-h"><h3>1-1</h3><span>3과목 체크 · 9학점</span></div><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--base)" aria-hidden="true"></i>컴퓨팅사고와 SW코딩</span><span class="cd">COMP0453</span><span>3학점</span><span class="ty">전공필수</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--base)" aria-hidden="true"></i>이산수학</span><span class="cd">COME0301</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--ai)" aria-hidden="true"></i>인공지능과컴퓨팅</span><span class="cd">COMP0218</span><span>3학점</span><span class="ty">전공</span></label></div><div class="term"><div class="term-h"><h3>1-2</h3><span>3과목 체크 · 12학점</span></div><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--base)" aria-hidden="true"></i>프로그래밍기초</span><span class="cd">COMP0204</span><span>6학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--base)" aria-hidden="true"></i>기초창의공학설계</span><span class="cd">COMP0205</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--ai)" aria-hidden="true"></i>인공지능수학기초</span><span class="cd">COMP0454</span><span>3학점</span><span class="ty">전공필수</span></label></div><div class="term"><div class="term-h"><h3>2-1</h3><span>5과목 체크 · 15학점</span></div><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--base)" aria-hidden="true"></i>자료구조</span><span class="cd">COME0331</span><span>3학점</span><span class="ty">전공필수</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--base)" aria-hidden="true"></i>자료구조응용</span><span class="cd">COMP0216</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--ai)" aria-hidden="true"></i>선형대수</span><span class="cd">MTED0231</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--sys)" aria-hidden="true"></i>컴퓨터구조</span><span class="cd">COMP0411</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--sw)" aria-hidden="true"></i>자바프로그래밍</span><span class="cd">COMP0217</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox"><span class="nm"><i class="sw" style="--c:var(--sys)" aria-hidden="true"></i>오토마타및형식언어</span><span class="cd">COMP0315</span><span>3학점</span><span class="ty">전공</span></label></div><div class="term"><div class="term-h"><h3>2-2</h3><span>3과목 체크 · 9학점</span></div><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--ai)" aria-hidden="true"></i>확률및통계</span><span class="cd">COME0311</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--sys)" aria-hidden="true"></i>운영체제</span><span class="cd">COMP0312</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox" checked><span class="nm"><i class="sw" style="--c:var(--ai)" aria-hidden="true"></i>데이터과학기초</span><span class="cd">ITEC0419</span><span>3학점</span><span class="ty">전공</span></label><label class="crow"><input type="checkbox"><span class="nm"><i class="sw" style="--c:var(--ai)" aria-hidden="true"></i>인공지능</span><span class="cd">COMP0324</span><span>3학점</span><span class="ty">전공필수</span></label><label class="crow"><input type="checkbox"><span class="nm"><i class="sw" style="--c:var(--sys)" aria-hidden="true"></i>시스템프로그래밍</span><span class="cd">ELEC0462</span><span>3학점</span><span class="ty">전공</span></label></div>
+</section>
+</main>
+<div class="sumbar"><div class="sumbar-in">
+<span><b>14과목 · 45학점</b> 선택됨</span>
+<span style="display:flex;gap:8px"><a class="btn only-onb" href="#setup">이전</a><a class="btn btn-primary only-onb" href="#interests">다음: 관심 분야</a><a class="btn only-edit" href="#account">취소</a><a class="btn btn-primary only-edit" href="#account">저장</a></span>
+</div></div>
+</div>
+<div class="view" id="view-interests" data-title="관심 분야">
+<div class="ctx"><div class="ctx-in">예시 학생 · 2023학번 · 인공지능컴퓨팅전공 · 2학년 2학기까지 이수 (14과목 45학점)</div></div>
+<main class="wrap">
+<p class="kicker only-onb">처음 설정 3 / 3</p><p class="kicker only-edit">회원정보 변경</p>
+<h1>관심 분야 선택</h1>
+<p class="lead">고른 분야의 노선이 노선도에서 강조되고, 추천 순위에 반영돼요. 여러 개 골라도 됩니다.</p>
+<section class="sec">
+<div class="icards"><label class="icard" style="--c:var(--ai)"><span class="row"><input type="checkbox" checked>AI·데이터</span><p>수학 기초부터 기계학습, 딥러닝, 비전, 자연어처리까지</p><ul><li>기계학습개론<span>3-1</span></li><li>딥러닝<span>3-2</span></li><li>신경망개론<span>4-1</span></li><li>자연어처리개론<span>4-2</span></li></ul></label><label class="icard" style="--c:var(--sys)"><span class="row"><input type="checkbox">시스템</span><p>컴퓨터구조, 운영체제, 시스템프로그래밍, 컴파일러</p><ul><li>시스템프로그래밍<span>2-2</span></li><li>컴파일러<span>3-1</span></li><li>대규모병렬컴퓨팅<span>4-2</span></li><li>클라우드컴퓨팅<span>4-2</span></li></ul></label><label class="icard" style="--c:var(--net)"><span class="row"><input type="checkbox">네트워크·보안</span><p>데이터통신, 컴퓨터망, 네트워크 프로그래밍, 정보보호</p><ul><li>데이타통신<span>3-1</span></li><li>네트워크프로그래밍<span>3-2</span></li><li>컴퓨터망<span>4-1</span></li><li>정보보호론<span>4-2</span></li></ul></label><label class="icard" style="--c:var(--sw)"><span class="row"><input type="checkbox" checked>소프트웨어·웹</span><p>소프트웨어 설계, 데이터베이스, 웹·모바일 개발</p><ul><li>소프트웨어설계<span>2-2</span></li><li>소프트웨어공학<span>3-1</span></li><li>데이타베이스<span>3-2</span></li><li>모바일앱프로그래밍1<span>3-2</span></li></ul></label></div>
+<p class="hint">각 분야 아래 과목과 학기는 인공지능컴퓨팅전공의 권장 학기입니다.</p>
+</section>
+<div class="actions"><a class="btn only-onb" href="#courses">이전</a><a class="btn btn-primary only-onb" href="#roadmap" data-finish>설정 완료하고 노선도 보기</a><a class="btn only-edit" href="#account">취소</a><a class="btn btn-primary only-edit" href="#account">저장</a></div>
+</main>
+</div>
+<div class="view" id="view-roadmap" data-title="노선도">
+<div class="ctx"><div class="ctx-in">예시 학생 · 2023학번 · 인공지능컴퓨팅전공 · 2학년 2학기까지 이수 (14과목 45학점)</div></div>
+<main class="wrap wide">
+<p class="kicker">결과 1 / 3</p>
+<h1>내 전공 노선도</h1>
+<p class="lead">반짝이는 역이 다음 학기 추천 과목이에요. 누르면 추천 이유가 나오고, 초록 화살표는 들은 과목에서 추천 과목으로 이어지는 길입니다. 확대·축소는 버튼이나 Ctrl(⌘)+휠, 이동은 드래그로 할 수 있어요.</p>
+<div class="tools">
+<ul class="legend">
+<li><span class="lg done"></span>이수 완료</li>
+<li><span class="lg rec"></span>다음 학기 추천</li>
+<li><span class="lg"></span>수강 가능</li>
+<li><span class="lg lock"></span>선수과목 필요</li>
+<li><svg width="30" height="12" viewBox="0 0 30 12" aria-hidden="true"><line class="arrow-stroke" x1="1" y1="6" x2="22" y2="6" stroke-width="2.5" stroke-dasharray="5 4"/><polygon class="arrow-fill" points="20,1 29,6 20,11"/></svg>추천 경로</li>
+</ul>
+<div class="tool-r">
+<label class="chk"><input type="checkbox" id="dimOthers" checked>관심 분야만 진하게</label>
+<label class="chk"><input type="checkbox" id="showArrows" checked>추천 경로 화살표</label>
+<div class="zoom" role="group" aria-label="노선도 확대·축소">
+<button type="button" class="btn" id="zoomOut" aria-label="축소">−</button>
+<button type="button" class="btn" id="zoomReset" aria-label="100%로 되돌리기">100%</button>
+<button type="button" class="btn" id="zoomIn" aria-label="확대">+</button>
+<button type="button" class="btn" id="zoomFit">화면 맞춤</button>
+</div>
+</div>
+</div>
+<div class="rm">
+<div class="map-scroll"><div class="map-sizer" id="mapSizer"><div class="map" id="map"><svg class="edges" aria-hidden="true"></svg><div class="mhead"><div></div><div class="yr"><b>1학년</b><span>1학기</span><span>2학기</span></div><div class="yr y-even"><b>2학년</b><span>1학기</span><span>2학기</span></div><div class="yr"><b>3학년</b><span>1학기</span><span>2학기</span></div><div class="yr y-even"><b>4학년</b><span>1학기</span><span>2학기</span></div></div><div class="trow" style="--c:var(--base)"><div class="tlab"><i class="sw"></i><span>공통 기초</span></div><div class="cell"><button type="button" class="st is-done" data-code="COMP0453" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">컴퓨팅사고와 SW코딩</span><span class="cd">COMP0453</span></button><button type="button" class="st is-done" data-code="COME0301" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">이산수학</span><span class="cd">COME0301</span></button></div><div class="cell"><button type="button" class="st is-done" data-code="COMP0204" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">프로그래밍기초</span><span class="cd">COMP0204</span></button><button type="button" class="st is-done" data-code="COMP0205" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">기초창의공학설계</span><span class="cd">COMP0205</span></button></div><div class="cell y-even"><button type="button" class="st is-done" data-code="COME0331" data-pre="COMP0204 COMP0453" aria-pressed="false"><span class="dot"></span><span class="nm">자료구조</span><span class="cd">COME0331</span></button><button type="button" class="st is-done" data-code="COMP0216" data-pre="COME0331" aria-pressed="false"><span class="dot"></span><span class="nm">자료구조응용</span><span class="cd">COMP0216</span></button></div><div class="cell y-even"></div><div class="cell"><button type="button" class="st is-rec" data-code="COMP0319" data-rank="3" data-why="전공필수|권장 학기 3-1|선수과목 자료구조 이수 완료" data-off="1학기 개설" data-pre="COME0331" aria-pressed="false"><span class="dot"></span><span class="nm">알고리즘1 <em class="tag">추천</em></span><span class="cd">COMP0319</span></button></div><div class="cell"><button type="button" class="st is-open" data-code="ITEC0401" data-pre="COMP0216" aria-pressed="false"><span class="dot"></span><span class="nm">종합설계프로젝트1</span><span class="cd">ITEC0401</span></button></div><div class="cell y-even"></div><div class="cell y-even"><button type="button" class="st is-lock" data-code="ITEC0402" data-pre="ITEC0401" aria-pressed="false"><span class="dot"></span><span class="nm">종합설계프로젝트2</span><span class="cd">ITEC0402</span></button></div></div><div class="trow" style="--c:var(--ai)"><div class="tlab"><i class="sw"></i><span>AI·데이터</span></div><div class="cell"><button type="button" class="st is-done" data-code="COMP0218" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">인공지능과컴퓨팅</span><span class="cd">COMP0218</span></button></div><div class="cell"><button type="button" class="st is-done" data-code="COMP0454" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">인공지능수학기초</span><span class="cd">COMP0454</span></button></div><div class="cell y-even"><button type="button" class="st is-done" data-code="MTED0231" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">선형대수</span><span class="cd">MTED0231</span></button></div><div class="cell y-even"><button type="button" class="st is-done" data-code="COME0311" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">확률및통계</span><span class="cd">COME0311</span></button><button type="button" class="st is-done" data-code="ITEC0419" data-pre="COME0311" aria-pressed="false"><span class="dot"></span><span class="nm">데이터과학기초</span><span class="cd">ITEC0419</span></button><button type="button" class="st is-rec" data-code="COMP0324" data-rank="1" data-why="전공필수|권장 학기 2-2가 지난 과목|후수 1과목의 선수과목" data-off="1·2학기 개설" data-pre="COME0331" aria-pressed="false"><span class="dot"></span><span class="nm">인공지능 <em class="tag">추천</em></span><span class="cd">COMP0324</span></button></div><div class="cell"><button type="button" class="st is-rec" data-code="ITEC0417" data-rank="2" data-why="전공필수|관심 분야(AI·데이터)|딥러닝·강화학습·신경망·자연어처리의 선수과목" data-off="1·2학기 개설" data-pre="MTED0231 COMP0454 COME0311" aria-pressed="false"><span class="dot"></span><span class="nm">기계학습개론 <em class="tag">추천</em></span><span class="cd">ITEC0417</span></button><button type="button" class="st is-rec" data-code="CAIB0233" data-rank="4" data-why="관심 분야(AI·데이터)|권장 학기 3-1|컴퓨터비전의 선수과목" data-off="1학기 개설" data-pre="MTED0231" aria-pressed="false"><span class="dot"></span><span class="nm">영상이해 <em class="tag">추천</em></span><span class="cd">CAIB0233</span></button></div><div class="cell"><button type="button" class="st is-lock" data-code="MOBI0224" data-pre="ITEC0417" aria-pressed="false"><span class="dot"></span><span class="nm">딥러닝</span><span class="cd">MOBI0224</span></button><button type="button" class="st is-lock" data-code="CAIB0216" data-pre="ITEC0417" aria-pressed="false"><span class="dot"></span><span class="nm">강화학습개론</span><span class="cd">CAIB0216</span></button></div><div class="cell y-even"><button type="button" class="st is-lock" data-code="CAIB0234" data-pre="ITEC0417" aria-pressed="false"><span class="dot"></span><span class="nm">신경망개론</span><span class="cd">CAIB0234</span></button><button type="button" class="st is-lock" data-code="CAIB0222" data-pre="MOBI0224" aria-pressed="false"><span class="dot"></span><span class="nm">인공지능시스템</span><span class="cd">CAIB0222</span></button></div><div class="cell y-even"><button type="button" class="st is-lock" data-code="CAIB0211" data-pre="ITEC0417" aria-pressed="false"><span class="dot"></span><span class="nm">자연어처리개론</span><span class="cd">CAIB0211</span></button><button type="button" class="st is-lock" data-code="ITEC0424" data-pre="MOBI0224 CAIB0233" aria-pressed="false"><span class="dot"></span><span class="nm">컴퓨터비전</span><span class="cd">ITEC0424</span></button></div></div><div class="trow is-dim" style="--c:var(--sys)"><div class="tlab"><i class="sw"></i><span>시스템</span></div><div class="cell"></div><div class="cell"></div><div class="cell y-even"><button type="button" class="st is-done" data-code="COMP0411" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">컴퓨터구조</span><span class="cd">COMP0411</span></button><button type="button" class="st is-open" data-code="COMP0315" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">오토마타및형식언어</span><span class="cd">COMP0315</span></button></div><div class="cell y-even"><button type="button" class="st is-done" data-code="COMP0312" data-pre="COME0331 COMP0411" aria-pressed="false"><span class="dot"></span><span class="nm">운영체제</span><span class="cd">COMP0312</span></button><button type="button" class="st is-open" data-code="ELEC0462" data-pre="COMP0411" aria-pressed="false"><span class="dot"></span><span class="nm">시스템프로그래밍</span><span class="cd">ELEC0462</span></button></div><div class="cell"><button type="button" class="st is-lock" data-code="COMP0321" data-pre="COMP0315" aria-pressed="false"><span class="dot"></span><span class="nm">컴파일러</span><span class="cd">COMP0321</span></button></div><div class="cell"></div><div class="cell y-even"></div><div class="cell y-even"><button type="button" class="st is-open" data-code="GLSO0227" data-pre="COMP0312" aria-pressed="false"><span class="dot"></span><span class="nm">클라우드컴퓨팅</span><span class="cd">GLSO0227</span></button></div></div><div class="trow is-dim" style="--c:var(--net)"><div class="tlab"><i class="sw"></i><span>네트워크·보안</span></div><div class="cell"></div><div class="cell"></div><div class="cell y-even"></div><div class="cell y-even"></div><div class="cell"><button type="button" class="st is-open" data-code="COMP0323" data-pre="" aria-pressed="false"><span class="dot"></span><span class="nm">데이타통신</span><span class="cd">COMP0323</span></button></div><div class="cell"><button type="button" class="st is-lock" data-code="EECS0312" data-pre="COMP0323" aria-pressed="false"><span class="dot"></span><span class="nm">네트워크프로그래밍</span><span class="cd">EECS0312</span></button></div><div class="cell y-even"><button type="button" class="st is-lock" data-code="COMP0414" data-pre="COMP0323" aria-pressed="false"><span class="dot"></span><span class="nm">컴퓨터망</span><span class="cd">COMP0414</span></button></div><div class="cell y-even"><button type="button" class="st is-lock" data-code="COME0368" data-pre="COMP0414" aria-pressed="false"><span class="dot"></span><span class="nm">정보보호론</span><span class="cd">COME0368</span></button></div></div><div class="trow" style="--c:var(--sw)"><div class="tlab"><i class="sw"></i><span>소프트웨어·웹</span></div><div class="cell"></div><div class="cell"></div><div class="cell y-even"><button type="button" class="st is-done" data-code="COMP0217" data-pre="COMP0204" aria-pressed="false"><span class="dot"></span><span class="nm">자바프로그래밍</span><span class="cd">COMP0217</span></button></div><div class="cell y-even"><button type="button" class="st is-open" data-code="COMP0224" data-pre="COMP0217" aria-pressed="false"><span class="dot"></span><span class="nm">소프트웨어설계</span><span class="cd">COMP0224</span></button></div><div class="cell"><button type="button" class="st is-lock" data-code="COMP0422" data-pre="COMP0224" aria-pressed="false"><span class="dot"></span><span class="nm">소프트웨어공학</span><span class="cd">COMP0422</span></button></div><div class="cell"><button type="button" class="st is-open" data-code="COMP0322" data-pre="COME0331" aria-pressed="false"><span class="dot"></span><span class="nm">데이타베이스</span><span class="cd">COMP0322</span></button><button type="button" class="st is-open" data-code="COMP0328" data-pre="COMP0217" aria-pressed="false"><span class="dot"></span><span class="nm">모바일앱프로그래밍1</span><span class="cd">COMP0328</span></button></div><div class="cell y-even"></div><div class="cell y-even"></div></div><div class="rec-pop" id="recPop" role="dialog" aria-label="추천 이유" hidden></div></div></div></div>
+<aside class="detail" aria-label="선택한 과목">
+<div>
+<p class="kicker">과목 상세 예시 · ITEC0417 · AI·데이터</p>
+<h2>기계학습개론</h2>
+<dl class="facts">
+<dt>학점</dt><dd>3학점 (이론 3 · 실습 0)</dd>
+<dt>이수구분</dt><dd>전공필수</dd>
+<dt>권장 학기</dt><dd>3학년 1학기</dd>
+<dt>개설</dt><dd>1학기, 2학기</dd>
+<dt>상태</dt><dd>수강 가능 · 다음 학기 추천</dd>
+</dl>
+<button type="button" class="btn btn-primary block">이수한 과목으로 표시</button>
+</div>
+<div>
+<h3>선수과목</h3>
+<ul class="reqs">
+<li>선형대수 또는 인공지능수학기초<span class="ok y">이수</span></li>
+<li>확률및통계<span class="ok y">이수</span></li>
+</ul>
+<p class="note">선수·후수 관계는 데이터셋에 없어 예시로 넣었습니다. 학과 이수체계도로 확정해야 해요.</p>
+</div>
+<div>
+<h3>이 과목을 들으면 열리는 과목</h3>
+<ul class="reqs">
+<li>딥러닝<span class="mono" style="font-size:12px">3-2</span></li>
+<li>강화학습개론<span class="mono" style="font-size:12px">3-2</span></li>
+<li>신경망개론<span class="mono" style="font-size:12px">4-1</span></li>
+<li>자연어처리개론<span class="mono" style="font-size:12px">4-2</span></li>
+</ul>
+</div>
+</aside>
+</div>
+<div class="actions"><a class="btn" href="#account">회원정보 변경</a><a class="btn btn-primary" href="#progress">졸업요건 보기</a></div>
+</main>
+</div>
+<div class="view" id="view-account" data-title="회원정보 변경">
+<main class="wrap">
+<p class="kicker">계정</p>
+<h1>회원정보 변경</h1>
+<p class="lead">처음 로그인할 때 설정한 내용을 바꿀 수 있어요. 바꾸면 노선도와 추천이 다시 계산돼요.</p>
+<section class="acct-card">
+<i class="avatar avatar-lg" aria-hidden="true">홍</i>
+<div><b>홍길동</b><span>demo@example.invalid</span><small><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Google 계정으로 로그인됨</small></div>
+</section>
+<section class="sec">
+<ul class="set-list">
+<li><div><b>전공·학번</b><span>인공지능컴퓨팅전공 · 2023학번 · 다음 학기 3학년 1학기</span></div><a class="btn btn-sm" href="#setup">변경</a></li>
+<li><div><b>수강 내역</b><span>14과목 · 45학점 (2학년 2학기까지)</span></div><a class="btn btn-sm" href="#courses">변경</a></li>
+<li><div><b>관심 분야</b><span class="chips"><i style="--c:var(--ai)"></i>AI·데이터 <i style="--c:var(--sw)"></i>소프트웨어·웹</span></div><a class="btn btn-sm" href="#interests">변경</a></li>
+</ul>
+</section>
+<section class="sec">
+<ul class="set-list">
+<li><div><b>로그아웃</b><span>이 기기에서 로그아웃해요.</span></div><button type="button" class="btn btn-sm" data-logout>로그아웃</button></li>
+<li><div><b>처음 로그인 흐름 다시 보기</b><span>발표용: 설정을 지우고 처음 로그인한 상태로 되돌려요.</span></div><button type="button" class="btn btn-sm" data-reset>초기화</button></li>
+</ul>
+</section>
+</main>
+</div>
+<div class="view" id="view-progress" data-title="졸업요건">
+<div class="ctx"><div class="ctx-in">예시 학생 · 2023학번 · 인공지능컴퓨팅전공 · 2학년 2학기까지 이수 (14과목 45학점)</div></div>
+<main class="wrap">
+<p class="kicker">결과 2 / 3</p>
+<h1>졸업요건 진행 상황</h1>
+<p class="lead">인공지능컴퓨팅전공 · 2026 교육과정 기준</p>
+
+<div class="stats">
+<div class="stat"><div class="lb">졸업학점</div><div class="v">45 <small>/ [기준]</small></div><div class="bar"><i style="width:35%"></i></div></div>
+<div class="stat"><div class="lb">전공 학점</div><div class="v">45 <small>/ [기준]</small></div><div class="bar"><i style="width:55%"></i></div></div>
+<div class="stat"><div class="lb">전공필수</div><div class="v">3 <small>/ 7과목</small></div><div class="bar"><i style="width:43%"></i></div></div>
+</div>
+<p class="hint">[기준] 학점은 학사요람 값으로 채울 자리예요. 막대 길이는 예시입니다.</p>
+
+<section class="sec">
+<div class="sec-h"><h2>전공필수 과목</h2><span class="mono" style="font-size:13px">3 / 7</span></div>
+<table class="tbl">
+<thead><tr><th>권장</th><th>과목</th><th>코드</th><th style="text-align:right">상태</th></tr></thead>
+<tbody><tr><td class="mono">1-1</td><td>컴퓨팅사고와 SW코딩</td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0453</td><td style="text-align:right"><span class="ok y">이수</span></td></tr><tr><td class="mono">1-2</td><td>인공지능수학기초</td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0454</td><td style="text-align:right"><span class="ok y">이수</span></td></tr><tr><td class="mono">2-1</td><td>자료구조</td><td class="mono" style="font-size:12px;color:var(--muted)">COME0331</td><td style="text-align:right"><span class="ok y">이수</span></td></tr><tr><td class="mono">2-2</td><td>인공지능</td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0324</td><td style="text-align:right"><span class="ok n">미이수</span></td></tr><tr><td class="mono">3-1</td><td>알고리즘1</td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0319</td><td style="text-align:right"><span class="ok n">미이수</span></td></tr><tr><td class="mono">3-1</td><td>기계학습개론</td><td class="mono" style="font-size:12px;color:var(--muted)">ITEC0417</td><td style="text-align:right"><span class="ok n">미이수</span></td></tr><tr><td class="mono">3-2</td><td>종합설계프로젝트1</td><td class="mono" style="font-size:12px;color:var(--muted)">ITEC0401</td><td style="text-align:right"><span class="ok n">미이수</span></td></tr></tbody>
+</table>
+</section>
+
+<section class="sec">
+<div class="sec-h"><h2>분야별 이수 학점</h2><span style="font-size:13px;color:var(--muted)">이수 / 전공 개설 학점</span></div>
+<table class="tbl"><tbody><tr><td><span class="tdname"><i class="sw" style="--c:var(--base)"></i>공통 기초</span></td><td class="num">21 / 35</td><td class="barcell"><div class="bar" style="--c:var(--base)"><i style="width:60%"></i></div></td></tr><tr><td><span class="tdname"><i class="sw" style="--c:var(--ai)"></i>AI·데이터</span></td><td class="num">18 / 45</td><td class="barcell"><div class="bar" style="--c:var(--ai)"><i style="width:40%"></i></div></td></tr><tr><td><span class="tdname"><i class="sw" style="--c:var(--sys)"></i>시스템</span></td><td class="num">6 / 21</td><td class="barcell"><div class="bar" style="--c:var(--sys)"><i style="width:29%"></i></div></td></tr><tr><td><span class="tdname"><i class="sw" style="--c:var(--net)"></i>네트워크·보안</span></td><td class="num">0 / 12</td><td class="barcell"><div class="bar" style="--c:var(--net)"><i style="width:0%"></i></div></td></tr><tr><td><span class="tdname"><i class="sw" style="--c:var(--sw)"></i>소프트웨어·웹</span></td><td class="num">3 / 15</td><td class="barcell"><div class="bar" style="--c:var(--sw)"><i style="width:20%"></i></div></td></tr></tbody></table>
+</section>
+
+<div class="actions"><a class="btn" href="#roadmap">노선도로</a><a class="btn btn-primary" href="#recommend">다음 학기 추천 보기</a></div>
+</main>
+</div>
+<div class="view" id="view-recommend" data-title="다음 학기 추천">
+<div class="ctx"><div class="ctx-in">예시 학생 · 2023학번 · 인공지능컴퓨팅전공 · 2학년 2학기까지 이수 (14과목 45학점)</div></div>
+<main class="wrap">
+<p class="kicker">결과 3 / 3</p>
+<h1>3학년 1학기 추천 과목</h1>
+<p class="lead">1학기에 열리고, 선수과목을 이미 들었고, 전공필수·관심 분야·권장 학기를 기준으로 순서를 매겼어요.</p>
+<div class="fields" style="margin-bottom:24px;max-width:520px">
+<label class="field"><span>학기</span><select><option>3학년 1학기</option></select></label>
+<label class="field"><span>최대 학점</span><select><option>12학점</option></select></label>
+</div>
+<ol class="rlist"><li class="ritem"><span class="n">01</span><div><h3><i class="sw" style="--c:var(--ai)"></i>인공지능<span class="cd">COMP0324</span></h3><ul class="why" aria-label="추천 이유"><li>전공필수</li><li>권장 학기 2-2가 지남</li><li>후수 1과목의 선수과목</li></ul></div><div class="side"><span>3학점 · 권장 2-2</span><a href="#roadmap">노선도에서 보기</a></div></li><li class="ritem"><span class="n">02</span><div><h3><i class="sw" style="--c:var(--ai)"></i>기계학습개론<span class="cd">ITEC0417</span></h3><ul class="why" aria-label="추천 이유"><li>전공필수</li><li>관심 분야(AI·데이터)</li><li>후수 4과목의 선수과목</li></ul></div><div class="side"><span>3학점 · 권장 3-1</span><a href="#roadmap">노선도에서 보기</a></div></li><li class="ritem"><span class="n">03</span><div><h3><i class="sw" style="--c:var(--base)"></i>알고리즘1<span class="cd">COMP0319</span></h3><ul class="why" aria-label="추천 이유"><li>전공필수</li><li>권장 학기 3-1</li></ul></div><div class="side"><span>3학점 · 권장 3-1</span><a href="#roadmap">노선도에서 보기</a></div></li><li class="ritem"><span class="n">04</span><div><h3><i class="sw" style="--c:var(--ai)"></i>영상이해<span class="cd">CAIB0233</span></h3><ul class="why" aria-label="추천 이유"><li>관심 분야(AI·데이터)</li><li>권장 학기 3-1</li><li>컴퓨터비전의 선수과목</li></ul></div><div class="side"><span>3학점 · 권장 3-1</span><a href="#roadmap">노선도에서 보기</a></div></li></ol>
+<div class="total"><span>추천 4과목 합계</span><span class="mono">12학점</span></div>
+
+<section class="sec">
+<div class="sec-h"><h2>그 밖에 3-1에 열리는 과목</h2></div>
+<table class="tbl">
+<thead><tr><th>과목</th><th>코드</th><th style="text-align:right">권장</th><th style="text-align:right">상태</th></tr></thead>
+<tbody><tr><td><span class="tdname"><i class="sw" style="--c:var(--sys)"></i>오토마타및형식언어</span></td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0315</td><td class="num">2-1</td><td style="text-align:right"><span class="ok y">수강 가능</span></td></tr><tr><td><span class="tdname"><i class="sw" style="--c:var(--net)"></i>데이타통신</span></td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0323</td><td class="num">3-1</td><td style="text-align:right"><span class="ok y">수강 가능</span></td></tr><tr><td><span class="tdname"><i class="sw" style="--c:var(--sw)"></i>소프트웨어공학</span></td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0422</td><td class="num">3-1</td><td style="text-align:right"><span class="ok n">선수 필요</span></td></tr><tr><td><span class="tdname"><i class="sw" style="--c:var(--sys)"></i>컴파일러</span></td><td class="mono" style="font-size:12px;color:var(--muted)">COMP0321</td><td class="num">3-1</td><td style="text-align:right"><span class="ok n">선수 필요</span></td></tr></tbody>
+</table>
+</section>
+<div class="actions"><a class="btn" href="#progress">졸업요건으로</a><a class="btn btn-primary" href="#roadmap">노선도로 돌아가기</a></div>
+</main>
+</div>
+<dialog class="gdlg" id="loginDlg" aria-labelledby="gdlgTitle">
+<div class="gdlg-top"><svg class="g-logo" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg><span>Google 계정으로 로그인</span></div>
+<h2 id="gdlgTitle">계정 선택</h2>
+<p class="gdlg-sub"><b>cse-roadmap</b>(으)로 이동</p>
+<ul class="acct-list">
+<li><button type="button" class="acct-row" data-pick><i class="avatar" aria-hidden="true">홍</i><span><b>홍길동</b><small>demo@example.invalid</small></span></button></li>
+<li><button type="button" class="acct-row" data-pick><i class="avatar alt" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></i><span><b>다른 계정 사용</b></span></button></li>
+</ul>
+<p class="gdlg-note">프로토타입 화면이에요. 실제 Google 로그인은 연동 후에 열립니다.</p>
+<form method="dialog" class="gdlg-act"><button class="btn btn-sm">취소</button></form>
+</dialog>
+<script>
+
+// 프로토타입용 노선도: 화살표, 선택 강조, 추천 이유 팝업, 확대·축소, 드래그 이동
+(function () {
+  var scroll = document.querySelector('.map-scroll');
+  var sizer = document.getElementById('mapSizer');
+  var map = document.getElementById('map');
+  var svg = map.querySelector('.edges');
+  var pop = document.getElementById('recPop');
+  var scale = 1, MIN = 0.5, MAX = 1.6, STEP = 0.1;
+
+  // 확대 상태를 빼고 지도 안 좌표로 환산
+  function pos(el) {
+    var r = el.getBoundingClientRect(), m = map.getBoundingClientRect();
+    return { x: (r.left - m.left + r.width / 2) / scale, y: (r.top - m.top + r.height / 2) / scale };
+  }
+  function stOf(code) { return map.querySelector('.st[data-code="' + code + '"]'); }
+  function dot(code) { var s = stOf(code); return s ? pos(s.querySelector('.dot')) : null; }
+  function pres(st) { return (st.dataset.pre || '').split(' ').filter(Boolean); }
+  function has(el, c) { return el && el.classList.contains(c); }
+
+  // ---------- 크기 ----------
+  function layout() {
+    var w = Math.max(scroll.clientWidth, 1068);
+    map.style.width = w + 'px';
+    map.style.transform = 'scale(' + scale + ')';
+    sizer.style.width = (w * scale) + 'px';
+    sizer.style.height = (map.offsetHeight * scale) + 'px';
+    document.getElementById('zoomReset').textContent = Math.round(scale * 100) + '%';
+  }
+  function setScale(next) {
+    next = Math.min(MAX, Math.max(MIN, Math.round(next * 10) / 10));
+    if (next === scale) return;
+    var cx = (scroll.scrollLeft + scroll.clientWidth / 2) / scale;
+    scale = next;
+    layout();
+    scroll.scrollLeft = cx * scale - scroll.clientWidth / 2;
+  }
+  document.getElementById('zoomIn').addEventListener('click', function () { setScale(scale + STEP); });
+  document.getElementById('zoomOut').addEventListener('click', function () { setScale(scale - STEP); });
+  document.getElementById('zoomReset').addEventListener('click', function () { setScale(1); });
+  document.getElementById('zoomFit').addEventListener('click', function () { setScale(Math.min(1, scroll.clientWidth / map.offsetWidth)); scroll.scrollLeft = 0; });
+  scroll.addEventListener('wheel', function (e) {
+    if (!e.ctrlKey && !e.metaKey) return;
+    e.preventDefault();
+    setScale(scale + (e.deltaY < 0 ? STEP : -STEP));
+  }, { passive: false });
+
+  // ---------- 드래그로 이동 ----------
+  var drag = null;
+  scroll.addEventListener('pointerdown', function (e) {
+    if (e.button !== 0 || e.target.closest('.st, .rec-pop')) return;
+    drag = { x: e.clientX, y: e.clientY, moved: false };
+  });
+  window.addEventListener('pointermove', function (e) {
+    if (!drag) return;
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if (!drag.moved && Math.abs(dx) + Math.abs(dy) < 4) return;
+    drag.moved = true;
+    scroll.classList.add('is-panning');
+    scroll.scrollLeft -= dx;
+    window.scrollBy(0, -dy);
+    drag.x = e.clientX; drag.y = e.clientY;
+  });
+  window.addEventListener('pointerup', function () { drag = null; scroll.classList.remove('is-panning'); });
+
+  // ---------- 선 그리기 ----------
+  function draw() {
+    layout();
+    svg.setAttribute('width', map.offsetWidth);
+    svg.setAttribute('height', map.offsetHeight);
+    var out = '<defs><marker id="arrowHead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto"><polygon class="arrow-fill" points="0,0 10,5 0,10"/></marker></defs>';
+    // 같은 칸에 쌓인 역을 잇는 세로선
+    map.querySelectorAll('.cell').forEach(function (cell) {
+      var d = cell.querySelectorAll('.dot');
+      if (d.length < 2) return;
+      var a = pos(d[0]), b = pos(d[d.length - 1]);
+      var c = getComputedStyle(cell.parentElement).getPropertyValue('--c');
+      out += '<line x1="' + a.x + '" y1="' + a.y + '" x2="' + b.x + '" y2="' + b.y + '" stroke="' + c + '" stroke-width="4"/>';
+    });
+    // 선수 → 후수
+    map.querySelectorAll('.st').forEach(function (st) {
+      var b = dot(st.dataset.code);
+      pres(st).forEach(function (from) {
+        var fs = stOf(from), a = dot(from);
+        if (!a || !b) return;
+        if (has(fs, 'is-done') && has(st, 'is-done')) return;      // 이수 → 이수 선은 그리지 않음
+        var rec = has(fs, 'is-done') && has(st, 'is-rec');          // 들은 과목 → 추천 과목
+        var ex = rec ? b.x - 17 : b.x;
+        var dx = Math.max(40, Math.abs(ex - a.x) / 2);
+        out += '<path class="e ' + (rec ? 'rec' : 'plain') + '" data-from="' + from + '" data-to="' + st.dataset.code + '"' +
+          (rec ? ' marker-end="url(#arrowHead)"' : '') +
+          ' d="M' + a.x + ' ' + a.y + ' C' + (a.x + dx) + ' ' + a.y + ' ' + (ex - dx) + ' ' + b.y + ' ' + ex + ' ' + b.y + '"/>';
+      });
+    });
+    svg.innerHTML = out;
+    mark();
+    var open = map.querySelector('.st.is-sel.is-rec');
+    if (open && !pop.hidden) place(open);
+  }
+
+  // ---------- 선택 강조 ----------
+  function chain(code) {
+    var set = {}; set[code] = 1;
+    var all = Array.prototype.slice.call(map.querySelectorAll('.st'));
+    (function up(c) { pres(stOf(c)).forEach(function (p) { if (!set[p]) { set[p] = 1; up(p); } }); })(code);
+    (function down(c) {
+      all.forEach(function (st) { if (pres(st).indexOf(c) > -1 && !set[st.dataset.code]) { set[st.dataset.code] = 1; down(st.dataset.code); } });
+    })(code);
+    return set;
+  }
+  function mark() {
+    var sel = map.querySelector('.st.is-sel');
+    map.querySelectorAll('.st').forEach(function (st) { st.classList.remove('is-chain'); });
+    svg.querySelectorAll('path.e').forEach(function (p) { p.classList.remove('on'); });
+    if (!sel) { map.classList.remove('has-sel'); return; }
+    var set = chain(sel.dataset.code);
+    map.classList.add('has-sel');
+    map.querySelectorAll('.st').forEach(function (st) { st.classList.toggle('is-chain', !!set[st.dataset.code]); });
+    svg.querySelectorAll('path.e').forEach(function (p) { p.classList.toggle('on', !!(set[p.dataset.from] && set[p.dataset.to])); });
+  }
+
+  // ---------- 추천 이유 팝업 ----------
+  function place(st) {
+    var p = pos(st.querySelector('.dot'));
+    var left = p.x + 24;
+    if (left + 270 > map.offsetWidth) left = p.x - 24 - 264;
+    pop.style.left = left + 'px';
+    pop.style.top = Math.max(8, p.y - 20) + 'px';
+  }
+  function openPop(st) {
+    var name = st.querySelector('.nm').firstChild.textContent.trim();
+    var items = (st.dataset.why || '').split('|').map(function (w) { return '<li>' + w + '</li>'; }).join('');
+    pop.innerHTML =
+      '<div class="pop-h"><span>추천 ' + st.dataset.rank + '순위 · 추천 이유</span><button type="button" class="pop-x" aria-label="닫기">×</button></div>' +
+      '<strong>' + name + '</strong><ul>' + items + '</ul>' +
+      '<p class="meta"><span>' + st.dataset.code + ' · ' + st.dataset.off + '</span><a href="#recommend">추천 목록</a></p>';
+    pop.hidden = false;
+    place(st);
+  }
+  function closePop() { pop.hidden = true; }
+
+  function select(st) {
+    var was = has(st, 'is-sel');
+    map.querySelectorAll('.st.is-sel').forEach(function (s) { s.classList.remove('is-sel'); s.setAttribute('aria-pressed', 'false'); });
+    if (!was) { st.classList.add('is-sel'); st.setAttribute('aria-pressed', 'true'); }
+    mark();
+    if (!was && has(st, 'is-rec')) openPop(st); else closePop();
+  }
+  map.addEventListener('click', function (e) {
+    if (e.target.closest('.pop-x')) {
+      closePop();
+      var s = map.querySelector('.st.is-sel');
+      if (s) { s.classList.remove('is-sel'); s.setAttribute('aria-pressed', 'false'); mark(); s.focus(); }
+      return;
+    }
+    if (e.target.closest('.rec-pop')) return;
+    var st = e.target.closest('.st');
+    if (st) select(st);
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !pop.hidden) closePop(); });
+
+  // ---------- 체크박스 ----------
+  var dimRows = map.querySelectorAll('.trow.is-dim');
+  document.getElementById('dimOthers').addEventListener('change', function (e) {
+    dimRows.forEach(function (r) { r.classList.toggle('is-dim', e.target.checked); });
+  });
+  document.getElementById('showArrows').addEventListener('change', function (e) {
+    map.classList.toggle('no-arrows', !e.target.checked);
+  });
+
+  window.addEventListener('resize', draw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  window.drawRoadmap = draw;
+})();
+
+
+
+// 다크/라이트: 기기 설정(prefers-color-scheme)을 따라감
+(function () {
+  if (!window.matchMedia) return;
+  var mq = matchMedia('(prefers-color-scheme: dark)');
+  function apply() {
+    if (mq.matches) document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', 'light');
+    var rm = document.getElementById('view-roadmap');
+    if (window.drawRoadmap && rm && !rm.hidden) window.drawRoadmap();   // 노선도 선 색 다시 그림
+  }
+  if (mq.addEventListener) mq.addEventListener('change', apply); else if (mq.addListener) mq.addListener(apply);
+})();
+
+
+// 첫 화면 미리보기 회전 멈춤/재생
+(function () {
+  var stage = document.getElementById('stage'), btn = document.getElementById('spinBtn');
+  btn.addEventListener('click', function () {
+    var paused = stage.classList.toggle('is-paused');
+    btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+    btn.textContent = paused ? '회전 재생' : '회전 멈춤';
+  });
+})();
+
+
+// 수강 내역: 불러오기 방법 탭 전환(모양만)
+document.querySelectorAll('.tabs').forEach(function (tabs) {
+  tabs.addEventListener('click', function (e) {
+    var b = e.target.closest('[role="tab"]'); if (!b) return;
+    tabs.querySelectorAll('[role="tab"]').forEach(function (t) { t.setAttribute('aria-selected', t === b ? 'true' : 'false'); });
+  });
+});
+
+
+// 동작 줄이기 설정이면 배경 열차 멈춤
+(function () {
+  var bg = document.getElementById('homeBg');
+  if (bg && window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches && bg.pauseAnimations) bg.pauseAnimations();
+})();
+
+// 로그인 상태(프로토타입: 이 브라우저에만 저장)
+var Auth = (function () {
+  var KEY = 'cse-proto-auth', mem = {};
+  function get() { try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { return mem; } }
+  function set(v) { mem = v; try { localStorage.setItem(KEY, JSON.stringify(v)); } catch (e) {} }
+  return { get: get, set: set };
+})();
+
+(function () {
+  var dlg = document.getElementById('loginDlg');
+  function openLogin() { if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', ''); }
+  document.querySelectorAll('[data-login]').forEach(function (b) { b.addEventListener('click', openLogin); });
+  // 로그인 전에는 미리보기 카드를 눌러도 로그인 창을 띄움
+  document.querySelectorAll('#view-home .pv').forEach(function (c) {
+    c.addEventListener('click', function (e) { e.preventDefault(); openLogin(); });
+  });
+  dlg.querySelectorAll('[data-pick]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var s = Auth.get(); s.loggedIn = true; Auth.set(s);
+      if (dlg.close) dlg.close(); else dlg.removeAttribute('open');
+      location.hash = s.onboarded ? '#roadmap' : '#setup';
+    });
+  });
+  document.querySelectorAll('[data-finish]').forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      var s = Auth.get(); s.onboarded = true; Auth.set(s);
+      location.hash = '#roadmap';
+    });
+  });
+  document.querySelectorAll('[data-logout]').forEach(function (b) {
+    b.addEventListener('click', function () { var s = Auth.get(); s.loggedIn = false; Auth.set(s); location.hash = '#home'; });
+  });
+  document.querySelectorAll('[data-reset]').forEach(function (b) {
+    b.addEventListener('click', function () { Auth.set({}); location.hash = '#home'; });
+  });
+})();
+
+// 화면 전환: 주소의 #id 에 맞는 화면만 보여 줌 (+ 로그인·처음 설정 여부 확인)
+(function () {
+  var views = document.querySelectorAll('.view');
+  var ONB = { setup: 1, courses: 1, interests: 1 }, ORDER = ['setup', 'courses', 'interests'];
+  function go(h) { if (location.hash !== h) { location.replace(h); return true; } return false; }
+  function show() {
+    var id = (location.hash || '#home').slice(1);
+    if (!document.getElementById('view-' + id)) id = 'home';
+    var a = Auth.get();
+    if (!a.loggedIn && id !== 'home') { if (go('#home')) return; id = 'home'; }
+    if (a.loggedIn && id === 'home') { if (go(a.onboarded ? '#roadmap' : '#setup')) return; }
+    if (a.loggedIn && !a.onboarded && !ONB[id]) { if (go('#setup')) return; }
+    views.forEach(function (v) { v.hidden = v.id !== 'view-' + id; });
+    document.body.setAttribute('data-view', id);
+    document.body.setAttribute('data-area', id === 'home' ? 'home' : (a.onboarded ? 'main' : 'onb'));
+    document.body.setAttribute('data-mode', a.onboarded ? 'edit' : 'onb');
+    document.querySelectorAll('.top a').forEach(function (el) {
+      if (el.getAttribute('href') === '#' + id) el.setAttribute('aria-current', 'page'); else el.removeAttribute('aria-current');
+    });
+    var at = ORDER.indexOf(id);
+    document.querySelectorAll('.onb-steps li').forEach(function (li, i) {
+      li.classList.toggle('is-now', i === at);
+      li.classList.toggle('is-done', at > -1 && i < at);
+      if (i === at) li.setAttribute('aria-current', 'step'); else li.removeAttribute('aria-current');
+    });
+    document.title = document.getElementById('view-' + id).dataset.title + ' · cse-roadmap';
+    window.scrollTo(0, 0);
+    if (id === 'roadmap' && window.drawRoadmap) requestAnimationFrame(window.drawRoadmap);
+  }
+  window.addEventListener('hashchange', show);
+  show();
+})();
+
+</script>
+</body>
+</html>
