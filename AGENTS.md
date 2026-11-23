@@ -371,11 +371,21 @@ export interface RecommendWeights {
   prerequisiteUnmetPenalty: number; minFollowupBase: number;   // 기본 3
 }
 export const DEFAULT_WEIGHTS: RecommendWeights;
+export interface AcademicTerm { grade: number; semester: 1 | 2 }
+export function nextTermOf(enrollments: Pick<Enrollment, 'taken_year' | 'taken_semester'>[]): AcademicTerm;  // 들은 정규학기 수 + 1 (최대 4-2)
 export function recommendCourses(input: {
   profile: Profile; interests: FieldId[]; completion: CompletionState;
   followupStats: FollowupStat[]; ref: ReferenceData; weights?: RecommendWeights;
-}): Recommendation[];                        // score 내림차순
+  nextTerm?: AcademicTerm;                   // 주면 다음 학기에 열리지 않는 과목을 빼고 학기 우선순위를 쓴다
+}): Recommendation[];                        // 우선순위 순 (아래)
 ```
+추천 우선순위(`recommendCourses` 정렬). 이수·F·수강 중인 과목은 후보에서 뺀다.
+1. 권장 학기가 지난 전공필수 — 오래 밀린 순 → 뒤에서 막히는 과목(이어지는 미이수 후수) 수가 많은 순 → 점수
+2. 권장 학기가 다음 학기인 전공필수(`nextTerm`이 없으면 모든 전공필수) — 같은 기준
+3. 나머지 과목(다음 학기보다 2학기 앞까지) — 점수 → 다음 학기와 가까운 순 → 막히는 과목 수
+4. 그보다 먼 학기 과목 — 3과 같은 기준
+5. 필수 선수과목을 아직 안 들은 과목(`warning: 'prerequisite_unmet'`)
+같으면 과목코드 순. 노선도는 이 순서의 상위 5과목만 추천으로 표시한다.
 #1은 위 시그니처로 스텁을 만든다(`resolveCompletion`은 빈 상태, `evaluateGraduation`은 빈 items, `recommendCourses`는 `[]` 반환).
 
 ## A-7. 저장소·훅·인증 계약 — `src/lib/user-data/*`, `src/features/auth/*`
