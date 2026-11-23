@@ -4,49 +4,159 @@
   gap: 0;
 }
 
-.context {
-  margin: 0 0 20px;
-  padding-block-end: 12px;
-  border-block-end: 1px solid var(--line);
+/* ---------------------------------------------------------------- 상단 요약 */
+/* 나의 졸업 현황: 이수·남은 학점 → 학점 막대 → 그 밖의 요건 → 안내 */
+.summary {
+  display: grid;
+  gap: 22px;
+  padding: 24px 26px 20px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+}
+
+.summaryHeader {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px 16px;
+}
+
+.summaryHeader h2 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+.summaryHeader p {
+  margin: 2px 0 0;
   color: var(--muted);
   font-size: 14px;
 }
 
-/* ---------------------------------------------------------------- 상단 요약 */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
-  overflow: hidden;
+.summaryBadge {
+  padding: 4px 12px;
   border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--surface);
+  border-radius: 999px;
+  background: var(--bg);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
-.stat {
-  padding: 16px 18px 18px;
-  border-inline-end: 1px solid var(--line);
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 }
 
-.stat:last-child { border-inline-end: 0; }
+.summaryStat {
+  display: grid;
+  gap: 2px;
+  padding: 18px 22px;
+  border-radius: 12px;
+  background: var(--bg);
+}
 
-.statLabel {
+.summaryStat > span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.summaryStat strong {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.summaryStat strong small {
+  color: var(--muted);
+  font-size: 0.6em;
+  font-weight: 600;
+}
+
+.summaryStat[data-done] strong { color: var(--ok); }
+
+.summaryBars {
+  display: grid;
+  gap: 16px;
+}
+
+.summaryBarHead {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-block-end: 8px;
+  font-size: 15px;
+}
+
+.summaryBarHead .num { color: var(--muted); }
+
+.summaryBar .bar {
+  block-size: 10px;
+  border-radius: 5px;
+}
+
+/* 요약에서는 진행 중을 경고색 대신 강조색으로, 충족만 초록으로 보여 준다 */
+.summaryBar .bar[data-status='unmet'] i { background: var(--accent); }
+
+.summaryChecks {
+  display: grid;
+  padding-block-start: 18px;
+  border-block-start: 1px solid var(--line);
+}
+
+.summaryChecks h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+}
+
+.summaryCheck {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
+  padding: 8px 0;
+  font-size: 15px;
+}
+
+.summaryChip {
+  flex: none;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.summaryChip[data-status='met'] {
+  background: color-mix(in srgb, var(--ok) 14%, var(--surface));
+  color: var(--ok);
+}
+
+.summaryChip[data-status='unmet'],
+.summaryChip[data-status='unknown'] {
+  background: color-mix(in srgb, var(--warn) 14%, var(--surface));
+  color: var(--warn);
+}
+
+.summaryNote {
+  margin: 0;
+  padding-block-start: 14px;
+  border-block-start: 1px solid var(--line);
   color: var(--muted);
   font-size: 13px;
 }
 
-.statValue {
-  margin: 2px 0 10px;
-  font: 600 29px/1.5 var(--mono);
-}
-
-.statValue small {
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 400;
+@media (max-width: 640px) {
+  .summary { padding: 18px 16px 16px; }
+  .summaryStats { grid-template-columns: minmax(0, 1fr); }
+  .summaryStat strong { font-size: 36px; }
 }
 
 /* ---------------------------------------------------------------- 진행 막대 */
@@ -281,15 +391,6 @@
 
 .progress > .help { margin-block-start: 28px; }
 
-.confirm {
-  display: grid;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  font-size: 14px;
-}
-
 .visuallyHidden {
   position: absolute;
   overflow: hidden;
@@ -302,8 +403,6 @@
 @media (max-width: 720px) {
   .rowMain { grid-template-columns: 1fr auto; }
   .rowMain > .bar { grid-column: 1 / -1; grid-row: 2; }
-  .stat { border-inline-end: 0; border-block-end: 1px solid var(--line); }
-  .stat:last-child { border-block-end: 0; }
 }
 
 

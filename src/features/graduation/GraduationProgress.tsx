@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useMemo, type JSX, type ReactNode } from 'react';
-import { evaluateGraduation, type GraduationItem, type ItemStatus } from '@/lib/domain/graduation';
+import { evaluateGraduation, type GraduationItem, type GraduationReport, type ItemStatus } from '@/lib/domain/graduation';
 import { useCompletion, useNoncredit, useReference } from '@/lib/user-data/hooks';
 import type { CourseCode, ReferenceData } from '@/types/reference';
 import type { NoncreditStatus, Profile } from '@/types/user';
@@ -34,6 +34,83 @@ function ProgressBar({ item, unit }: { item: GraduationItem; unit: string }): JS
     >
       <i style={{ width: `${known ? value : 0}%` }} />
     </div>
+  );
+}
+
+/** 요약 카드의 학점·과목 진행 막대 한 줄. 막대는 아래 상세 영역과 같은 progressbar 의미를 가진다. */
+function SummaryBar({ item, unit, title }: { item: GraduationItem; unit: string; title?: string }): JSX.Element {
+  return (
+    <div className={styles.summaryBar} data-status={item.status}>
+      <div className={styles.summaryBarHead}>
+        <span>{title ?? item.label}</span>
+        <span className={styles.num}>{item.status === 'unknown' ? '판정 불가' : amount(item, unit)}</span>
+      </div>
+      <ProgressBar item={item} unit={unit} />
+    </div>
+  );
+}
+
+/** 맨 위 요약: 이수·남은 학점, 학점 막대, 그 밖의 요건 상태를 한 번에 보여 준다. */
+function GraduationSummary({ report, total, buckets, required, requirements, checklist, programName, profile, completed }: {
+  report: GraduationReport; total?: GraduationItem; buckets: GraduationItem[]; required?: GraduationItem;
+  requirements: GraduationItem[]; checklist: GraduationItem[]; programName: string; profile: Profile; completed: number;
+}): JSX.Element {
+  const totalKnown = total && total.status !== 'unknown' && total.required !== null;
+  const remaining = totalKnown ? Math.max(0, (total.required ?? 0) - (total.earned ?? 0)) : null;
+  const metRequirements = requirements.filter((item) => item.status === 'met').length;
+  return (
+    <section className={styles.summary} aria-labelledby="graduation-summary-title">
+      <div className={styles.summaryHeader}>
+        <div>
+          <h2 id="graduation-summary-title">나의 졸업 현황</h2>
+          <p>{programName} · {profile.admission_year}학번 · 이수 {completed}과목</p>
+        </div>
+        <span className={styles.summaryBadge}>요건 {report.summary.met} / {report.summary.total} 충족</span>
+      </div>
+
+      <div className={styles.summaryStats}>
+        <div className={styles.summaryStat}>
+          <span>현재 이수 학점</span>
+          <strong>{total?.earned ?? 0} <small>/ {total?.required ?? '–'}</small></strong>
+          <span>{totalKnown ? `${percent(total.earned, total.required)}% 이수` : '판정 불가'}</span>
+        </div>
+        <div className={styles.summaryStat} data-done={remaining === 0 || undefined}>
+          <span>남은 졸업학점</span>
+          <strong>{remaining ?? '–'}</strong>
+          <span>{remaining === 0 ? '졸업학점 충족' : '추가 이수 필요'}</span>
+        </div>
+      </div>
+
+      <div className={styles.summaryBars}>
+        {total && <SummaryBar item={total} unit="학점" title="전체 학점" />}
+        {buckets.map((item) => <SummaryBar key={item.id} item={item} unit="학점" />)}
+        {required && <SummaryBar item={required} unit="과목" title="전공필수 과목" />}
+      </div>
+
+      {(requirements.length > 0 || checklist.length > 0) && (
+        <div className={styles.summaryChecks}>
+          <h3>그 밖의 요건</h3>
+          {requirements.length > 0 && (
+            <div className={styles.summaryCheck}>
+              <span>교양·영역 요건</span>
+              <span className={styles.summaryChip} data-status={metRequirements === requirements.length ? 'met' : 'unmet'}>
+                {metRequirements} / {requirements.length} 충족
+              </span>
+            </div>
+          )}
+          {checklist.map((item) => (
+            <div key={item.id} className={styles.summaryCheck}>
+              <span>{item.label}</span>
+              <span className={styles.summaryChip} data-status={item.status}>{STATUS_LABEL[item.status]}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <p className={styles.summaryNote}>
+        학점 항목은 서로 겹쳐 셉니다. 전공·교양 학점은 전체 학점에 포함돼요. 자세한 내용은 아래에서 확인하세요.
+      </p>
+    </section>
   );
 }
 
@@ -187,33 +264,9 @@ export function GraduationProgress({ profile }: { profile: Profile }): JSX.Eleme
 
   return (
     <div className={styles.progress}>
-      <p className={styles.context}>
-        {programName} · {profile.admission_year}학번 · 이수 {completion.completed.size}과목 {completion.totalCredits}학점
-      </p>
-
-      <div className={styles.stats}>
-        {total && (
-          <div className={styles.stat} data-status={total.status}>
-            <div className={styles.statLabel}>{total.label} <StatusBadge status={total.status} /></div>
-            <div className={styles.statValue}>
-              {total.earned ?? 0} <small>/ {total.required ?? '–'}학점</small>
-            </div>
-            <ProgressBar item={total} unit="학점" />
-          </div>
-        )}
-        {required && required.status !== 'unknown' && (
-          <div className={styles.stat} data-status={required.status}>
-            <div className={styles.statLabel}>{required.label} <StatusBadge status={required.status} /></div>
-            <div className={styles.statValue}>{required.earned} <small>/ {required.required}과목</small></div>
-            <ProgressBar item={required} unit="과목" />
-          </div>
-        )}
-        <div className={styles.stat}>
-          <div className={styles.statLabel}>충족한 요건</div>
-          <div className={styles.statValue}>{report.summary.met} <small>/ {report.summary.total}개</small></div>
-          <div className={styles.bar} aria-hidden="true"><i style={{ width: `${percent(report.summary.met, report.summary.total)}%` }} /></div>
-        </div>
-      </div>
+      <GraduationSummary report={report} total={total} buckets={buckets} required={required}
+        requirements={requirements} checklist={checklist} programName={programName} profile={profile}
+        completed={completion.completed.size} />
       {total && total.status === 'unknown' && <Explanation item={total} />}
 
       {buckets.length > 0 && (
@@ -260,14 +313,6 @@ export function GraduationProgress({ profile }: { profile: Profile }): JSX.Eleme
                 <Explanation item={item} />
               </li>
             ))}
-          </ul>
-        </Section>
-      )}
-
-      {report.needsConfirmation.length > 0 && (
-        <Section title="학과 확인이 필요한 항목">
-          <ul className={styles.confirm}>
-            {report.needsConfirmation.map((text) => <li key={text}><StatusBadge status="unknown" /> {text}</li>)}
           </ul>
         </Section>
       )}

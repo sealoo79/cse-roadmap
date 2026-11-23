@@ -146,6 +146,20 @@ describe('GraduationProgress', () => {
     expect(within(item).queryByText('4학점 더 필요')).toBeNull();
   });
 
+  it('맨 위 요약에 이수·남은 학점과 그 밖의 요건 상태를 한 번에 보여 준다', async () => {
+    const profile = renderProgress('adv_computing', 2026);
+    const report = evaluateGraduation({ profile, completion: resolveCompletion([], ref), noncredit: [], ref });
+    const total = report.items.find((i) => i.kind === 'total');
+    const checklist = report.items.filter((i) => i.kind === 'checklist');
+
+    const summary = await screen.findByRole('region', { name: '나의 졸업 현황' });
+    // 이수 기록이 없으면 남은 졸업학점 = 기준 학점
+    expect(within(summary).getByText('남은 졸업학점').parentElement?.querySelector('strong')?.textContent)
+      .toBe(String(total?.required));
+    expect(within(summary).getByText(`요건 ${report.summary.met} / ${report.summary.total} 충족`)).toBeDefined();
+    for (const item of checklist) expect(within(summary).getByText(item.label)).toBeDefined();
+  });
+
   it('판정할 수 없는 항목은 확인 필요 배지와 근거를 보여 준다', async () => {
     renderProgress('platform_sw_data', 2025);
     const design = await row('설계');
@@ -153,6 +167,7 @@ describe('GraduationProgress', () => {
     expect(within(design).getByText('확인 필요')).toBeDefined();
     expect(within(design).getByText(/설계학점\(courses\.design_credit\)/)).toBeDefined();
     expect(within(design).getByText(/^근거: /)).toBeDefined();
-    expect(screen.getByRole('heading', { name: '학과 확인이 필요한 항목' })).toBeDefined();
+    // 학과 확인 목록 영역은 화면에서 뺐다. 판정 불가 항목은 각 행의 '확인 필요' 배지와 근거로만 보여 준다.
+    expect(screen.queryByRole('heading', { name: '학과 확인이 필요한 항목' })).toBeNull();
   });
 });
