@@ -1,6 +1,12 @@
 import type { JSX } from 'react';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { RecommendationList } from '@/features/recommend/RecommendationList';
 
 export default function Page(): JSX.Element {
-  return <><h1>다음 학기 추천</h1><p className="page-description">관심 분야를 따라 다음 수강 과목을 살펴보세요.</p><EmptyState title="추천 과목을 준비 중입니다.">추천 기능은 후속 이슈에서 연결됩니다.</EmptyState></>;
+  return (
+    <>
+      <h1>다음 학기 추천</h1>
+      <p className="page-description">관심 분야와 이수 내역을 바탕으로 추천한 과목입니다. 실제 개설 학기는 수강 신청 전에 확인하세요.</p>
+      <RecommendationList />
+    </>
+  );
 }

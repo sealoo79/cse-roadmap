@@ -1,0 +1,139 @@
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-bottom: 20px;
+  font-size: .875rem;
+}
+
+.filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-weight: 650;
+}
+
+.filter select {
+  min-height: 40px;
+  padding: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  background: var(--surface);
+  font: inherit;
+}
+
+.count {
+  margin-inline-start: auto;
+  color: var(--muted);
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding-inline-start: 2.25rem;
+}
+
+.list > li::marker {
+  color: var(--muted);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.card {
+  --field-color: var(--field-light, var(--line));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px 24px;
+  align-items: start;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--field-color);
+  border-radius: 10px;
+  background: var(--surface);
+}
+
+.title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+  margin: 0 0 8px;
+  font-size: 1.0625rem;
+}
+
+.code,
+.details {
+  color: var(--muted);
+  font-size: .8125rem;
+}
+
+.code {
+  font-family: ui-monospace, monospace;
+  font-weight: 500;
+}
+
+.reasons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.reason {
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  font-size: .8125rem;
+}
+
+.warning {
+  margin: 8px 0 0;
+  color: var(--warn);
+  font-size: .8125rem;
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: end;
+  gap: 4px 10px;
+}
+
+.field::before {
+  display: inline-block;
+  width: .55em;
+  height: .55em;
+  margin-inline-end: 5px;
+  border-radius: 50%;
+  background: var(--field-color);
+  content: '';
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    --field-color: var(--field-dark, var(--line));
+  }
+}
+
+@media (max-width: 640px) {
+  .list {
+    padding-inline-start: 1.75rem;
+  }
+
+  .card {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px;
+  }
+
+  .details {
+    justify-content: start;
+  }
+}
