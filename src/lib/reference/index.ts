@@ -10,7 +10,7 @@ import rules from '@reference/graduation_rules';
 import requirements from '@reference/requirement_courses';
 import type { AdmissionYear, ChecklistItem, Course, CourseCode, CourseEquivalent, CourseField, CourseRelation, CurriculumEntry, Field, GraduationRule, Program, ProgramId, ReferenceData, Requirement } from '@/types/reference';
 
-// JSON은 빌드에 번들한다. data 파일이 아직 없는 경우에만 tsconfig 경로의 축소 fixture로 해석한다.
+// 앱 빌드에는 data/의 기준 JSON을 번들한다.
 // #2 이전 필드 누락을 기본값으로 보완하되, 졸업학점 등의 값을 추정하지 않는다.
 let cached: ReferenceData | undefined;
 export function getReferenceData(): ReferenceData {

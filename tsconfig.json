@@ -27,8 +27,7 @@
         "./src/*"
       ],
       "@reference/*": [
-        "./data/*.json",
-        "./src/test/fixtures/reference/*.json"
+        "./data/*.json"
       ]
     }
   },

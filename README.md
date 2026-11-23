@@ -20,7 +20,7 @@ Supabase에 마이그레이션을 적용하고 Google 로그인을 활성화한 
 ## 목 모드와 기준 데이터
 
 - `NEXT_PUBLIC_USE_MOCK=1`: 시연 계정 1명과 이수 기록을 브라우저 localStorage에 저장합니다.
-- 기준 데이터는 빌드 시 `data/*.json`을 우선 번들합니다. 아직 없는 파일만 `src/test/fixtures/reference/*.json`의 축소 예제를 사용합니다. #2·#3 머지 후 서버를 재시작하세요.
+- 앱 빌드는 `data/*.json`의 기준 데이터만 번들합니다. 필요한 JSON이 누락되면 파일을 복구한 뒤 다시 빌드하세요.
 - fixture의 과목명·전공 배치·분야 색은 **개발용 임시 예제**이며 공식 교육과정이나 졸업요건이 아닙니다. 졸업요건과 추천의 도메인 함수는 아직 빈 스텁입니다.
 - localStorage 키는 `cse-roadmap:demo:v1`입니다. 깨진 저장 데이터는 자동으로 덮어쓰지 않고 오류로 표시합니다. 개발자 도구에서 이 키를 삭제하면 시연 계정의 기본 데이터로 돌아갑니다.
 - Supabase를 사용할 수 없는 환경에서도 목 모드로 개발합니다. 저장소 모드는 `src/lib/user-data/index.ts`의 `getRepository()`에서 선택합니다.
