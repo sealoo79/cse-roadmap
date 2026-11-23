@@ -15,8 +15,10 @@ export function findTimetableCells({ data, width, height }: ImageData): CellBoun
       const blue = data[offset + 2];
       const light = Math.max(red, green, blue);
       const dark = Math.min(red, green, blue);
-      if (data[offset + 3] < 240 || dark < 110 || light < 170 || light - dark < 22) continue;
-      colors[y * columns + x] = 1 + ((red >> 4) << 8) + ((green >> 4) << 4) + (blue >> 4);
+      // 칸 배경은 채도가 아주 낮을 수 있다(회분홍 242,232,232). 무채색(흰 바탕·회색 격자선)만 뺀다.
+      if (data[offset + 3] < 240 || dark < 110 || light < 170 || light - dark < 8) continue;
+      // 에브리타임의 옅은 분홍·회분홍 칸(255,233,233 / 242,232,232)이 붙어 있어도 서로 다른 칸으로 나뉘도록 채널당 32단계로 구분한다.
+      colors[y * columns + x] = 1 + ((red >> 3) << 10) + ((green >> 3) << 5) + (blue >> 3);
     }
   }
 
@@ -72,8 +74,10 @@ export function findTimetableCells({ data, width, height }: ImageData): CellBoun
 const locationText = /(?:산격동|캠퍼스|강의실|융복합관|종합정보센터|IT\s*대학|[A-Z|Il1]{1,3}\s*\d{0,2}\s*-\s*\d{2,4})/iu;
 
 export function titleFromCell(text: string): string {
-  const lines = text.normalize('NFKC').split(/\r?\n/).map((line) =>
-    line.replace(/^[|\s]+|[|\s]+$/g, '').trim()).filter(Boolean);
+  const lines = text.normalize('NFKC').split(/\r?\n/).map((line) => line
+    // 수학 Ⅰ·일반생명과학Ⅰ의 로마 숫자는 OCR이 줄 끝 '|'로 읽는다. 지우기 전에 I로 바꿔 둔다.
+    .replace(/(\p{Script=Hangul})\s*[|¦]\s*$/u, '$1 I')
+    .replace(/^[|\s]+|[|\s]+$/g, '').trim()).filter(Boolean);
   const title: string[] = [];
   for (const line of lines.slice(0, 3)) {
     const location = line.search(locationText);

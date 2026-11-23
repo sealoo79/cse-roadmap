@@ -34,6 +34,8 @@ export function OcrImport({ programId, admissionYear }: { programId?: ProgramId 
   const [semester, setSemester] = useState(() => currentTerm().semester);
   const [statusOverride, setStatusOverride] = useState<EnrollmentStatus | null>(null);
   const [draftCount, setDraftCount] = useState(0);
+  /** 캡처에서 읽은 학기를 그 캡처의 항목에만 적용한다(여러 학기 캡처를 연달아 올려도 섞이지 않게). */
+  const [rowTerms, setRowTerms] = useState<Record<string, { year: string; semester: string }>>({});
   const drafts = useRef(new Map<string, NewEnrollment>());
   const [initializing, setInitializing] = useState(true);
   const [progress, setProgress] = useState<string | null>(null);
@@ -91,7 +93,7 @@ export function OcrImport({ programId, admissionYear }: { programId?: ProgramId 
     }
     void perform(async () => {
       setProgress('파일 읽는 중…');
-      const titles = await extractDocument(file, (label) => {
+      const { titles, term } = await extractDocument(file, (label) => {
         if (mounted.current) setProgress(label);
       });
       if (!mounted.current) return;
@@ -104,11 +106,19 @@ export function OcrImport({ programId, admissionYear }: { programId?: ProgramId 
       if (!mounted.current) return;
 
       setRows((current) => [...current, ...result.data]);
+      const termLabel = term ? `${term.year}년 ${terms.find(({ value }) => value === term.semester)?.label}` : null;
+      if (term) {
+        const detected = { year: String(term.year), semester: String(term.semester) };
+        setRowTerms((current) => ({ ...current, ...Object.fromEntries(result.data.map((row) => [row.id, detected])) }));
+        setYear(detected.year);
+        setSemester(detected.semester);
+        setStatusOverride(null);
+      }
       setFile(null);
       if (input.current) input.current.value = '';
       const matched = result.data.filter((row) => row.candidate_codes.length > 0).length;
       setNotice({
-        text: `${result.data.length}개 항목 중 ${matched}과목을 자동으로 찾았습니다. 과목명과 학기를 확인하고 한 번에 저장하세요.`,
+        text: `${termLabel ? `캡처에서 ${termLabel}를 읽었습니다. ` : ''}${result.data.length}개 항목 중 ${matched}과목을 자동으로 찾았습니다. 과목명과 학기를 확인하고 한 번에 저장하세요.`,
         error: false,
       });
     });
@@ -186,7 +196,10 @@ export function OcrImport({ programId, admissionYear }: { programId?: ProgramId 
 
   const pending = rows.filter((row) => row.review_status === 'pending');
   const now = currentTerm();
-  const status: EnrollmentStatus = statusOverride ?? (year === now.year && semester === now.semester ? 'incomplete' : 'completed');
+  // 이번 학기(지금은 2026년 2학기)만 '수강 중', 그 밖의 학기는 '이수 완료'로 저장한다.
+  const statusFor = (takenYear: string, takenSemester: string): EnrollmentStatus => statusOverride
+    ?? (takenYear === now.year && takenSemester === now.semester ? 'incomplete' : 'completed');
+  const status = statusFor(year, semester);
   const done = rows.filter((row) => row.review_status !== 'pending');
   const disabled = busy || loading || initializing;
 
@@ -246,7 +259,8 @@ export function OcrImport({ programId, admissionYear }: { programId?: ProgramId 
         )}
         {pending.map((item) => (
           <OcrReviewRow key={item.id} item={item} reference={reference} disabled={disabled}
-            year={year} semester={semester} status={status} onDraft={reportDraft}
+            year={rowTerms[item.id]?.year ?? year} semester={rowTerms[item.id]?.semester ?? semester}
+            status={statusFor(rowTerms[item.id]?.year ?? year, rowTerms[item.id]?.semester ?? semester)} onDraft={reportDraft}
             onConfirm={(record) => confirm(item, record)} onReject={() => reject(item)} />
         ))}
       </section>

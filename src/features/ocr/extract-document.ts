@@ -1,4 +1,5 @@
 import type { Worker as RecognitionWorker } from 'tesseract.js';
+import type { TakenSemester } from '@/types/user';
 import { findTimetableCells, titleFromCell, titlesFromText, type CellBounds } from './timetable-grid';
 
 const assetPath = '/api/ocr/assets';
@@ -39,7 +40,7 @@ async function imageCanvas(file: File): Promise<HTMLCanvasElement> {
  * 시간표 칸은 색 배경에 흰 글자라 대비가 낮다. 회색조로 바꾸고 오츠 임계값으로 흑백을 나눈 뒤,
  * 더 많은 쪽(배경)을 흰색으로 맞춰 '흰 바탕에 검은 글자'로 만든다(합성 시간표 120칸 기준 인식률 89% → 92%).
  */
-export function binarize(pixels: Uint8ClampedArray): void {
+export function binarize(pixels: Uint8ClampedArray, fixedThreshold?: number): void {
   const histogram = new Array<number>(256).fill(0);
   const gray = new Uint8Array(pixels.length / 4);
   for (let i = 0; i < gray.length; i++) {
@@ -52,8 +53,8 @@ export function binarize(pixels: Uint8ClampedArray): void {
   let below = 0;
   let belowSum = 0;
   let best = -1;
-  let threshold = 127;
-  for (let value = 0; value < 256; value++) {
+  let threshold = fixedThreshold ?? 127;
+  for (let value = 0; fixedThreshold === undefined && value < 256; value++) {
     below += histogram[value];
     if (below === 0) continue;
     const above = total - below;
@@ -67,7 +68,7 @@ export function binarize(pixels: Uint8ClampedArray): void {
   }
   let dark = 0;
   for (const value of gray) if (value <= threshold) dark++;
-  const lightText = dark > total / 2;
+  const lightText = fixedThreshold === undefined && dark > total / 2;
   for (let i = 0; i < gray.length; i++) {
     const isText = lightText ? gray[i] > threshold : gray[i] <= threshold;
     const color = isText ? 0 : 255;
@@ -95,7 +96,35 @@ function cropCell(canvas: HTMLCanvasElement, bounds: CellBounds): HTMLCanvasElem
   return cropped;
 }
 
-export async function extractDocument(file: File, progress: (label: string) => void): Promise<string[]> {
+/** 캡처에서 읽은 수강 학기(에브리타임 시간표 왼쪽 위 '2023년 1학기'). */
+export interface DetectedTerm { year: number; semester: TakenSemester }
+export interface ExtractedDocument { titles: string[]; term: DetectedTerm | null }
+
+/** OCR은 '년'을 '4'·'d' 등으로 잘못 읽기도 해서, 연도 뒤 두 글자까지는 무엇이든 허용한다. */
+export function termFromText(text: string): DetectedTerm | null {
+  const normalized = text.normalize('NFKC');
+  const regular = normalized.match(/(20\d{2})\S{0,2}\s*([12])\s*학\s*기/u);
+  if (regular) return { year: Number(regular[1]), semester: regular[2] === '1' ? 1 : 2 };
+  const season = normalized.match(/(20\d{2})\S{0,2}\s*(여름|겨울)/u);
+  if (season) return { year: Number(season[1]), semester: season[2] === '여름' ? 3 : 4 };
+  return null;
+}
+
+/** 시간표 위쪽(학기 표시가 있는 곳)을 2배로 키우고, 옅은 회색 글자도 남도록 고정 임계값으로 흑백 처리한다. */
+function headerCanvas(canvas: HTMLCanvasElement, bottom: number): HTMLCanvasElement {
+  const header = document.createElement('canvas');
+  const height = Math.max(1, Math.min(canvas.height, bottom));
+  header.width = canvas.width * 2;
+  header.height = height * 2;
+  const context = graphics(header);
+  context.drawImage(canvas, 0, 0, canvas.width, height, 0, 0, header.width, header.height);
+  const image = context.getImageData(0, 0, header.width, header.height);
+  binarize(image.data, 215);
+  context.putImageData(image, 0, 0);
+  return header;
+}
+
+export async function extractDocument(file: File, progress: (label: string) => void): Promise<ExtractedDocument> {
   const invalid = validateDocument(file);
   if (invalid) throw new Error(invalid);
 
@@ -125,7 +154,18 @@ export async function extractDocument(file: File, progress: (label: string) => v
       if (cells.length === 0) {
         await worker.setParameters({ tessedit_pageseg_mode: PSM.SPARSE_TEXT });
         const { data } = await worker.recognize(canvas);
-        return titlesFromText(data.text);
+        return { titles: titlesFromText(data.text), term: termFromText(data.text) };
+      }
+
+      progress('수강 학기 읽는 중…');
+      await worker.setParameters({ tessedit_pageseg_mode: PSM.SPARSE_TEXT });
+      const header = headerCanvas(canvas, Math.min(...cells.map((cell) => cell.y)));
+      let term: DetectedTerm | null = null;
+      try {
+        term = termFromText((await worker.recognize(header)).data.text);
+      } finally {
+        header.width = 0;
+        header.height = 0;
       }
 
       await worker.setParameters({ tessedit_pageseg_mode: PSM.SINGLE_BLOCK });
@@ -142,7 +182,7 @@ export async function extractDocument(file: File, progress: (label: string) => v
           cell.height = 0;
         }
       }
-      return titles;
+      return { titles, term };
     } finally {
       await worker.terminate();
     }

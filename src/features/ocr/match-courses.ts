@@ -97,7 +97,8 @@ export function matchCourses(titles: string[], ref: ReferenceData, context: Matc
   const result: NewOcrItem[] = [];
   const seen = new Set<string>();
   for (const title of titles) {
-    const raw_text = title.trim().slice(0, 100);
+    // 로마 숫자 Ⅰ(수학 I)은 OCR이 '|'로 읽는 경우가 많다.
+    const raw_text = title.trim().replace(/(\p{Script=Hangul})\s*[|¦]$/u, '$1 I').slice(0, 100);
     const code = raw_text.match(codePattern)?.slice(1).join('').toUpperCase();
     const name = normalizeName(raw_text.replace(codePattern, ''));
     if (!name && !code) continue;
@@ -113,12 +114,16 @@ export function matchCourses(titles: string[], ref: ReferenceData, context: Matc
     }
     for (const exact of names.get(name) ?? []) add(exact, 90);
     if (scores.size === 0 && name && !personalSchedule.test(name)) {
-      // 강의실 줄이 깨져 제목 뒤에 붙는 경우가 많아, 앞 단어부터 잘라 가며 맞춰 본다(뒤를 뗄수록 조금 감점).
+      // 제목 뒤에 교수명·깨진 강의실 글자가, 앞에 아이콘이 잘못 읽힌 글자가 붙는 경우가 많아
+      // 연속한 단어 묶음마다 맞춰 본다(단어를 뗄수록 조금 감점).
       const words = raw_text.replace(codePattern, ' ').split(/\s+/).filter(Boolean);
       const variants = new Map<string, number>();
-      for (let count = words.length; count >= 1; count--) {
-        const variant = normalizeName(words.slice(0, count).join(''));
-        if (variant && !variants.has(variant)) variants.set(variant, count === words.length ? 0 : 3);
+      for (let start = 0; start < Math.min(3, words.length); start++) {
+        for (let end = words.length; end > start; end--) {
+          const variant = normalizeName(words.slice(start, end).join(''));
+          const penalty = (start > 0 || end < words.length ? 3 : 0) + start * 2;
+          if (variant && (variants.get(variant) ?? Infinity) > penalty) variants.set(variant, penalty);
+        }
       }
       for (const [variant, penalty] of variants) {
         const exact = names.get(variant);
@@ -130,8 +135,10 @@ export function matchCourses(titles: string[], ref: ReferenceData, context: Matc
       }
     }
 
-    const ranked = [...scores].map(([candidate, score]) => ({ candidate, score, total: score + preference(candidate) }))
-      .sort((a, b) => b.total - a.total || b.score - a.score || a.candidate.localeCompare(b.candidate));
+    // 이름 일치도가 먼저고, 일치도가 같을 때(같은 이름의 여러 학과 과목 등)만 내 교육과정 과목을 앞에 둔다.
+    const ranked = [...scores].map(([candidate, score]) => ({ candidate, score }))
+      .sort((a, b) => b.score - a.score || preference(b.candidate) - preference(a.candidate)
+        || a.candidate.localeCompare(b.candidate));
     const best = ranked[0]?.score ?? 0;
     // 일치도가 확실히 낮은 후보는 빼서 목록을 짧게 유지한다(같은 이름 과목은 남긴다).
     const candidate_codes = ranked.filter(({ score }) => score >= 89 || score >= best - 8)

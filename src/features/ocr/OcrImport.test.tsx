@@ -22,7 +22,9 @@ it('캡처는 검토 항목만 만들고, 확인한 과목만 수강 중으로 �
   vi.spyOn(repository, 'updateOcrItem').mockResolvedValueOnce({
     ok: false, error: { code: 'unknown', message: '일시적인 실패' },
   });
-  vi.mocked(extractDocument).mockResolvedValue(['시스템프로그 래밍', '시스템프로그래밍', '일반화학실험', '인공지능의 이해 - 튜터']);
+  vi.mocked(extractDocument).mockResolvedValue({
+    titles: ['시스템프로그 래밍', '시스템프로그래밍', '일반화학실험', '인공지능의 이해 - 튜터'], term: null,
+  });
 
   render(<UserDataProvider repository={repository}><OcrImport /></UserDataProvider>);
   const file = screen.getByLabelText('시간표 이미지');
@@ -58,10 +60,12 @@ it('캡처는 검토 항목만 만들고, 확인한 과목만 수강 중으로 �
   ] });
 });
 
-it('비슷한 이름도 가장 가까운 과목을 골라 두고, 과목이 정해진 항목을 한 번에 저장한다', async () => {
+it('캡처의 학기를 읽어 넣고, 비슷한 이름도 가장 가까운 과목을 골라 한 번에 저장한다', async () => {
   const repository = new MockUserDataRepository();
   const onAdd = vi.spyOn(repository, 'addEnrollment');
-  vi.mocked(extractDocument).mockResolvedValue(['시스템프로그 래밍', '클라우드컴퓨 티', '동아리 회의']);
+  vi.mocked(extractDocument).mockResolvedValue({
+    titles: ['시스템프로그 래밍', '클라우드컴퓨 티', '동아리 회의'], term: { year: 2025, semester: 1 },
+  });
 
   render(<UserDataProvider repository={repository}><OcrImport programId="adv_computing" admissionYear={2026} /></UserDataProvider>);
   const file = screen.getByLabelText('시간표 이미지');
@@ -72,9 +76,10 @@ it('비슷한 이름도 가장 가까운 과목을 골라 두고, 과목이 정�
   // 유사 이름(클라우드컴퓨 티)도 과목이 미리 골라져 있어 코드를 다시 입력할 필요가 없다.
   const cloud = await screen.findByRole('form', { name: '클라우드컴퓨팅' });
   expect((within(cloud).getByLabelText('과목코드 선택') as HTMLSelectElement).value).toBe('GLSO0227');
-  fireEvent.change(screen.getByLabelText('수강 연도', { exact: true }), { target: { value: '2025' } });
-  fireEvent.change(screen.getByLabelText('수강 학기', { exact: true }), { target: { value: '1' } });
-  fireEvent.change(screen.getByLabelText('공통 수강 상태'), { target: { value: 'completed' } });
+  // 캡처에서 읽은 학기(2025년 1학기)가 들어가고, 이번 학기가 아니므로 '이수 완료'가 된다.
+  expect(screen.getByText(/캡처에서 2025년 1학기를 읽었습니다/)).toBeTruthy();
+  expect((within(cloud).getByLabelText('실제 수강 연도') as HTMLInputElement).value).toBe('2025');
+  expect((within(cloud).getByLabelText('수강 상태') as HTMLSelectElement).value).toBe('completed');
 
   fireEvent.click(await screen.findByRole('button', { name: '과목이 정해진 2건 한 번에 저장' }));
   await screen.findByText('2과목을 수강 이력에 저장했습니다.');

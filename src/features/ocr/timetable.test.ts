@@ -6,6 +6,7 @@ import { promisify } from 'node:util';
 import { expect, it } from 'vitest';
 import { getReferenceData } from '@/lib/reference';
 import { courseMatchLabel, matchCourses } from './match-courses';
+import { termFromText } from './extract-document';
 import { findTimetableCells, titleFromCell, titlesFromText } from './timetable-grid';
 
 const reference = getReferenceData();
@@ -66,7 +67,34 @@ it('OCR 오타·잘린 이름·깨진 강의실 글자에도 가장 가까운 �
   expect(rows[4].candidate_codes).toEqual(['ITEC0401', 'ITEC0402']);
 });
 
+it('시간표 위쪽 글자에서 수강 학기를 읽는다(OCR이 년을 4·d로 읽어도)', () => {
+  // 실제 에브리타임 캡처 4장의 학기 표시 OCR 결과
+  expect(termFromText('9:11\n\nall ©  (50 』\n\n20234 1학기\n\n시간표 Vv')).toEqual({ year: 2023, semester: 1 });
+  expect(termFromText('2023년 2학기\n\n시간표 이름 v')).toEqual({ year: 2023, semester: 2 });
+  expect(termFromText("2026'd 2학기\n\nㅋㅋ Vv")).toEqual({ year: 2026, semester: 2 });
+  expect(termFromText('2024년 여름학기')).toEqual({ year: 2024, semester: 3 });
+  expect(termFromText('시간표\n월 화 수')).toBeNull();
+});
+
+it('에브리타임 칸: 회분홍처럼 채도가 낮은 칸도 찾고, 붙어 있는 다른 색 칸은 나눈다', () => {
+  const width = 240;
+  const height = 360;
+  const data = new Uint8ClampedArray(width * height * 4).fill(255);
+  // 기초수학2(242,232,232) 바로 아래 대학글쓰기(255,233,233)
+  for (const [top, color] of [[60, [242, 232, 232, 255]], [110, [255, 233, 233, 255]]] as const) {
+    for (let y = top; y < top + 50; y++) {
+      for (let x = 65; x < 101; x++) data.set(color, (y * width + x) * 4);
+    }
+  }
+  expect(findTimetableCells({ width, height, data, colorSpace: 'srgb' })).toEqual([
+    { x: 65, y: 60, width: 36, height: 50 },
+    { x: 65, y: 110, width: 36, height: 50 },
+  ]);
+});
+
 it('호실 표기만 남은 강의실 줄도 제목에서 떼어낸다', () => {
+  // 수학 Ⅰ의 로마 숫자는 OCR이 '|'로 읽는다.
+  expect(titleFromCell('수학 |\n김명옥\n산격동 캠퍼스 |\nㅠ대학4호관(제\n')).toBe('수학 I 김명옥');
   expect(titleFromCell('운영체제\nAi HHA IT5-21\n')).toBe('운영체제');
   expect(titleFromCell('수치해석\n산격동 캠퍼스 |15-37\n2\n')).toBe('수치해석');
 });
