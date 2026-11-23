@@ -1,6 +1,21 @@
+'use client';
+
+import Link from 'next/link';
 import type { JSX } from 'react';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EnrollmentEditor } from '@/features/enrollments';
+import { useProfile } from '@/lib/user-data/hooks';
 
 export default function Page(): JSX.Element {
-  return <><h1>수강 이력</h1><p className="page-description">이수한 과목과 수강 중인 과목을 관리하세요.</p><EmptyState title="수강 이력 편집을 준비 중입니다.">시연 계정의 저장된 기록은 상단 상태 표시에서 확인할 수 있어요.</EmptyState></>;
+  const { profile, loading, error } = useProfile();
+  return (
+    <>
+      <h1>수강 이력</h1>
+      <p className="page-description">이수한 과목과 수강 중인 과목을 관리하세요.</p>
+      {loading ? <p role="status">수강 이력을 불러오는 중입니다.</p> : profile ? (
+        <EnrollmentEditor mode="manage" programId={profile.program_id} admissionYear={profile.admission_year} />
+      ) : error ? <p className="error" role="alert">{error.message}</p> : (
+        <p>전공과 학번을 먼저 <Link className="inline-link" href="/onboarding">등록해 주세요</Link>.</p>
+      )}
+    </>
+  );
 }

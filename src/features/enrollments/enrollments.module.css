@@ -1,0 +1,143 @@
+.editor {
+  display: grid;
+  gap: 1.25rem;
+  max-inline-size: 66rem;
+  padding: clamp(1rem, 3vw, 2rem);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+}
+
+.header,
+.actions,
+.selection,
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header,
+.selection,
+.summary { justify-content: space-between; }
+
+.header h2,
+.header h3,
+.editor p { margin: 0; }
+
+.term {
+  padding-block-start: 0.75rem;
+  border-block-start: 1px solid var(--line);
+}
+
+.panel {
+  display: grid;
+  gap: 1rem;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+}
+
+.panel legend {
+  padding-inline: 0.4rem;
+  font-weight: 700;
+}
+
+.label {
+  display: grid;
+  gap: 0.3rem;
+  min-inline-size: 0;
+  font-weight: 650;
+}
+
+.label input,
+.label select {
+  inline-size: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 400;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  gap: 0.75rem;
+}
+
+.results,
+.records,
+.checklist {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 0.5rem;
+}
+
+.results button {
+  inline-size: 100%;
+  block-size: 100%;
+  text-align: start;
+}
+
+.results small {
+  display: block;
+  margin-block-start: 0.2rem;
+  color: var(--muted);
+}
+
+.record,
+.checkRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto auto;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  padding-block: 0.6rem;
+  border-block-end: 1px solid var(--line);
+}
+
+.checkRow {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  cursor: pointer;
+}
+
+.checkRow input { accent-color: var(--accent); }
+.checkRow:has(input:disabled) { cursor: default; }
+
+.record .actions { justify-content: flex-end; }
+.code { color: var(--muted); font: 0.85em ui-monospace, monospace; }
+
+.summary {
+  padding-block-start: 0.8rem;
+  border-block-start: 1px solid var(--line);
+  font-weight: 700;
+}
+
+.editor .primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--surface);
+  font-weight: 700;
+}
+
+.editor .primary:disabled { opacity: 0.65; }
+.muted { color: var(--muted); }
+.completed, .success { color: var(--ok); }
+.incomplete { color: var(--warn); }
+.failed, .error { color: var(--danger); }
+
+@media (max-width: 560px) {
+  .record { grid-template-columns: minmax(0, 1fr) auto; }
+  .record .actions { grid-column: 2; }
+}
