@@ -14,12 +14,5 @@ export function AppProviders({ children }: { children: ReactNode }): JSX.Element
 
   if (pathname === '/') return content;
 
-  if (!useMock) {
-    return <>
-      <Navigation />
-      <main id="main-content" className="page"><h1>사용자 데이터 연결을 준비 중입니다</h1></main>
-    </>;
-  }
-
-  return <UserDataProvider><Navigation /><DemoStatus />{content}</UserDataProvider>;
+  return <UserDataProvider><Navigation />{useMock && <DemoStatus />}{content}</UserDataProvider>;
 }
