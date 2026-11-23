@@ -3,11 +3,10 @@
 import { useEffect, useId, useRef, type JSX } from 'react';
 import { useRecommendations } from '@/features/recommend/useRecommendations';
 import { getCurriculum, getRelations } from '@/lib/reference';
-import { useCompletion, useFollowupStats, useProfile, useReference } from '@/lib/user-data/hooks';
+import { useCompletion, useProfile, useReference } from '@/lib/user-data/hooks';
 import type { CompletionState } from '@/lib/domain/completion';
-import type { Recommendation, RecommendationReason } from '@/lib/domain/recommend';
+import type { Recommendation } from '@/lib/domain/recommend';
 import type { Course, CourseCode, CourseEquivalent, CourseRelation, CurriculumEntry } from '@/types/reference';
-import type { FollowupStat } from '@/types/user';
 import styles from './course-detail.module.css';
 
 interface PanelProps {
@@ -27,7 +26,6 @@ export function CourseDetailPanel({ code, onClose, onNavigate }: PanelProps): JS
   const { profile } = useProfile();
   const completion = useCompletion();
   const recommendations = useRecommendations();
-  const followupStats = useFollowupStats();
   const course = code === null ? undefined : courses.get(code);
   if (!course) return null;
 
@@ -37,7 +35,7 @@ export function CourseDetailPanel({ code, onClose, onNavigate }: PanelProps): JS
     : undefined;
 
   return <CourseDetail course={course} courses={courses} completion={completion} curriculum={curriculum}
-    relations={relations} equivalents={equivalents} followupStats={followupStats}
+    relations={relations} equivalents={equivalents}
     recommendation={recommendations.find((item) => item.code === code)} onClose={onClose} onNavigate={onNavigate} />;
 }
 
@@ -48,12 +46,11 @@ interface DetailProps extends Pick<PanelProps, 'onClose' | 'onNavigate'> {
   curriculum: CurriculumEntry | undefined;
   relations: CourseRelation[];
   equivalents: CourseEquivalent[];
-  followupStats: FollowupStat[];
   recommendation: Recommendation | undefined;
 }
 
 function CourseDetail({
-  course, courses, completion, curriculum, relations, equivalents, followupStats, recommendation, onClose, onNavigate,
+  course, courses, completion, curriculum, relations, equivalents, recommendation, onClose, onNavigate,
 }: DetailProps): JSX.Element {
   const titleId = useId();
   const panel = useRef<HTMLElement>(null);
@@ -111,17 +108,6 @@ function CourseDetail({
     </a>
   );
 
-  function reasonText(reason: RecommendationReason): string {
-    if (reason.type !== 'followup' || !reason.fromCode) return reason.label;
-    const from = completion.canonicalOf(reason.fromCode);
-    const to = completion.canonicalOf(code);
-    const stat = followupStats.find(({ base_count, from_code, to_code }) => base_count >= 3
-      && completion.canonicalOf(from_code) === from && completion.canonicalOf(to_code) === to);
-    if (!stat) return reason.label;
-    const sourceName = courses.get(stat.from_code)?.name_ko ?? stat.from_code;
-    return `${sourceName} 이수자 ${stat.base_count}명 중 ${stat.follower_count}명 수강`;
-  }
-
   return (
     <aside role="dialog" aria-labelledby={titleId} className={styles.panel} ref={panel}>
       <header className={styles.header}>
@@ -146,7 +132,7 @@ function CourseDetail({
         <section className={styles.section}>
           <h3>다음 학기 추천 이유</h3>
           <ul className={styles.reasons}>{recommendation.reasons.map((reason, i) =>
-            <li key={`${reason.type}/${reason.fromCode ?? ''}/${i}`}>{reasonText(reason)}</li>)}</ul>
+            <li key={`${reason.type}/${reason.fromCode ?? ''}/${i}`}>{reason.label}</li>)}</ul>
         </section>
       )}
 

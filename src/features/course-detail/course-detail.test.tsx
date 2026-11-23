@@ -1,14 +1,11 @@
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { useState, type JSX } from 'react';
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { useRecommendations } from '@/features/recommend/useRecommendations';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { MockUserDataRepository } from '@/lib/user-data/mock-repository';
 import { UserDataProvider } from '@/lib/user-data/provider';
 import { demoEnrollments, demoProfile } from '@/test/fixtures/demo-user';
 import type { CourseCode } from '@/types/reference';
 import { CourseDetailPanel } from './index';
-
-vi.mock('@/features/recommend/useRecommendations', () => ({ useRecommendations: vi.fn() }));
 
 function PanelHarness({ initialCode }: { initialCode: CourseCode | null }): JSX.Element {
   const [code, setCode] = useState(initialCode);
@@ -27,7 +24,6 @@ function openPanel(code: CourseCode | null, repository = repositoryFor()): void 
   render(<UserDataProvider repository={repository}><PanelHarness initialCode={code} /></UserDataProvider>);
 }
 
-beforeEach(() => vi.mocked(useRecommendations).mockReturnValue([]));
 afterEach(cleanup);
 
 describe('과목 상세 패널', () => {
@@ -75,27 +71,21 @@ describe('과목 상세 패널', () => {
     expect(panel.queryByText('동시 수강 필요')).toBeNull();
   });
 
-  it('renders recommendation reasons and count data from the existing hooks', async () => {
+  it('displays the recommendation engine’s reasons and the chosen equivalent-course sample', async () => {
     const repository = repositoryFor();
-    vi.spyOn(repository, 'getFollowupStats').mockResolvedValue({ ok: true, data: [{
-      program_id: demoProfile.program_id, from_code: 'COMP0204', to_code: 'COME0331', base_count: 10, follower_count: 4,
-    }] });
-    vi.mocked(useRecommendations).mockReturnValue([{
-      code: 'COME0331', score: 1, warning: null, fromCodes: ['COMP0206'],
-      reasons: [
-        { type: 'interest', label: '관심 분야 일치' },
-        { type: 'required', label: '전공필수 미이수' },
-        { type: 'successor', label: '이수 과목의 후수 과목' },
-        { type: 'followup', label: '함께 수강', fromCode: 'COMP0206' },
-      ],
-    }]);
+    vi.spyOn(repository, 'getInterests').mockResolvedValue({ ok: true, data: ['common'] });
+    vi.spyOn(repository, 'getFollowupStats').mockResolvedValue({ ok: true, data: [
+      { program_id: demoProfile.program_id, from_code: 'COMP0204', to_code: 'COME0331', base_count: 3, follower_count: 2 },
+      { program_id: demoProfile.program_id, from_code: 'COMP0206', to_code: 'COME0331', base_count: 10, follower_count: 4 },
+    ] });
     openPanel('COME0331', repository);
 
     const panel = within(await screen.findByRole('dialog', { name: '자료구조' }));
-    expect(panel.getByRole('heading', { name: '다음 학기 추천 이유' })).toBeTruthy();
-    expect(panel.getByText('관심 분야 일치')).toBeTruthy();
-    expect(panel.getByText('전공필수 미이수')).toBeTruthy();
-    expect(panel.getByText('이수 과목의 후수 과목')).toBeTruthy();
-    await waitFor(() => expect(panel.getByText('프로그래밍기초 이수자 10명 중 4명 수강')).toBeTruthy());
+    expect(await panel.findByRole('heading', { name: '다음 학기 추천 이유' })).toBeTruthy();
+    expect(panel.getByText(/관심 분야 일치/)).toBeTruthy();
+    expect(panel.getByText('아직 이수하지 않은 전공필수 과목')).toBeTruthy();
+    expect(panel.getByText('기초프로그래밍의 후속 과목')).toBeTruthy();
+    expect(panel.getByText('같은 전공 선배 10명 중 4명이 기초프로그래밍 이후 수강')).toBeTruthy();
+    expect(panel.queryByText(/3명 중 2명/)).toBeNull();
   });
 });
