@@ -79,13 +79,13 @@ describe('GraduationProgress', () => {
   it('이수 기록을 추가하면 총 학점과 전공필수를 바로 다시 계산한다', async () => {
     renderProgress('ai_computing', 2026, <AddCourse code="COME0331" />);
     const credit = ref.courses.get('COME0331')?.credit ?? 0;
-    const link = await screen.findByRole('link', { name: /노선도에서 보기 \(자료구조\)/ });
+    const link = await screen.findByRole('link', { name: '자료구조 노선도에서 보기' });
     expect(link.getAttribute('href')).toBe('/roadmap?course=COME0331');
 
     fireEvent.click(screen.getByRole('button', { name: '과목 추가' }));
 
     await waitFor(() => expect(valueText(screen.getByRole('progressbar', { name: '총 졸업학점 진행률' }))).toBe(`${credit}학점 / 130학점`));
-    expect(screen.queryByRole('link', { name: /노선도에서 보기 \(자료구조\)/ })).toBeNull();
+    expect(screen.queryByRole('link', { name: '자료구조 노선도에서 보기' })).toBeNull();
     expect(valueText(screen.getByRole('progressbar', { name: '전공필수 진행률' }))).toBe('1과목 / 7과목');
   });
 

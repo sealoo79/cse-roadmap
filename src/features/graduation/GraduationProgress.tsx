@@ -135,8 +135,11 @@ function RequiredCourses({ item, reference: ref, profile }: { item: GraduationIt
                   {done ? <span className={styles.status} data-status="met">이수</span> : (
                     <>
                       <span className={styles.status} data-status="unmet">미이수</span>{' '}
-                      <Link className="inline-link" href={`/roadmap?course=${encodeURIComponent(code)}`}>
-                        노선도에서 보기<span className={styles.visuallyHidden}> ({courseName(ref, code)})</span>
+                      <Link
+                        className="inline-link" href={`/roadmap?course=${encodeURIComponent(code)}`}
+                        aria-label={`${courseName(ref, code)} 노선도에서 보기`}
+                      >
+                        노선도에서 보기
                       </Link>
                     </>
                   )}
