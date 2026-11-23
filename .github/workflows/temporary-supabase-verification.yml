@@ -1,0 +1,94 @@
+name: Temporary Supabase integration verification
+on:
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  supabase:
+    if: github.head_ref == 'codex/supabase-verification-4-9'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - run: npm ci
+      - name: Start disposable Supabase
+        run: supabase start > "$RUNNER_TEMP/supabase-start.log" 2>&1 || { tail -n 25 "$RUNNER_TEMP/supabase-start.log"; exit 1; }
+      - name: Reset and verify migrations and RLS
+        run: |
+          supabase db reset --no-seed
+          supabase test db
+      - name: Verify repository against Supabase Auth and PostgREST
+        run: |
+          supabase status -o env > "$RUNNER_TEMP/supabase.env"
+          cat > src/lib/user-data/live-verification.test.ts <<'TEST'
+          import { randomUUID } from 'node:crypto';
+          import { createClient } from '@supabase/supabase-js';
+          import { expect, it } from 'vitest';
+          import { getReferenceData } from '../reference';
+          import { SupabaseUserDataRepository } from './supabase-repository';
+
+          it('restores persisted profile, enrollments, interests and noncredit after a fresh sign-in', async () => {
+            const url = process.env.API_URL ?? '';
+            const anon = process.env.ANON_KEY ?? process.env.PUBLISHABLE_KEY ?? '';
+            const service = process.env.SERVICE_ROLE_KEY ?? process.env.SECRET_KEY ?? '';
+            expect(['127.0.0.1', 'localhost']).toContain(new URL(url).hostname);
+            if (!anon || !service) throw new Error('Local Supabase API keys are unavailable');
+
+            const auth = { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false };
+            const admin = createClient(url, service, { auth });
+            const email = `verification-${randomUUID()}@example.com`;
+            const password = 'Test-Only-' + randomUUID();
+            const created = await admin.auth.admin.createUser({ email, password, email_confirm: true });
+            if (created.error || !created.data.user) throw new Error('Creating disposable test account failed');
+
+            const connect = async () => {
+              const client = createClient(url, anon, { auth });
+              const result = await client.auth.signInWithPassword({ email, password });
+              if (result.error || !result.data.session) throw new Error('Local Supabase sign-in failed');
+              return client;
+            };
+
+            try {
+              const ref = getReferenceData();
+              const program = ref.programs[0];
+              const course = [...ref.courses.keys()][0];
+              const field = ref.fields[0].field_id;
+              const checklist = ref.checklist[0].checklist_key;
+              const first = await connect();
+              const writer = new SupabaseUserDataRepository(first);
+              expect(await writer.getProfile()).toEqual({ ok: true, data: null });
+              const settings = { program_id: program.program_id, admission_year: program.years[0].admission_year };
+              expect(await writer.upsertProfile(settings)).toMatchObject({ ok: true, data: settings });
+              const enrollment = {
+                course_code: course, taken_year: 2026, taken_semester: 1,
+                status: 'completed', source: 'manual', credit: null, grade: null,
+              } as const;
+              expect(await writer.addEnrollment({ ...enrollment, course_code: 'XXXX9999' }))
+                .toMatchObject({ ok: false, error: { code: 'invalid_key' } });
+              expect(await writer.addEnrollment(enrollment)).toMatchObject({ ok: true, data: enrollment });
+              expect(await writer.setInterests([field])).toEqual({ ok: true, data: [field] });
+              expect(await writer.setNoncredit(checklist, 'met', 'test'))
+                .toMatchObject({ ok: true, data: { checklist_key: checklist, status: 'met', input_value: 'test' } });
+              const signedOut = await first.auth.signOut({ scope: 'local' });
+              if (signedOut.error) throw new Error('Local Supabase sign-out failed');
+
+              const reader = new SupabaseUserDataRepository(await connect());
+              expect(await reader.getProfile()).toMatchObject({ ok: true, data: settings });
+              expect(await reader.listEnrollments()).toMatchObject({ ok: true, data: [enrollment] });
+              expect(await reader.getInterests()).toEqual({ ok: true, data: [field] });
+              expect(await reader.getNoncredit())
+                .toMatchObject({ ok: true, data: [{ checklist_key: checklist, status: 'met', input_value: 'test' }] });
+            } finally {
+              await admin.auth.admin.deleteUser(created.data.user.id);
+            }
+          }, 30000);
+          TEST
+          node --env-file="$RUNNER_TEMP/supabase.env" node_modules/vitest/vitest.mjs run src/lib/user-data/live-verification.test.ts
