@@ -353,9 +353,18 @@
   background: var(--surface);
   cursor: pointer;
   font-size: 14px;
+  white-space: nowrap;
 }
 
-.choice input { margin: 0; accent-color: var(--accent); }
+/* 라디오에 붙은 .form-control의 입력칸 크기(폭 100%, 높이 44px)를 풀어 글자가 두 줄로 꺾이지 않게 한다 */
+.choice input {
+  flex: none;
+  inline-size: auto;
+  min-block-size: 0;
+  margin: 0;
+  padding: 0;
+  accent-color: var(--accent);
+}
 .choice:has(input:checked)[data-choice='met'] { border-color: var(--ok); color: var(--ok); }
 .choice:has(input:checked)[data-choice='unmet'] { border-color: var(--warn); color: var(--warn); }
 .choice:has(input:checked)[data-choice='none'] { border-color: var(--muted); border-style: dashed; color: var(--muted); }
