@@ -210,6 +210,12 @@ h3 { line-height: 1.45; }
   .account-nav { gap: 0; }
 }
 
-.roadmap-toolbar {
+.roadmap-header {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
+  gap: 12px 24px;
+  margin-block-end: 22px;
 }
+.roadmap-header h1 { margin: 0; }
