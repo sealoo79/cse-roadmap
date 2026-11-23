@@ -17,7 +17,7 @@ function RoadmapContent(): JSX.Element {
   const { profile, loading, error } = useProfile();
   const ref = useReference();
   const completion = useCompletion();
-  // 노선도에는 우선순위(recommendCourses 정렬) 상위 5과목만 추천으로 표시한다. 전체 목록은 '다음 학기 추천' 화면에서 본다.
+  // 노선도에는 우선순위(recommendCourses 정렬) 상위 5과목만 추천으로 표시한다.
   const allRecommendations = useRecommendations();
   const recommendations = useMemo(() => allRecommendations.slice(0, ROADMAP_RECOMMENDATION_LIMIT), [allRecommendations]);
   const [visibleFields, setVisibleFields] = useState<FieldId[]>(ref.fields.map((f) => f.field_id));

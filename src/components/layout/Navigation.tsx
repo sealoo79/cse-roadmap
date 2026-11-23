@@ -11,7 +11,6 @@ import { useAuth } from '@/features/auth/useAuth';
 const menu: { href: string; label: string; also: string[] }[] = [
   { href: '/roadmap', label: '노선도', also: [] },
   { href: '/graduation', label: '졸업요건', also: [] },
-  { href: '/recommend', label: '다음 학기 추천', also: [] },
   { href: '/account', label: '마이페이지', also: ['/enrollments'] },
 ];
 

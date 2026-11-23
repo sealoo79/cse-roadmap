@@ -74,7 +74,6 @@ export const config = {
     '/onboarding/:path*',
     '/roadmap/:path*',
     '/graduation/:path*',
-    '/recommend/:path*',
     '/enrollments/:path*',
     '/account/:path*',
     '/api/ocr/:path*',

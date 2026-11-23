@@ -179,7 +179,7 @@ input[type='radio'], input[type='checkbox'] { accent-color: var(--accent); }
   margin-inline: auto;
   padding: clamp(28px, 4vw, 42px) var(--gutter) 72px;
 }
-/* 노선도·다음 학기 추천·마이페이지는 같은 넓은 본문 폭을 쓴다(졸업요건은 graduation.module.css) */
+/* 노선도·마이페이지는 같은 넓은 본문 폭을 쓴다(졸업요건은 graduation.module.css) */
 .page:has(.roadmap-page, .wide-page) { max-inline-size: var(--wide-width); }
 .page:has([data-home]) { max-inline-size: none; padding: 0; }
 h1 { margin: 0 0 8px; font-size: clamp(27px, 3.5vw, 36px); line-height: 1.24; font-weight: 800; letter-spacing: -.035em; }
