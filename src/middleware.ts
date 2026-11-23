@@ -1,6 +1,6 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
-import { getAccessRedirect } from '@/lib/supabase/access';
+import { getAccessRedirect, isSchoolGoogleSession } from '@/lib/supabase/access';
 import { getSupabaseConfig, mockSessionCookie, useMockAuth } from '@/lib/supabase/config';
 
 function unavailable(): NextResponse {
@@ -51,13 +51,15 @@ export async function middleware(request: NextRequest): Promise<NextResponse> {
 
   const { data, error: authError } = await supabase.auth.getClaims();
   if (authError?.status && authError.status >= 500) return copyCookies(unavailable());
-  const userId = data?.claims.sub;
-  if (!userId) return redirect(getAccessRedirect(pathname, 'guest'));
+  const claims = data?.claims;
+  if (!claims?.sub || !isSchoolGoogleSession(claims)) {
+    return redirect(getAccessRedirect(pathname, 'guest'));
+  }
 
   const { data: profile, error } = await supabase
     .from('profiles')
     .select('id')
-    .eq('id', userId)
+    .eq('id', claims.sub)
     .maybeSingle();
 
   if (error) return copyCookies(unavailable());

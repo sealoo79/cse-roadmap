@@ -2,6 +2,7 @@
 
 import { useState, type JSX } from 'react';
 import { useAuth } from '@/features/auth/useAuth';
+import { schoolEmailDomain } from '@/lib/supabase/access';
 import { useMockAuth } from '@/lib/supabase/config';
 import { FeatureRing } from './FeatureRing';
 import { HomeBackground } from './HomeBackground';
@@ -23,7 +24,9 @@ function GoogleLogo(): JSX.Element {
 export function Intro({ callbackFailed }: { callbackFailed: boolean }): JSX.Element {
   const { signInWithGoogle, loading } = useAuth();
   const [signingIn, setSigningIn] = useState(false);
-  const [error, setError] = useState(callbackFailed ? '로그인을 완료하지 못했습니다. 다시 시도해 주세요.' : null);
+  const [error, setError] = useState(callbackFailed
+    ? `로그인을 완료하지 못했습니다. 경북대 Google 계정(@${schoolEmailDomain})으로 다시 시도해 주세요.`
+    : null);
 
   async function login(): Promise<void> {
     setError(null);
@@ -46,10 +49,13 @@ export function Intro({ callbackFailed }: { callbackFailed: boolean }): JSX.Elem
         <div className={styles.cta}>
           <button type="button" className={styles.googleButton} disabled={loading || signingIn} onClick={() => void login()}>
             {!useMockAuth && <GoogleLogo />}
-            <span>{signingIn ? '로그인 연결 중…' : useMockAuth ? '시연 계정으로 로그인' : 'Google 계정으로 로그인'}</span>
+            <span>{signingIn ? '로그인 연결 중…' : useMockAuth ? '시연 계정으로 로그인' : '경북대 Google 계정으로 로그인'}</span>
           </button>
         </div>
-        <p className={styles.note}>처음 로그인하면 전공·학번, 수강 내역, 관심 분야를 한 번만 설정해요.</p>
+        <p className={styles.note}>
+          {!useMockAuth && <>@{schoolEmailDomain} 이메일을 사용해 주세요. </>}
+          처음 로그인하면 전공·학번, 수강 내역, 관심 분야를 한 번만 설정해요.
+        </p>
         {error && <p className={styles.error} role="alert">{error}</p>}
       </div>
       <FeatureRing />

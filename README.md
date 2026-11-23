@@ -14,8 +14,15 @@ NEXT_PUBLIC_USE_MOCK=1 npm run dev
 
 브라우저에서 http://localhost:3000 을 열고 시연 계정으로 로그인합니다.
 실제 계정으로 실행하려면 `.env.local`에서 `NEXT_PUBLIC_USE_MOCK=0`과 Supabase URL·anon 키를 설정합니다.
-Supabase에 마이그레이션을 적용하고 Google 로그인을 활성화한 뒤, Supabase에 앱의 `/auth/callback` URL을 등록합니다.
-온보딩과 수강 이력의 입력 화면은 후속 이슈가 연결합니다.
+Supabase에 마이그레이션을 적용하고 Google 제공자에 OAuth Client ID와 Client Secret을 설정합니다.
+Supabase 인증 URL 목록에 앱의 `/auth/callback`을 추가하고, 운영에서는 다음 Auth Hooks를 활성화합니다.
+
+| Auth Hook | Postgres 함수 |
+|---|---|
+| Before User Created | `public.require_knu_google_signup` |
+| Customize Access Token | `public.require_knu_google_token` |
+
+Google 계정의 이메일은 `@knu.ac.kr`이어야 합니다. Vercel Production에 `NEXT_PUBLIC_USE_MOCK=0`, Supabase URL, anon 키를 설정하고 재배포합니다.
 
 ## 목 모드와 기준 데이터
 

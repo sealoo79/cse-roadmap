@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import { demoProfile } from '@/test/fixtures/demo-user';
+import { schoolEmailDomain } from '@/lib/supabase/access';
 import { createBrowserSupabaseClient } from '@/lib/supabase/client';
 import { getSupabaseConfig, mockSessionCookie, useMockAuth } from '@/lib/supabase/config';
 
@@ -65,7 +66,10 @@ export function useAuth(): AuthState {
 
     const { error } = await client.auth.signInWithOAuth({
       provider: 'google',
-      options: { redirectTo: new URL('/auth/callback', window.location.origin).href },
+      options: {
+        redirectTo: new URL('/auth/callback', window.location.origin).href,
+        queryParams: { hd: schoolEmailDomain, prompt: 'select_account' },
+      },
     });
     if (error) throw new Error('Google 로그인에 연결할 수 없습니다. 다시 시도해 주세요.');
   }
