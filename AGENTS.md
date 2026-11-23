@@ -527,7 +527,7 @@ Closes #N
 <!-- 후속 이슈로 넘길 것, 팀 결정이 필요한 것. 없으면 '없음' -->
 ```
 
-- 머지 조건: CI(lint·typecheck·test·build·validate-data) 통과. 코드 리뷰와 리뷰 승인은 선택 사항이다.
+- 머지 조건: CI(lint·typecheck·test·build·validate-data) 통과. 코드 리뷰와 리뷰 승인은 선택 사항이다. 이 조건은 이슈 본문에 남아 있는 리뷰 승인 규칙보다 우선한다.
 - **머지 방식: Squash and merge만 사용**한다(Merge commit·Rebase merge 사용 안 함). Squash 커밋 메시지는 PR 제목 `[#N] 이슈 제목`을 그대로 쓰고, 머지 후 브랜치는 삭제한다.
 - 이 PR 본문 형식은 `.github/pull_request_template.md`(#1)에도 그대로 넣는다.
 
