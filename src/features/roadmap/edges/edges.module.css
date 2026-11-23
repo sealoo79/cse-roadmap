@@ -87,3 +87,9 @@
   opacity: 0.36;
   filter: blur(1px);
 }
+
+/* 후수 과목 역: 파란 점선 테두리 */
+:global([data-roadmap-map]):has(.layer) :global([data-roadmap-chain]) button {
+  outline: 2px dashed var(--accent);
+  outline-offset: 1px;
+}

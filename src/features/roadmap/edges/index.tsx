@@ -34,14 +34,19 @@ export function EdgesLayer({
 
     // The roadmap owns the station buttons. Mark only stations in the map containing this layer.
     const map = layer.current?.closest('[data-roadmap-map]');
-    const dimmed = [...(map?.querySelectorAll<HTMLElement>('[data-roadmap-node]') ?? [])]
-      .filter((station) => !relatedCodes.has(station.dataset.roadmapNode ?? ''));
+    const stations = [...(map?.querySelectorAll<HTMLElement>('[data-roadmap-node]') ?? [])];
+    const dimmed = stations.filter((station) => !relatedCodes.has(station.dataset.roadmapNode ?? ''));
+    // 선택한 과목에서 이어지는 후수 과목 역은 파란 테두리로 따로 표시한다.
+    const chained = stations.filter((station) => station.dataset.roadmapNode !== selectedCode
+      && relatedCodes.has(station.dataset.roadmapNode ?? ''));
     for (const station of dimmed) station.setAttribute('data-roadmap-dimmed', '');
+    for (const station of chained) station.setAttribute('data-roadmap-chain', '');
 
     return () => {
       for (const station of dimmed) station.removeAttribute('data-roadmap-dimmed');
+      for (const station of chained) station.removeAttribute('data-roadmap-chain');
     };
-  }, [relatedCodes]);
+  }, [relatedCodes, selectedCode]);
 
   return (
     <svg className={styles.layer} ref={layer} aria-hidden="true" focusable="false">

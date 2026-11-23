@@ -53,9 +53,10 @@
   background: linear-gradient(90deg, var(--dot-color, var(--accent)) 50%, var(--surface) 50%);
 }
 
+/* 노선도 안쪽 세로 스크롤 없음: 높이는 내용만큼 늘어나 페이지 스크롤 하나로 본다. 확대했을 때만 가로로 넘친다. */
 .viewport {
-  overflow: auto;
-  max-block-size: 77vh;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);

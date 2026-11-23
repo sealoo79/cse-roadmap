@@ -238,3 +238,10 @@
     padding: 16px 18px calc(18px + env(safe-area-inset-bottom));
   }
 }
+
+.subheading {
+  margin: 10px 0 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}

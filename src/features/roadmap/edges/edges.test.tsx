@@ -62,6 +62,8 @@ describe('EdgesLayer', () => {
       (node) => node.dataset.roadmapNode);
     // 후수의 후수(COME0331 → COMP0312)와 그 동시 수강 과목(COMP0411)까지 이어서 보여 준다.
     expect(dimmed()).toEqual([]);
+    expect(Array.from(container.querySelectorAll<HTMLElement>('[data-roadmap-chain]'), (node) => node.dataset.roadmapNode))
+      .toEqual(['COME0331', 'COMP0312', 'COMP0411']);
     const chained = container.querySelector('[data-from=COME0331][data-to=COMP0312]');
     expect(chained?.getAttribute('data-muted')).toBe('false');
     expect(chained?.getAttribute('data-chain')).toBe('true');
@@ -73,6 +75,7 @@ describe('EdgesLayer', () => {
 
     rerender(view(null));
     expect(dimmed()).toEqual([]);
+    expect(container.querySelectorAll('[data-roadmap-chain]')).toHaveLength(0);
   });
 
   it('uses map coordinates for adjacent and long routes', () => {

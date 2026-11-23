@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from 'react';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { getCourseFields, getCurriculum, getFields, getReferenceData, getRelations } from '@/lib/reference';
 import type { CourseCode } from '@/types/reference';
@@ -39,8 +39,24 @@ export function RoadmapView({
   ), [curriculum, courseFields, visibleFields]);
   const recommendedCodes = useMemo(() => new Set(recommendations.map(({ code }) => code)), [recommendations]);
 
-  const [zoom, setZoom] = useState(1);
+  // 기본은 '화면 맞춤': 노선도 전체가 화면 폭에 들어가게 줄여서 따로 스크롤하지 않는다. 확대 버튼을 누르면 그 배율을 쓴다.
+  const [manualZoom, setManualZoom] = useState<number | null>(null);
+  const [fitZoom, setFitZoom] = useState(1);
+  const zoom = manualZoom ?? fitZoom;
+  const setZoom = (next: number): void => setManualZoom(next);
   const viewport = useRef<HTMLDivElement>(null);
+  const hasNodes = nodes.length > 0;
+
+  useLayoutEffect(() => {
+    const element = viewport.current;
+    if (!element) return;
+    const fit = (): void => setFitZoom(Math.min(1, Math.max(MIN_ZOOM, element.clientWidth / MAP_WIDTH)));
+    fit();
+    if (typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(fit);
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [hasNodes]);
   const nodeButtons = useRef(new Map<CourseCode, HTMLButtonElement>());
 
   useEffect(() => {
@@ -82,9 +98,8 @@ export function RoadmapView({
             onClick={() => setZoom(1)}>{Math.round(zoom * 100)}%</button>
           <button type="button" className="button" aria-label="확대" disabled={zoom >= MAX_ZOOM}
             onClick={() => setZoom(Math.min(MAX_ZOOM, zoom + ZOOM_STEP))}>+</button>
-          <button type="button" className="button" onClick={() => {
-            if (viewport.current) setZoom(Math.min(1, viewport.current.clientWidth / MAP_WIDTH));
-          }}>화면 맞춤</button>
+          <button type="button" className="button" aria-pressed={manualZoom === null}
+            onClick={() => setManualZoom(null)}>화면 맞춤</button>
         </div>
       </div>
       <ul className={styles.fieldLegend} aria-label="분야별 노선 범례">
@@ -93,7 +108,7 @@ export function RoadmapView({
         } as CSSProperties}><span aria-hidden="true" />{field.name_ko}</li>)}
       </ul>
       {nodes.length === 0 ? <EmptyState title="표시할 과목이 없어요">표시할 분야를 선택해 주세요.</EmptyState> : (
-        <div ref={viewport} className={styles.viewport} tabIndex={0} role="region" aria-label="학기별 노선도 스크롤 영역">
+        <div ref={viewport} className={styles.viewport} tabIndex={0} role="region" aria-label="학기별 노선도">
           <div className={styles.sizer} style={{ width: MAP_WIDTH * zoom, height: height * zoom }}>
             <div className={styles.map} style={{
               width: MAP_WIDTH, height, transform: `scale(${zoom})`,
