@@ -118,7 +118,8 @@ function CourseDetail({
       const element = panel.current;
       if (!element) return;
       const targets = [...document.querySelectorAll<HTMLElement>(
-        `[data-roadmap-node="${CSS.escape(code)}"], [data-roadmap-chain]`,
+        // 과목코드는 영문·숫자뿐이라 이스케이프 없이 쓴다(jsdom에는 CSS.escape가 없다).
+        `[data-roadmap-node="${code}"], [data-roadmap-chain]`,
       )].map((station) => station.getBoundingClientRect());
       if (targets.length === 0) { setAutoShift(NO_OFFSET); return; }
       const rect = element.getBoundingClientRect();
