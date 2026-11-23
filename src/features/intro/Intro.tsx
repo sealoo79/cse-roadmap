@@ -40,8 +40,8 @@ export function Intro({ callbackFailed }: { callbackFailed: boolean }): JSX.Elem
     <section className={styles.home} aria-labelledby="intro-title" data-home>
       <HomeBackground />
       <div className={styles.hero}>
-        <p className={styles.kicker}>컴퓨터학부 2026 교육과정</p>
-        <h1 id="intro-title">들은 과목을 넣으면<br />다음 학기가 보여요</h1>
+        <p className={styles.kicker}>컴퓨터학부 수강 로드맵</p>
+        <h1 id="intro-title">CSE ROADMAP</h1>
         <p className={styles.lead}>수강 내역과 관심 분야로 내 전공 노선도를 그리고, 선수과목과 졸업요건에 맞춰 다음 학기 과목을 추천해요.</p>
         <div className={styles.cta}>
           <button type="button" className={styles.googleButton} disabled={loading || signingIn} onClick={() => void login()}>
