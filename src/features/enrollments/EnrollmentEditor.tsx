@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useId, useRef, useState, type JSX } from 'react';
 import { Button } from '@/components/ui/Button';
 import { useCompletion, useEnrollments, useReference } from '@/lib/user-data/hooks';
@@ -161,6 +162,7 @@ export function EnrollmentEditor({ mode, programId, admissionYear, onDone }: Pro
             setNotice(null);
             setPanel({ type: 'curriculum' });
           }}>교육과정에서 추가</Button>
+          {mode === 'manage' && <Link className="button" href="/enrollments/import">시간표 캡처로 불러오기</Link>}
         </div>
       </div>
       {panel?.type === 'manual' && (
