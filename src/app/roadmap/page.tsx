@@ -8,7 +8,7 @@ import { useCompletion, useProfile, useReference } from '@/lib/user-data/hooks';
 import { useRecommendations } from '@/features/recommend/useRecommendations';
 import { RoadmapView } from '@/features/roadmap';
 import { roadmapFieldOf } from '@/features/roadmap/layout-roadmap';
-import { RoadmapSearch } from '@/features/roadmap-search';
+import { RoadmapCourseSearch, RoadmapFieldFilters } from '@/features/roadmap-search';
 import { CourseDetailPanel } from '@/features/course-detail';
 
 function RoadmapContent(): JSX.Element {
@@ -29,24 +29,29 @@ function RoadmapContent(): JSX.Element {
     }
     router.replace(next ? `/roadmap?course=${encodeURIComponent(next)}` : '/roadmap', { scroll: false });
   };
-  if (loading) return <p role="status">로드맵을 불러오는 중입니다.</p>;
-  if (error) return <p role="alert">{error.message}</p>;
-  if (!profile) return <p>프로필을 등록하면 수강 경로를 확인할 수 있어요.</p>;
+  const header = (search?: JSX.Element): JSX.Element => (
+    <header className="roadmap-header">
+      <h1>수강 로드맵</h1>
+      {search}
+    </header>
+  );
+  if (loading) return <>{header()}<p role="status">로드맵을 불러오는 중입니다.</p></>;
+  if (error) return <>{header()}<p role="alert">{error.message}</p></>;
+  if (!profile) return <>{header()}<p>프로필을 등록하면 수강 경로를 확인할 수 있어요.</p></>;
   return <>
-    <div className="toolbar roadmap-toolbar"><RoadmapSearch onSelect={select} visibleFields={visibleFields} onChangeVisibleFields={setVisibleFields} />
-      <label><input type="checkbox" checked={showRecommendationEdges} onChange={(e) => setShowRecommendationEdges(e.target.checked)} />추천 화살표 보기</label>
-    </div>
+    {header(<RoadmapCourseSearch onSelect={select} />)}
     <RoadmapView programId={profile.program_id} admissionYear={profile.admission_year} completion={completion}
       recommendations={recommendations} selectedCode={selectedCode} onSelect={select}
-      showRecommendationEdges={showRecommendationEdges} visibleFields={visibleFields} />
+      showRecommendationEdges={showRecommendationEdges} visibleFields={visibleFields}
+      toolbar={<RoadmapFieldFilters visibleFields={visibleFields} onChangeVisibleFields={setVisibleFields} />}
+      legendExtra={<label><input type="checkbox" checked={showRecommendationEdges}
+        onChange={(e) => setShowRecommendationEdges(e.target.checked)} />서비스 추천 화살표 보기</label>} />
     <CourseDetailPanel code={selectedCode} onClose={() => select(null)} onNavigate={select} />
   </>;
 }
 export default function RoadmapPage(): JSX.Element {
   return (
     <div className="roadmap-page">
-      <h1>내 전공 노선도</h1>
-      <p className="page-description">금색 고리와 ‘추천’ 표시가 붙은 역이 다음 학기 추천 과목이에요. 과목을 누르면 그 과목에서 이어지는 후수 과목이 파란 점선으로 끝까지 표시되고, 상세 창은 위쪽 손잡이를 끌어 옮길 수 있어요.</p>
       <Suspense fallback={<p role="status">로드맵을 불러오는 중입니다.</p>}><RoadmapContent /></Suspense>
     </div>
   );
