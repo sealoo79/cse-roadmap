@@ -40,6 +40,7 @@ it('캡처는 검토 항목만 만들고, 확인한 과목만 수강 중으로 �
   expect((within(form).getByLabelText('수강 상태') as HTMLSelectElement).value).toBe('incomplete');
   fireEvent.change(screen.getByLabelText('수강 연도', { exact: true }), { target: { value: '2026' } });
   fireEvent.change(screen.getByLabelText('수강 학기', { exact: true }), { target: { value: '2' } });
+  fireEvent.change(screen.getByLabelText('공통 수강 상태'), { target: { value: 'incomplete' } });
 
   const confirm = within(form).getByRole('button', { name: '확정하고 수강 이력에 저장' });
   fireEvent.click(confirm);
@@ -55,4 +56,30 @@ it('캡처는 검토 항목만 만들고, 확인한 과목만 수강 중으로 �
     { review_status: 'pending' },
     { review_status: 'pending' },
   ] });
+});
+
+it('비슷한 이름도 가장 가까운 과목을 골라 두고, 과목이 정해진 항목을 한 번에 저장한다', async () => {
+  const repository = new MockUserDataRepository();
+  const onAdd = vi.spyOn(repository, 'addEnrollment');
+  vi.mocked(extractDocument).mockResolvedValue(['시스템프로그 래밍', '클라우드컴퓨 티', '동아리 회의']);
+
+  render(<UserDataProvider repository={repository}><OcrImport programId="adv_computing" admissionYear={2026} /></UserDataProvider>);
+  const file = screen.getByLabelText('시간표 이미지');
+  await waitFor(() => expect(file.hasAttribute('disabled')).toBe(false));
+  fireEvent.change(file, { target: { files: [new File(['fixture'], 'timetable.png', { type: 'image/png' })] } });
+  fireEvent.click(screen.getByRole('button', { name: '과목 추출' }));
+
+  // 유사 이름(클라우드컴퓨 티)도 과목이 미리 골라져 있어 코드를 다시 입력할 필요가 없다.
+  const cloud = await screen.findByRole('form', { name: '클라우드컴퓨팅' });
+  expect((within(cloud).getByLabelText('과목코드 선택') as HTMLSelectElement).value).toBe('GLSO0227');
+  fireEvent.change(screen.getByLabelText('수강 연도', { exact: true }), { target: { value: '2025' } });
+  fireEvent.change(screen.getByLabelText('수강 학기', { exact: true }), { target: { value: '1' } });
+  fireEvent.change(screen.getByLabelText('공통 수강 상태'), { target: { value: 'completed' } });
+
+  fireEvent.click(await screen.findByRole('button', { name: '과목이 정해진 2건 한 번에 저장' }));
+  await screen.findByText('2과목을 수강 이력에 저장했습니다.');
+  expect(onAdd.mock.calls.map(([input]) => [input.course_code, input.taken_year, input.taken_semester, input.status]))
+    .toEqual([['ELEC0462', 2025, 1, 'completed'], ['GLSO0227', 2025, 1, 'completed']]);
+  // 과목을 찾지 못한 일정(동아리 회의)은 검토에 남는다.
+  expect(screen.getByRole('form', { name: '동아리 회의' })).toBeTruthy();
 });

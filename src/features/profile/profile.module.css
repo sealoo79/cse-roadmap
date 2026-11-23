@@ -100,3 +100,15 @@
   .summary > div { grid-template-columns: 1fr; gap: 4px; }
   .summary button, .summary a { grid-column: 1; grid-row: auto; justify-self: start; }
 }
+
+.enrollmentMethod {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  margin-block-start: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.enrollmentMethod h2 { margin: 0; font-size: 17px; }
+.enrollmentMethod > p { margin: 0 0 4px; }
