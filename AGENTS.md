@@ -527,7 +527,7 @@ Closes #N
 <!-- 후속 이슈로 넘길 것, 팀 결정이 필요한 것. 없으면 '없음' -->
 ```
 
-- 머지 조건: CI(lint·typecheck·test·build·validate-data) 통과 + 리뷰 1명 승인.
+- 머지 조건: CI(lint·typecheck·test·build·validate-data) 통과. 코드 리뷰와 리뷰 승인은 선택 사항이다.
 - **머지 방식: Squash and merge만 사용**한다(Merge commit·Rebase merge 사용 안 함). Squash 커밋 메시지는 PR 제목 `[#N] 이슈 제목`을 그대로 쓰고, 머지 후 브랜치는 삭제한다.
 - 이 PR 본문 형식은 `.github/pull_request_template.md`(#1)에도 그대로 넣는다.
 
@@ -542,8 +542,8 @@ Closes #N
 
 ## A-13. Codex 전용 작업 방식 (Claude Code는 CLAUDE.md를 따른다)
 - 작업 요청에는 이슈 번호와 본문을 함께 넣는다. 예: "이슈 #6을 AGENTS.md 계약대로 구현해줘" + 이슈 본문.
-- 샌드박스에서 네트워크·Supabase를 쓸 수 없으면 **목 모드로만** 개발·테스트한다. 실제 DB 연결 확인은 PR 리뷰어가 한다.
+- 샌드박스에서 네트워크·Supabase를 쓸 수 없으면 **목 모드로만** 개발·테스트한다. 실제 DB 연결을 검증하지 못한 경우 PR 본문에 기록한다.
 - 작업을 끝내기 전에 A-0의 lint·typecheck·test를 직접 실행하고 결과를 요약에 붙인다.
 - 브랜치는 `"feat/issue#N"`으로 만든다(A-11).
 - 작업이 끝나면 **A-11의 PR 본문 형식을 그대로 채운 PR description**을 결과로 출력한다. Codex가 PR을 직접 만들 때도 이 본문을 쓴다. 제목은 `[#N] 이슈 제목`.
-- 머지는 사람이 GitHub에서 **Squash and merge**로 한다. Codex는 머지하지 않는다.
+- Codex는 PR을 열고 필수 CI가 통과하면 GitHub에서 **Squash and merge**를 진행한다. 리뷰 승인 대기 없이 병합하고 GitHub에서 결과를 확인한다.

@@ -38,6 +38,6 @@ NEXT_PUBLIC_USE_MOCK=1 npm run build
 
 ## 협업
 
-AGENTS.md의 계약과 소유 표를 따릅니다. 한 이슈당 한 브랜치·한 PR로 작업하고, 리뷰어 승인 후 사람이 Squash merge합니다.
+AGENTS.md의 계약과 소유 표를 따릅니다. 한 이슈당 한 브랜치·한 PR로 작업하고, 필수 CI 통과 후 Squash merge합니다. 리뷰 승인은 선택 사항입니다.
 기준 데이터 파일은 #2·#3만 수정합니다. 후속 이슈의 기능은 구현하지 않고 공개 타입·props·빈 스텁으로 연결합니다.
 Vercel 프로젝트에서 저장소를 연결하고 Preview 환경에 `NEXT_PUBLIC_USE_MOCK=1`을 설정하면 PR 프리뷰를 확인할 수 있습니다. CI 실행·Vercel 프리뷰는 원격 연결 후 리뷰어가 확인해야 합니다.

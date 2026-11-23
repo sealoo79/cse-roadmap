@@ -13,8 +13,8 @@ AGENTS.md의 "A-13. Codex 전용 작업 방식"은 무시한다.
 5. **검사**: `npm run lint && npm run typecheck && npm test`를 실행해 통과시킨다. 실패하면 원인을 고치고 다시 실행한다(테스트를 지우거나 건너뛰지 않는다).
 6. **범위 확인**: `git diff --name-only main`으로 소유 범위 밖 파일이 없는지 확인한다.
 7. **PR 본문 작성**: AGENTS.md A-11의 형식(작업 내용·변경 사항·구현 방식과 주요 결정·인수 조건 체크·테스트·스크린샷·범위 밖 요청·남은 일)을 실제 작업 내용으로 채워 `pr-body.md`로 만들고 사용자에게 보여준다. 빈 칸이나 템플릿 주석을 남기지 않는다.
-8. **커밋·PR**: `feat(#번호): …` 형식으로 커밋하고, 사용자가 승인하면 `git push -u origin "feat/issue#<번호>"` → `gh pr create --title "[#<번호>] 이슈 제목" --body-file pr-body.md`로 PR을 연다. `pr-body.md`는 커밋하지 않는다.
-9. **머지는 하지 않는다**: 리뷰 승인 후 사람이 GitHub에서 **Squash and merge**로 머지한다(`gh pr merge --squash --delete-branch`도 사용자가 요청할 때만).
+8. **커밋·PR**: `feat(#번호): …` 형식으로 커밋하고 `git push -u origin "feat/issue#<번호>"` → `gh pr create --title "[#<번호>] 이슈 제목" --body-file pr-body.md`로 PR을 연다. `pr-body.md`는 커밋하지 않는다.
+9. **머지**: 필수 CI가 통과하면 Claude Code가 `gh pr merge --squash --delete-branch` 또는 GitHub의 **Squash and merge**로 병합한다. 리뷰 승인 대기 없이 병합하고 GitHub에서 결과를 확인한다.
 10. **보고**: 변경 파일, 인수 조건별 충족 여부, 검사 결과, 범위 밖·계약 변경 요청, 남은 결정을 정리한다.
 
 ## 하지 말 것
