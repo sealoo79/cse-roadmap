@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type JSX } from 'react';
+import { useMemo, useState, type JSX } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Suspense } from 'react';
 import type { CourseCode, FieldId } from '@/types/reference';
@@ -11,11 +11,15 @@ import { roadmapFieldOf } from '@/features/roadmap/layout-roadmap';
 import { RoadmapSearch } from '@/features/roadmap-search';
 import { CourseDetailPanel } from '@/features/course-detail';
 
+const ROADMAP_RECOMMENDATION_LIMIT = 5;
+
 function RoadmapContent(): JSX.Element {
   const { profile, loading, error } = useProfile();
   const ref = useReference();
   const completion = useCompletion();
-  const recommendations = useRecommendations();
+  // 노선도에는 우선순위(recommendCourses 정렬) 상위 5과목만 추천으로 표시한다. 전체 목록은 '다음 학기 추천' 화면에서 본다.
+  const allRecommendations = useRecommendations();
+  const recommendations = useMemo(() => allRecommendations.slice(0, ROADMAP_RECOMMENDATION_LIMIT), [allRecommendations]);
   const [visibleFields, setVisibleFields] = useState<FieldId[]>(ref.fields.map((f) => f.field_id));
   const [showRecommendationEdges, setShowRecommendationEdges] = useState(true);
   const router = useRouter();
