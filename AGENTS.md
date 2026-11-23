@@ -34,6 +34,7 @@
 | 경로 | 소유 이슈 |
 |---|---|
 | 설정 파일, `.github/workflows/ci.yml`, `AGENTS.md`, `CLAUDE.md`, `src/app/layout.tsx`, `src/app/globals.css`, `src/components/**`, `src/types/**`, `src/lib/reference/**`, `src/lib/user-data/{repository,mock-repository,provider,hooks,index}.ts(x)`, `src/test/fixtures/**` | #1 |
+| `docs/prototype.md`, `docs/prototype.html` | 공통 계약 변경 이슈 (#32) |
 | `data/{programs,courses,curriculum,course_relations,course_equivalents,graduation_rules,requirement_courses}.json`, `docs/data_dictionary.md` | #2 |
 | `data/{fields,course_fields,checklist}.json` | #3 |
 | `supabase/migrations/**`, `supabase/config.toml`, `src/types/database.ts` | #4 |
@@ -56,7 +57,7 @@
 | `tests/e2e/**`, `docs/demo.md` | #21 |
 
 ## A-2. 계약 변경 절차
-- 이 파일의 A-3 ~ A-8(키, 타입, 함수 시그니처, 인터페이스, props, 라우트)이 **계약**이다.
+- 이 파일의 A-3 ~ A-8(키, 타입, 함수 시그니처, 인터페이스, props, 라우트, 화면 프로토타입 참고 기준)이 **계약**이다.
 - 바꿔야 하면: ① 이슈에 코멘트로 제안 → ② #1 담당이 `contract:` 접두어의 작은 PR로 `src/types`·스텁·이 파일을 함께 수정 → ③ 머지 후 각자 rebase.
 - 필드 **추가**(옵셔널)는 하위 호환이므로 허용, 이름 변경·삭제는 팀 합의 필수.
 
@@ -463,6 +464,11 @@ export function EnrollmentEditor(props: { mode: 'onboarding' | 'manage'; program
 export function searchCourses(query: string, ref: ReferenceData, opts?: { limit?: number }): Course[];   // #15도 사용
 ```
 - `src/app/roadmap/page.tsx`(#7)가 `RoadmapView`·`RoadmapSearch`·`CourseDetailPanel`을 조립한다. #1이 세 컴포넌트를 import하는 골격을 미리 만들고, 각 이슈는 자기 컴포넌트만 구현한다.
+
+### 화면 프로토타입
+- UI를 구현하거나 화면 흐름을 검증하기 전에 [프로토타입 안내](docs/prototype.md)에서 담당 이슈에 해당하는 화면과 확인 범위를 읽고 [HTML 시안](docs/prototype.html)을 브라우저로 연다.
+- 시안은 레이아웃·정보 위계·상태 표시·화면 이동의 참고 자료다. 앱의 라우트·접근 제어·데이터·도메인 동작은 이 계약, 기준 데이터와 이슈 인수 조건을 따른다. CSS 변수·분야 색·접근성은 A-10을 따른다.
+- 관련 화면 PR의 **구현 방식과 주요 결정**에 참고한 시안 화면과 반영 범위를 적는다. 시안과 동작이 다른 경우 근거가 되는 계약이나 이슈를 함께 적는다.
 
 ## A-9. 도메인 규칙 (ERD I-5 · Requirements D05~D09)
 1. 과목 식별은 `course_code`만. 과목명은 검색·OCR **후보 제시**에만 쓰고, 확정은 사용자가 한다.

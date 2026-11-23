@@ -9,7 +9,7 @@
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "validate-data": "node -e \"console.log('기준 데이터 검증은 이슈 #8에서 구현합니다.')\""
+    "validate-data": "node scripts/validate-data.ts"
   },
   "dependencies": {
     "@supabase/ssr": "0.12.7",
