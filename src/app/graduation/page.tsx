@@ -1,6 +1,21 @@
+'use client';
+
+import Link from 'next/link';
 import type { JSX } from 'react';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { GraduationProgress } from '@/features/graduation';
+import { useProfile } from '@/lib/user-data/hooks';
 
 export default function Page(): JSX.Element {
-  return <><h1>졸업요건</h1><p className="page-description">이수 기록과 졸업요건을 한눈에 확인하세요.</p><EmptyState title="졸업요건 진행률을 준비 중입니다.">졸업 판정 엔진과 비학점 요건 입력 화면이 연결될 예정입니다.</EmptyState></>;
+  const { profile, loading, error } = useProfile();
+  return (
+    <>
+      <h1>졸업요건</h1>
+      <p className="page-description">이수 기록으로 졸업요건 진행 상황을 계산하고, 비학점 요건은 직접 입력하세요.</p>
+      {loading ? <p role="status">졸업요건을 계산하는 중입니다.</p> : profile ? (
+        <GraduationProgress profile={profile} />
+      ) : error ? <p className="error" role="alert">{error.message}</p> : (
+        <p>전공과 학번을 먼저 <Link className="inline-link" href="/onboarding">등록해 주세요</Link>.</p>
+      )}
+    </>
+  );
 }
