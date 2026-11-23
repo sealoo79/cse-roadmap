@@ -40,14 +40,6 @@
   .edge[data-edge-kind='service'] .connector { animation: none; }
 }
 
-.serviceArrow {
-  fill: var(--ok);
-}
-
-.academicArrow {
-  fill: var(--text);
-}
-
 .lock,
 .terminal {
   fill: var(--surface);

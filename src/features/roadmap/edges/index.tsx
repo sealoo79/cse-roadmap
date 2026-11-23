@@ -1,6 +1,6 @@
 'use client';
 
-import { useId, useLayoutEffect, useMemo, useRef, type JSX } from 'react';
+import { useLayoutEffect, useMemo, useRef, type JSX } from 'react';
 import type { CompletionState } from '@/lib/domain/completion';
 import type { Recommendation } from '@/lib/domain/recommend';
 import type { CourseCode, CourseRelation } from '@/types/reference';
@@ -19,7 +19,6 @@ export function EdgesLayer({
   showRecommendationEdges: boolean;
 }): JSX.Element {
   const layer = useRef<SVGSVGElement>(null);
-  const marker = useId();
   const edges = useMemo(() => buildRoadmapEdges(nodes, relations, recommendations, completion, showRecommendationEdges),
     [nodes, relations, recommendations, completion, showRecommendationEdges]);
   const relatedCodes = useMemo(() => selectedCode && nodes.some(({ code }) => code === selectedCode)
@@ -41,16 +40,6 @@ export function EdgesLayer({
 
   return (
     <svg className={styles.layer} ref={layer} aria-hidden="true" focusable="false">
-      <defs>
-        <marker id={`${marker}-academic`} viewBox="0 0 8 8" refX="8" refY="4"
-          markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
-          <path className={styles.academicArrow} d="M 0 0 L 8 4 L 0 8 Z" />
-        </marker>
-        <marker id={`${marker}-service`} viewBox="0 0 8 8" refX="8" refY="4"
-          markerWidth="8" markerHeight="8" markerUnits="userSpaceOnUse" orient="auto">
-          <path className={styles.serviceArrow} d="M 0 0 L 8 4 L 0 8 Z" />
-        </marker>
-      </defs>
       {edges.map((edge, index) => {
         const { from, to, kind } = edge;
         const { start, end, path, lock } = routeRoadmapEdge(edge, index);
@@ -59,8 +48,8 @@ export function EdgesLayer({
         return (
           <g key={`${kind === 'coreq' ? 'coreq/' : ''}${from.code}/${to.code}`}
             className={styles.edge} data-edge-kind={kind} data-from={from.code} data-to={to.code} data-muted={muted}>
-            <path className={styles.connector} d={path}
-              markerEnd={kind === 'coreq' ? undefined : `url(#${marker}-${kind === 'service' ? 'service' : 'academic'})`} />
+            {/* 화살표 머리 없이 선으로만 잇는다. 방향은 학기(왼쪽→오른쪽) 순서로 읽힌다. */}
+            <path className={styles.connector} d={path} />
             {kind === 'official' && (
               <g className={styles.lock} transform={`translate(${lock.x} ${lock.y})`}>
                 <path d="M -2.5 0 V -2.5 A 2.5 2.5 0 0 1 2.5 -2.5 V 0" />

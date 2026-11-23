@@ -8,8 +8,9 @@ import { useCompletion, useProfile, useReference } from '@/lib/user-data/hooks';
 import { useRecommendations } from '@/features/recommend/useRecommendations';
 import { RoadmapView } from '@/features/roadmap';
 import { roadmapFieldOf } from '@/features/roadmap/layout-roadmap';
-import { RoadmapSearch } from '@/features/roadmap-search';
+import { RoadmapCourseSearch, RoadmapFieldFilters } from '@/features/roadmap-search';
 import { CourseDetailPanel } from '@/features/course-detail';
+import styles from '@/features/roadmap/roadmap.module.css';
 
 function RoadmapContent(): JSX.Element {
   const { profile, loading, error } = useProfile();
@@ -17,7 +18,6 @@ function RoadmapContent(): JSX.Element {
   const completion = useCompletion();
   const recommendations = useRecommendations();
   const [visibleFields, setVisibleFields] = useState<FieldId[]>(ref.fields.map((f) => f.field_id));
-  const [showRecommendationEdges, setShowRecommendationEdges] = useState(true);
   const router = useRouter();
   const params = useSearchParams();
   const code = params.get('course');
@@ -29,25 +29,30 @@ function RoadmapContent(): JSX.Element {
     }
     router.replace(next ? `/roadmap?course=${encodeURIComponent(next)}` : '/roadmap', { scroll: false });
   };
-  if (loading) return <p role="status">로드맵을 불러오는 중입니다.</p>;
-  if (error) return <p role="alert">{error.message}</p>;
-  if (!profile) return <p>프로필을 등록하면 수강 경로를 확인할 수 있어요.</p>;
+  if (loading) return <><PageTitle /><p role="status">로드맵을 불러오는 중입니다.</p></>;
+  if (error) return <><PageTitle /><p role="alert">{error.message}</p></>;
+  if (!profile) return <><PageTitle /><p>프로필을 등록하면 수강 경로를 확인할 수 있어요.</p></>;
   return <>
-    <div className="toolbar roadmap-toolbar"><RoadmapSearch onSelect={select} visibleFields={visibleFields} onChangeVisibleFields={setVisibleFields} />
-      <label><input type="checkbox" checked={showRecommendationEdges} onChange={(e) => setShowRecommendationEdges(e.target.checked)} />추천 화살표 보기</label>
+    <div className={styles.pageHeader}>
+      <PageTitle />
+      <div className={styles.pageSearch}><RoadmapCourseSearch onSelect={select} /></div>
     </div>
     <RoadmapView programId={profile.program_id} admissionYear={profile.admission_year} completion={completion}
       recommendations={recommendations} selectedCode={selectedCode} onSelect={select}
-      showRecommendationEdges={showRecommendationEdges} visibleFields={visibleFields} />
+      showRecommendationEdges visibleFields={visibleFields}
+      toolbar={<RoadmapFieldFilters visibleFields={visibleFields} onChangeVisibleFields={setVisibleFields} />} />
     <CourseDetailPanel code={selectedCode} onClose={() => select(null)} onNavigate={select} />
   </>;
 }
+function PageTitle(): JSX.Element {
+  return <h1 className={styles.pageTitle}>수강 로드맵</h1>;
+}
+
 export default function RoadmapPage(): JSX.Element {
+  // roadmap-page: 노선도 화면은 넓은 본문 폭(--wide-width)을 쓴다(globals.css).
   return (
     <div className="roadmap-page">
-      <h1>내 전공 노선도</h1>
-      <p className="page-description">반짝이는 역은 추천 과목입니다. 과목을 선택하면 수강 정보와 추천 이유를 확인할 수 있어요.</p>
-      <Suspense fallback={<p role="status">로드맵을 불러오는 중입니다.</p>}><RoadmapContent /></Suspense>
+      <Suspense fallback={<><PageTitle /><p role="status">로드맵을 불러오는 중입니다.</p></>}><RoadmapContent /></Suspense>
     </div>
   );
 }
