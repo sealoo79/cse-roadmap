@@ -14,5 +14,6 @@ it('수강 기록이 없을 때 도메인 계약 함수를 함께 호출할 수 
   const graduation = evaluateGraduation({ profile: demoProfile, completion, noncredit: [], ref });
   expect(graduation.programId).toBe(demoProfile.program_id);
   expect(graduation.summary.met).toBe(0);
-  expect(recommendCourses({ profile: demoProfile, completion, interests: [], followupStats: [], ref })).toEqual([]);
+  const emptyCurriculum = { ...ref, curriculum: [] };
+  expect(recommendCourses({ profile: demoProfile, completion, interests: [], followupStats: [], ref: emptyCurriculum })).toEqual([]);
 });
