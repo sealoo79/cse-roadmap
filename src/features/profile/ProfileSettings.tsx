@@ -1,8 +1,9 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useRef, useState, type FormEvent, type JSX } from 'react';
 import { Button } from '@/components/ui/Button';
-import { useInterests, useProfile, useReference } from '@/lib/user-data/hooks';
+import { useEnrollments, useInterests, useProfile, useReference } from '@/lib/user-data/hooks';
 import type { FieldId } from '@/types/reference';
 import type { Profile } from '@/types/user';
 import { AcademicFields, InterestFields, type AcademicSelection } from './ProfileFields';
@@ -10,6 +11,7 @@ import { EnrollmentStep } from './EnrollmentStep';
 import styles from './profile.module.css';
 
 type Mode = 'onboarding' | 'account';
+type AccountSection = 'academic' | 'interests';
 
 const steps = ['전공·학번', '수강 내역', '관심 분야'] as const;
 
@@ -35,16 +37,27 @@ function ProfileEditor({ mode, profile, initialInterests }: {
   const { programs, fields } = useReference();
   const { save: saveProfile, error: profileError } = useProfile();
   const { fieldIds: savedInterests, save: saveInterests } = useInterests();
+  const { items: enrollments } = useEnrollments();
   const [academic, setAcademic] = useState<AcademicSelection>({
     programId: profile?.program_id ?? '',
     admissionYear: profile?.admission_year ?? '',
   });
   const [interests, setInterests] = useState(initialInterests);
   const [step, setStep] = useState(0);
+  const [accountSection, setAccountSection] = useState<AccountSection | null>(null);
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState<{ error: boolean; text: string } | null>(null);
   const stepHeading = useRef<HTMLHeadingElement>(null);
   const onboarding = mode === 'onboarding';
+  const showAcademic = onboarding ? step === 0 : accountSection === 'academic';
+  const showInterests = onboarding ? step === 2 : accountSection === 'interests';
+
+  function editAccount(section: AccountSection): void {
+    setAcademic({ programId: profile?.program_id ?? '', admissionYear: profile?.admission_year ?? '' });
+    setInterests(savedInterests);
+    setNotice(null);
+    setAccountSection(section);
+  }
 
   useEffect(() => {
     if (onboarding && step > 0) stepHeading.current?.focus();
@@ -55,7 +68,7 @@ function ProfileEditor({ mode, profile, initialInterests }: {
 
   async function save(ids: FieldId[]): Promise<void> {
     if (saving) return;
-    if (!validAcademic || !academic.programId || !academic.admissionYear) {
+    if ((onboarding || showAcademic) && !validAcademic) {
       setNotice({ error: true, text: '등록 가능한 전공과 학번을 선택해 주세요.' });
       if (onboarding) setStep(0);
       return;
@@ -66,7 +79,7 @@ function ProfileEditor({ mode, profile, initialInterests }: {
     const changedInterests = ids.length !== savedInterests.length || ids.some((id) => !savedInterests.includes(id));
     let leaving = false;
     try {
-      if (changedInterests) {
+      if ((onboarding || showInterests) && changedInterests) {
         const result = await saveInterests(ids);
         if (!result.ok) {
           setNotice({ error: true, text: result.error.message });
@@ -75,7 +88,8 @@ function ProfileEditor({ mode, profile, initialInterests }: {
       }
 
       // The route guard considers a profile complete, so write the profile last.
-      if (onboarding || academic.programId !== profile?.program_id || academic.admissionYear !== profile?.admission_year) {
+      if (academic.programId && academic.admissionYear && (onboarding || (showAcademic
+        && (academic.programId !== profile?.program_id || academic.admissionYear !== profile?.admission_year)))) {
         const result = await saveProfile({ program_id: academic.programId, admission_year: academic.admissionYear });
         if (!result.ok) {
           setNotice({
@@ -93,6 +107,7 @@ function ProfileEditor({ mode, profile, initialInterests }: {
         window.location.replace(new URL('/roadmap', window.location.origin));
         leaving = true;
       } else {
+        setAccountSection(null);
         setNotice({ error: false, text: '회원정보를 저장했습니다.' });
       }
     } catch {
@@ -130,13 +145,36 @@ function ProfileEditor({ mode, profile, initialInterests }: {
         </ol>
       )}
 
-      <form className={styles.panel} onSubmit={submit} aria-busy={saving}>
+      {!onboarding && !accountSection && (
+        <section className={styles.panel} aria-label="저장된 회원정보">
+          {profile?.email && <p className={styles.help}>{profile.email}</p>}
+          <dl className={styles.summary}>
+            <div>
+              <dt>전공·학번</dt>
+              <dd>{programs.find((program) => program.program_id === profile?.program_id)?.name} · {profile?.admission_year}학번</dd>
+              <Button onClick={() => editAccount('academic')}>전공·학번 변경</Button>
+            </div>
+            <div>
+              <dt>수강 내역</dt>
+              <dd>저장된 수강 내역 {enrollments.length}건</dd>
+              <Link className="button" href="/enrollments">수강 내역 변경</Link>
+            </div>
+            <div>
+              <dt>관심 분야</dt>
+              <dd>{fields.filter((field) => savedInterests.includes(field.field_id)).map((field) => field.name_ko).join(' · ') || '선택한 분야 없음'}</dd>
+              <Button onClick={() => editAccount('interests')}>관심 분야 변경</Button>
+            </div>
+          </dl>
+          {notice && <p role="status" className={styles.success}>{notice.text}</p>}
+        </section>
+      )}
+      {(onboarding || accountSection) && <form className={styles.panel} onSubmit={submit} aria-busy={saving}>
         {onboarding && step > 0 && (
           <h2 className={styles.visuallyHidden} tabIndex={-1} ref={stepHeading}>{steps[step]}</h2>
         )}
-        {(!onboarding || step === 0) && academicFields}
+        {showAcademic && academicFields}
         {onboarding && step === 1 && <EnrollmentStep />}
-        {(!onboarding || step === 2) && interestFields}
+        {showInterests && interestFields}
 
         {notice && <p role={notice.error ? 'alert' : 'status'} className={notice.error ? styles.error : styles.success}>
           {notice.text}
@@ -144,18 +182,19 @@ function ProfileEditor({ mode, profile, initialInterests }: {
         {!notice && !saving && profileError && <p role="alert" className={styles.error}>{profileError.message}</p>}
 
         <div className={styles.actions}>
+          {!onboarding && <Button disabled={saving} onClick={() => { setNotice(null); setAccountSection(null); }}>취소</Button>}
           {onboarding && step > 0 && <Button disabled={saving} onClick={() => setStep(step - 1)}>이전</Button>}
           {onboarding && step === 1 && <Button className={styles.primary} onClick={() => setStep(2)}>건너뛰기</Button>}
           {onboarding && step === 2 && (
             <Button disabled={saving} onClick={() => void save([])}>관심 분야 건너뛰기</Button>
           )}
           {(!onboarding || step !== 1) && (
-            <Button className={styles.primary} type="submit" disabled={saving || !validAcademic}>
-              {saving ? '저장 중…' : !onboarding ? '변경사항 저장' : step === 0 ? '다음' : '온보딩 완료'}
+            <Button className={styles.primary} type="submit" disabled={saving || (showAcademic && !validAcademic)}>
+              {saving ? '저장 중…' : !onboarding ? '변경사항 저장' : step === 0 ? '다음: 수강 내역' : '설정 완료하고 노선도 보기'}
             </Button>
           )}
         </div>
-      </form>
+      </form>}
     </div>
   );
 }
