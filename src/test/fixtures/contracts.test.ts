@@ -11,6 +11,8 @@ it('수강 기록이 없을 때 도메인 계약 함수를 함께 호출할 수 
   expect(completion.completed.size).toBe(0);
   expect(completion.isCompleted('COMP0204')).toBe(false);
   expect(completion.canonicalOf('XXXX9999')).toBe('XXXX9999');
-  expect(evaluateGraduation({ profile: demoProfile, completion, noncredit: [], ref }).items).toEqual([]);
+  const graduation = evaluateGraduation({ profile: demoProfile, completion, noncredit: [], ref });
+  expect(graduation.programId).toBe(demoProfile.program_id);
+  expect(graduation.summary.met).toBe(0);
   expect(recommendCourses({ profile: demoProfile, completion, interests: [], followupStats: [], ref })).toEqual([]);
 });
