@@ -52,6 +52,14 @@ export function CurriculumChecklist({
     registered: records.some((record) => sameEnrollment(record, inputFor(entry))),
   }));
   const pending = rows.filter(({ entry, registered }) => !registered && selected.includes(entry.course_code));
+  // 이미 등록된 과목을 뺀, 이 학기에서 고를 수 있는 과목. 전체 선택은 이 과목들만 대상으로 한다.
+  const selectable = rows.filter(({ registered }) => !registered).map(({ entry }) => entry.course_code);
+  const allSelected = selectable.length > 0 && selectable.every((code) => selected.includes(code));
+  const toggleAll = (): void => {
+    setSelected((codes) => allSelected
+      ? codes.filter((code) => !selectable.includes(code))
+      : [...new Set([...codes, ...selectable])]);
+  };
   const save = (): void => {
     if (!validYear(year)) {
       setError('수강 연도를 네 자리 숫자로 입력해 주세요.');
@@ -88,6 +96,12 @@ export function CurriculumChecklist({
               <input className="form-control" inputMode="numeric" maxLength={4} value={year}
                 onChange={(event) => setYearOverride(event.target.value)} />
             </label>
+          </div>
+          <div className={styles.selection}>
+            <span className={styles.muted}>이 학기 교육과정 {rows.length}과목</span>
+            <Button disabled={selectable.length === 0} onClick={toggleAll}>
+              {allSelected ? '전체 해제' : '전체 선택'}
+            </Button>
           </div>
           <ul className={styles.checklist}>
             {rows.map(({ entry, course, registered }) => (

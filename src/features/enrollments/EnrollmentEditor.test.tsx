@@ -140,6 +140,30 @@ describe('EnrollmentEditor', () => {
     expect(onDone).toHaveBeenCalledOnce();
   });
 
+  it('교육과정 학기의 과목을 전체 선택·해제하고, 이미 등록된 과목은 다시 등록하지 않는다', async () => {
+    const repository = new MockUserDataRepository();
+    renderEditor(repository);
+    fireEvent.click(await screen.findByRole('button', { name: '교육과정에서 추가' }));
+    const boxes = (): HTMLInputElement[] => screen.getAllByRole('checkbox') as HTMLInputElement[];
+    const selectable = boxes().filter((box) => !box.disabled).length;
+    expect(selectable).toBeGreaterThan(0);
+
+    fireEvent.click(screen.getByRole('button', { name: '전체 선택' }));
+    expect(boxes().every((box) => box.checked)).toBe(true);
+    expect(screen.getByText(`${selectable}과목 선택`)).toBeDefined();
+
+    fireEvent.click(screen.getByRole('button', { name: '전체 해제' }));
+    expect(boxes().filter((box) => !box.disabled).every((box) => !box.checked)).toBe(true);
+    expect(screen.getByText('0과목 선택')).toBeDefined();
+
+    // 한 과목을 등록한 뒤 전체 선택하면 그 과목은 '등록됨'으로 남고 나머지만 선택된다.
+    fireEvent.click(boxes().find((box) => !box.disabled) as HTMLInputElement);
+    fireEvent.click(screen.getByRole('button', { name: '선택 과목 등록' }));
+    await screen.findByText('1과목을 등록했습니다.');
+    fireEvent.click(screen.getByRole('button', { name: '전체 선택' }));
+    expect(screen.getByText(`${selectable - 1}과목 선택`)).toBeDefined();
+  });
+
   it('일부 저장에 실패하면 성공한 과목을 제외하고 남은 과목을 다시 저장할 수 있다', async () => {
     const repository = new MockUserDataRepository();
     const originalAdd = repository.addEnrollment.bind(repository);
