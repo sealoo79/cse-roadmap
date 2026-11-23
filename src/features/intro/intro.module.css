@@ -3,9 +3,9 @@
   isolation: isolate;
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: center;
-  gap: clamp(2.5rem, 7vw, 7rem);
+  justify-items: center;
+  align-content: center;
+  gap: clamp(2rem, 5vw, 4rem);
   min-height: 30rem;
   padding: clamp(2.25rem, 7vw, 6rem);
   border: 1px solid var(--line);
@@ -13,9 +13,11 @@
   background: var(--surface);
 }
 
+.copy { text-align: center; }
+
 .copy h1 {
-  max-width: 12ch;
-  margin: 0;
+  max-width: 17ch;
+  margin: 0 auto;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
   line-height: 1.12;
   word-break: keep-all;
@@ -67,7 +69,7 @@
   background: var(--surface);
 }
 
-.preview { min-width: 0; }
+.preview { width: min(100%, 28rem); min-width: 0; }
 .stack { position: relative; isolation: isolate; }
 
 .stack::before,
@@ -100,6 +102,7 @@
 .controls {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.5rem;
   margin-top: 1.75rem;
 }
@@ -121,11 +124,11 @@
 }
 
 @media (max-width: 780px) {
-  .intro { grid-template-columns: 1fr; }
   .copy h1 { max-width: none; }
   .lineOne { top: 30%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .card { animation: none; }
+  .motionControl { display: none; }
 }
