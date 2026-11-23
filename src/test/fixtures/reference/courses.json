@@ -1,0 +1,77 @@
+[
+  {
+    "course_code": "COMP0204",
+    "name_ko": "개발 예제: 프로그래밍",
+    "name_en": null,
+    "credit": 3,
+    "theory": null,
+    "practice": null,
+    "credit_sys": null,
+    "kind": "major",
+    "course_types": [
+      "전공"
+    ],
+    "liberal_area": null,
+    "offered_semesters": [
+      1,
+      2
+    ],
+    "offering_departments": null,
+    "tags": [],
+    "startup_related": false,
+    "design_related": false,
+    "design_credit": null,
+    "name_variants": [],
+    "source": "개발용 축소 예제 — 공식 졸업요건 자료 아님"
+  },
+  {
+    "course_code": "COMP0216",
+    "name_ko": "개발 예제: 자료구조",
+    "name_en": null,
+    "credit": 3,
+    "theory": null,
+    "practice": null,
+    "credit_sys": null,
+    "kind": "major",
+    "course_types": [
+      "전공"
+    ],
+    "liberal_area": null,
+    "offered_semesters": [
+      1,
+      2
+    ],
+    "offering_departments": null,
+    "tags": [],
+    "startup_related": false,
+    "design_related": false,
+    "design_credit": null,
+    "name_variants": [],
+    "source": "개발용 축소 예제 — 공식 졸업요건 자료 아님"
+  },
+  {
+    "course_code": "COMP0311",
+    "name_ko": "개발 예제: 알고리즘",
+    "name_en": null,
+    "credit": 3,
+    "theory": null,
+    "practice": null,
+    "credit_sys": null,
+    "kind": "major",
+    "course_types": [
+      "전공"
+    ],
+    "liberal_area": null,
+    "offered_semesters": [
+      1,
+      2
+    ],
+    "offering_departments": null,
+    "tags": [],
+    "startup_related": false,
+    "design_related": false,
+    "design_credit": null,
+    "name_variants": [],
+    "source": "개발용 축소 예제 — 공식 졸업요건 자료 아님"
+  }
+]

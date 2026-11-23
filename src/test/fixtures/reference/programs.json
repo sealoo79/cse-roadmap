@@ -1,0 +1,26 @@
+[
+  {
+    "program_id": "adv_computing",
+    "name": "심화컴퓨팅전공",
+    "college": "컴퓨터학부",
+    "years": [
+      {
+        "admission_year": 2026,
+        "curriculum_status": "assumed"
+      }
+    ],
+    "note": "개발용 축소 예제 — 공식 졸업요건 자료 아님"
+  },
+  {
+    "program_id": "ai_computing",
+    "name": "인공지능컴퓨팅전공",
+    "college": "컴퓨터학부",
+    "years": [
+      {
+        "admission_year": 2026,
+        "curriculum_status": "assumed"
+      }
+    ],
+    "note": "개발용 축소 예제 — 공식 졸업요건 자료 아님"
+  }
+]

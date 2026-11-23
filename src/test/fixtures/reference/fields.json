@@ -1,0 +1,32 @@
+[
+  {
+    "field_id": "common",
+    "name_ko": "공통",
+    "color": "#637187",
+    "order": 0
+  },
+  {
+    "field_id": "system",
+    "name_ko": "시스템",
+    "color": "#ba7434",
+    "order": 1
+  },
+  {
+    "field_id": "ai_data",
+    "name_ko": "AI·데이터",
+    "color": "#507bc6",
+    "order": 2
+  },
+  {
+    "field_id": "network_security",
+    "name_ko": "네트워크·보안",
+    "color": "#9473bd",
+    "order": 3
+  },
+  {
+    "field_id": "sw_web",
+    "name_ko": "SW·웹",
+    "color": "#308a75",
+    "order": 4
+  }
+]

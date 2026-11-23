@@ -1,0 +1,26 @@
+[
+  {
+    "course_code": "COMP0204",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal"
+  },
+  {
+    "course_code": "COMP0216",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal"
+  },
+  {
+    "course_code": "COMP0311",
+    "primary_field_id": "common",
+    "field_ids": [
+      "common"
+    ],
+    "basis": "team_proposal"
+  }
+]

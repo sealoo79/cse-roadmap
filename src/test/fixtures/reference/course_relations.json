@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "from_code": "COMP0204",
+    "to_code": "COMP0216",
+    "type": "recommended",
+    "group_no": 1,
+    "program_id": null,
+    "admission_year_from": null,
+    "admission_year_to": null,
+    "source": "개발용 축소 예제 — 공식 졸업요건 자료 아님",
+    "note": null
+  }
+]

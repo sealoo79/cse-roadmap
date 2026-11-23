@@ -1,0 +1,68 @@
+[
+  {
+    "program_id": "adv_computing",
+    "admission_year": 2026,
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "credit_bucket": "major",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "program_id": "adv_computing",
+    "admission_year": 2026,
+    "course_code": "COMP0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "credit_bucket": "major",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "program_id": "adv_computing",
+    "admission_year": 2026,
+    "course_code": "COMP0311",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "credit_bucket": "major",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "program_id": "ai_computing",
+    "admission_year": 2026,
+    "course_code": "COMP0204",
+    "grade": 1,
+    "semester": 1,
+    "category": "전공",
+    "credit_bucket": "major",
+    "is_required": true,
+    "tags": []
+  },
+  {
+    "program_id": "ai_computing",
+    "admission_year": 2026,
+    "course_code": "COMP0216",
+    "grade": 2,
+    "semester": 1,
+    "category": "전공",
+    "credit_bucket": "major",
+    "is_required": false,
+    "tags": []
+  },
+  {
+    "program_id": "ai_computing",
+    "admission_year": 2026,
+    "course_code": "COMP0311",
+    "grade": 3,
+    "semester": 1,
+    "category": "전공",
+    "credit_bucket": "major",
+    "is_required": false,
+    "tags": []
+  }
+]
